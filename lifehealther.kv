@@ -1,0 +1,106 @@
+<MainScreen>
+    TabbedPanel:
+        size: root.width, root.height
+        do_default_tab: False
+        tab_pos: "bottom_mid"
+        tab_width: self.size[0]/len(self.tab_list)
+
+        TabbedPanelItem:
+            canvas:
+                Rectangle:
+                    source: "images/qq.jpg"
+                    size: (self.size[0]/2, self.size[0]/2)
+                    pos: (self.size[0]/4, 0)
+
+            FloatLayout
+                VideoPlayer:
+                    source: "images/cat_video.mp4"
+                    size: self.parent.size
+                    pos: self.parent.pos
+                    state: 'stop'
+                    controls: 'position'
+
+                Button:
+                    id: like_button
+                    pos_hint: {'x': 0.8, 'y': 0.4}
+                    size_hint: (0.2, 0.1)
+                    background_color: (1,1,1,0)
+                    on_release: root.like()
+                    Image:
+                        id: like_icon
+                        source: "images/like.png"
+                        size: self.parent.size
+                        pos: self.parent.pos
+
+                Button:
+                    id: comment_button
+                    pos_hint: {'x': 0.8, 'y': 0.27}
+                    size_hint: (0.2, 0.1)
+                    background_color: (1,1,1,0)
+                    on_release:
+                        #root.comment()
+                        root.manager.current = 'comment'
+                        root.manager.transition.direction = 'up'
+                    Image:
+                        id: comment_icon
+                        source: "images/comment.png"
+                        size: self.parent.size
+                        pos: self.parent.pos
+
+                Button:
+                    id: share_button
+                    pos_hint: {'x': 0.8, 'y': 0.14}
+                    size_hint: (0.2, 0.1)
+                    background_color: (1,1,1,0)
+                    on_release:
+                        root.share()
+                    Image:
+                        id: share_icon
+                        source: "images/share.png"
+                        size: self.parent.size
+                        pos: self.parent.pos
+
+
+        TabbedPanelItem:
+            Button:
+                pos_hint: {'x': 0.8, 'y': 0.27}
+                size_hint: (0.2, 0.1)
+                background_color: (1,1,1,0)
+                on_release:
+                    #root.comment()
+                    root.manager.current = 'comment'
+                    root.manager.transition.direction = 'up'
+                Image:
+                    source: "images/comment.png"
+                    size: self.parent.size
+                    pos: self.parent.pos
+
+        TabbedPanelItem:
+            text: "hi"
+            Label:
+                text: "hi"
+
+        TabbedPanelItem:
+            text: "bye"
+            Label:
+                text: "bye"
+
+<CommentScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        SlidingPanel:
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    text: 'Comment 1'
+                Label:
+                    text: 'Comment 2'
+                Label:
+                    text: 'Comment 3'
+        Button:
+            text: 'Back to Main'
+            size_hint: 1, 0.1
+            on_release:
+                app.root.current = 'main'
+                root.manager.transition.direction = 'down'
+
