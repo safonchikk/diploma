@@ -21,6 +21,17 @@
                     controls: 'position'
 
                 Button:
+                    id: profile_button
+                    pos_hint: {'x': 0.8, 'y': 0.85}
+                    size_hint: (0.2, 0.1)
+                    background_color: (1,1,1,0)
+                    on_release: app.root.current = 'login'
+                    Image:
+                        source: "images/account.png"
+                        size: self.parent.size
+                        pos: self.parent.pos
+
+                Button:
                     id: like_button
                     pos_hint: {'x': 0.8, 'y': 0.4}
                     size_hint: (0.2, 0.1)
@@ -39,7 +50,7 @@
                     background_color: (1,1,1,0)
                     on_release:
                         #root.comment()
-                        root.manager.current = 'comment'
+                        app.root.current = 'comment'
                         root.manager.transition.direction = 'up'
                     Image:
                         id: comment_icon
@@ -85,22 +96,4 @@
             Label:
                 text: "bye"
 
-<CommentScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        SlidingPanel:
-            BoxLayout:
-                orientation: 'vertical'
-                Label:
-                    text: 'Comment 1'
-                Label:
-                    text: 'Comment 2'
-                Label:
-                    text: 'Comment 3'
-        Button:
-            text: 'Back to Main'
-            size_hint: 1, 0.1
-            on_release:
-                app.root.current = 'main'
-                root.manager.transition.direction = 'down'
 

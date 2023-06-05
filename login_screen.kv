@@ -1,0 +1,52 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 0
+        spacing: dp(10)
+        size_hint_y: None
+        height: self.minimum_height
+        pos_hint: {'top': 1.0}
+
+        Label:
+            text: 'Login'
+            text_size: self.size
+            halign: 'left'
+            size_hint: 1, None
+            height: dp(30)
+        TextInput:
+            id: login_input
+            multiline: False
+            size_hint: 1, None
+            height: dp(30)
+
+        Label:
+            text: 'Password'
+            text_size: self.size
+            halign: 'left'
+            size_hint: 1, None
+            height: dp(30)
+        TextInput:
+            id: password_input
+            multiline: False
+            password: True
+            size_hint: 1, None
+            height: dp(30)
+
+    BoxLayout:
+        pos_hint: {'bottom': 1.0}
+        orientation: 'vertical'
+
+        Button:
+            text: 'Login'
+            size_hint: 1, None
+            height: dp(100)
+            on_release:
+                root.login()
+                app.root.current = 'main'
+
+        Button:
+            text: 'Create an account'
+            size_hint: 1, None
+            height: dp(50)
+            on_release:
+                app.root.current = 'registration'

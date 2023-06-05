@@ -1,0 +1,18 @@
+<CommentScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        SlidingPanel:
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    text: 'Comment 1'
+                Label:
+                    text: 'Comment 2'
+                Label:
+                    text: 'Comment 3'
+        Button:
+            text: 'Back to Main'
+            size_hint: 1, 0.1
+            on_release:
+                app.root.current = 'main'
+                root.manager.transition.direction = 'down'

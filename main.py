@@ -15,6 +15,9 @@ from kivy.uix.videoplayer import VideoPlayer
 
 
 Builder.load_file('sliding_panel.kv')
+Builder.load_file('comment_screen.kv')
+Builder.load_file('login_screen.kv')
+Builder.load_file('registration_screen.kv')
 
 
 class MainScreen(Screen):
@@ -43,12 +46,34 @@ class SlidingPanel(ButtonBehavior, BoxLayout):
     pass
 
 
+class RegistrationScreen(Screen):
+    def register(self):
+        email = self.ids.email_input.text
+        login = self.ids.login_input.text
+        password = self.ids.password_input.text
+        self.reg(email, login, password)
+
+    def reg(self, email, login, password):
+        pass
+
+
+class LoginScreen(Screen):
+    def login(self):
+        login = self.ids.login_input.text
+        password = self.ids.password_input.text
+        self.log(login, password)
+
+    def log(self, login, password):
+        pass
+
+
 class LifeHealther(App):
     def build(self):
         sm = ScreenManager()
         sm.add_widget(MainScreen(name='main'))
         sm.add_widget(CommentScreen(name='comment'))
-
+        sm.add_widget(RegistrationScreen(name='registration'))
+        sm.add_widget(LoginScreen(name='login'))
         return sm
 
 
