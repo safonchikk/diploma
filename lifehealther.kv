@@ -80,12 +80,15 @@
 
 
         TabbedPanelItem:
-            text: "hi"
-            Label:
-                text: "hi"
+            BoxLayout:
+                size_hint: (1, None)
+                size: (root.width, root.height-dp(50))
+                id: videos_grid
+
 
         TabbedPanelItem:
-            text: "bye"
-            Label:
-                text: "bye"
+            BoxLayout:
+                size_hint: (1, None)
+                size: (root.width, root.height-dp(50))
+                id: creators_grid
 

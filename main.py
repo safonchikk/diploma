@@ -18,6 +18,8 @@ Builder.load_file('comment_screen.kv')
 Builder.load_file('login_screen.kv')
 Builder.load_file('registration_screen.kv')
 Builder.load_file('article_preview.kv')
+Builder.load_file('video_preview.kv')
+Builder.load_file('creator_preview.kv')
 
 
 class MainScreen(Screen):
@@ -36,6 +38,29 @@ class MainScreen(Screen):
 
         self.ids.articles_grid.add_widget(scroll_view)
 
+    def load_videos(self):
+        layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+        layout.bind(minimum_height=layout.setter('height'))
+        for i in range(5):
+            video_preview = VideoPreview(size_hint_y=None, height=dp(300))
+            layout.add_widget(video_preview)
+
+        scroll_view = ScrollView()
+        scroll_view.add_widget(layout)
+
+        self.ids.videos_grid.add_widget(scroll_view)
+
+    def load_creators(self):
+        layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+        layout.bind(minimum_height=layout.setter('height'))
+        for i in range(15):
+            creator_preview = CreatorPreview(size_hint_y=None, height=dp(50))
+            layout.add_widget(creator_preview)
+
+        scroll_view = ScrollView()
+        scroll_view.add_widget(layout)
+
+        self.ids.creators_grid.add_widget(scroll_view)
 
     def like(self):
         if self.ids.like_icon.source == "images/like.png":
@@ -59,6 +84,14 @@ class ArticlePreview(Button):
     def __init__(self, text_preview, **kwargs):
         super(ArticlePreview, self).__init__(**kwargs)
         self.ids.text_preview.text = text_preview
+
+
+class VideoPreview(Button):
+    pass
+
+
+class CreatorPreview(Button):
+    pass
 
 
 class SlidingPanel(ButtonBehavior, BoxLayout):
@@ -90,6 +123,8 @@ class LifeHealther(App):
     def build(self):
         main_screen = MainScreen(name='main')
         main_screen.load_articles()
+        main_screen.load_videos()
+        main_screen.load_creators()
         sm = ScreenManager()
         sm.add_widget(main_screen)
         sm.add_widget(CommentScreen(name='comment'))

@@ -1,0 +1,37 @@
+<VideoPreview>
+    on_press: app.root.current = 'login'
+    FloatLayout:
+        pos: root.pos
+        size: self.parent.size
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1
+            Rectangle:
+                pos: self.parent.pos
+                size: self.parent.size
+
+        Image:
+            source: 'images/thumbnail.jpg'
+            pos_hint: {'top': 0.99, 'x': 0.02}
+            size: self.size
+            size_hint: (0.96, 0.8)
+
+        Image:
+            source: 'images/account.png'
+            pos_hint: {'top': 0.2, 'x': 0.02}
+            size_hint: (0.15, 0.15)
+
+        Label:
+            text: 'John Doe'
+            color: (0,0,0,1)
+            pos_hint: {'top': 0.23, 'x': 0.18}
+            size_hint: (0.2, 0.2)
+            text_size: self.size
+
+        Label:
+            text: 'Video Title'
+            color: (0,0,0,1)
+            text_size: self.size
+            pos_hint: {'top': 0.34, 'x': 0.18}
+            size_hint: (0.7, 0.25)
+            font_size: 30

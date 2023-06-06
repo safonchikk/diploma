@@ -1,0 +1,24 @@
+<CreatorPreview>
+    on_press: app.root.current = 'login'
+    FloatLayout:
+        pos: root.pos
+        size: self.parent.size
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1
+            Rectangle:
+                pos: self.parent.pos
+                size: self.parent.size
+
+        Image:
+            source: 'images/account.png'
+            pos_hint: {'top': 0.95, 'x': 0}
+            size_hint: (0.3, 0.9)
+
+        Label:
+            text: 'John Doe Sport Tips'
+            color: (0,0,0,1)
+            pos_hint: {'top': 1, 'x': 0.25}
+            size_hint: (0.7, 1)
+            text_size: self.size
+            font_size: 28
