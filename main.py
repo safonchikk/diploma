@@ -48,12 +48,12 @@ class SlidingPanel(ButtonBehavior, BoxLayout):
 
 class RegistrationScreen(Screen):
     def register(self):
-        email = self.ids.email_input.text
+        role = self.ids.role_spinner.text
         login = self.ids.login_input.text
         password = self.ids.password_input.text
-        self.reg(email, login, password)
+        self.reg(role, login, password)
 
-    def reg(self, email, login, password):
+    def reg(self, role, login, password):
         pass
 
 

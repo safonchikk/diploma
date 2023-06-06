@@ -8,16 +8,18 @@
         pos_hint: {'top': 1.0}
 
         Label:
-            text: 'Email'
+            text: 'Role'
             text_size: self.size
             halign: 'left'
             size_hint: 1, None
             height: dp(30)
-        TextInput:
-            id: email_input
-            multiline: False
+
+        Spinner:
+            id: role_spinner
+            text: 'Select role'
+            values: ['Viewer', 'Creator']
             size_hint: 1, None
-            height: dp(30)
+            height: dp(50)
 
         Label:
             text: 'Login'
