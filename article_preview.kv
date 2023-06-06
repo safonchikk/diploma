@@ -1,0 +1,46 @@
+<ArticlePreview>
+    on_press: app.root.current = 'login'
+    pos: root.pos
+    FloatLayout:
+        pos: root.pos
+        size: self.parent.size
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1
+            Rectangle:
+                pos: self.parent.pos
+                size: self.parent.size
+
+        Image:
+            source: 'images/account.png'
+            pos_hint: {'top': 0.95, 'x': 0}
+            size_hint: (0.2, 0.2)
+
+        Label:
+            text: 'John Doe'
+            color: (0,0,0,1)
+            pos_hint: {'top': 0.8, 'x': 0}
+            size_hint: (0.2, 0.2)
+
+        Label:
+            text: 'Article Headline'
+            color: (0,0,0,1)
+            text_size: self.size
+            pos_hint: {'top': 1, 'right': 1}
+            size_hint: (0.7, 0.25)
+            font_size: 30
+
+
+
+        Label:
+            id: text_preview
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            color: (0,0,0,1)
+            font_size: 24
+            multiline: True
+            pos_hint: {'top': 0.75, 'right': 1}
+            size_hint: (0.95, 0.6)
+            text_size: self.size
+            markup: True
+            on_ref_press:
+                app.root.current = 'login'

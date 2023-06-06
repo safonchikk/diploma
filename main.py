@@ -1,28 +1,41 @@
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
+from kivy.core.window import Window
+from kivy.lang import Builder
+from kivy.metrics import dp
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty, ColorProperty
-from kivy.lang import Builder
-from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.core.window import Window, Animation
-from kivy.uix.videoplayer import VideoPlayer
-
+from kivy.uix.scrollview import ScrollView
 
 Builder.load_file('sliding_panel.kv')
 Builder.load_file('comment_screen.kv')
 Builder.load_file('login_screen.kv')
 Builder.load_file('registration_screen.kv')
+Builder.load_file('article_preview.kv')
 
 
 class MainScreen(Screen):
 
     Window.size = (400, 750)
+
+    def load_articles(self):
+        layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+        layout.bind(minimum_height=layout.setter('height'))
+        for i in range(5):
+            article_preview = ArticlePreview(text_preview=str(i), size_hint_y=None, height=dp(250))
+            layout.add_widget(article_preview)
+
+        scroll_view = ScrollView()
+        scroll_view.add_widget(layout)
+
+        self.ids.articles_grid.add_widget(scroll_view)
+
 
     def like(self):
         if self.ids.like_icon.source == "images/like.png":
@@ -40,6 +53,12 @@ class MainScreen(Screen):
 
 class CommentScreen(Screen):
     pass
+
+
+class ArticlePreview(Button):
+    def __init__(self, text_preview, **kwargs):
+        super(ArticlePreview, self).__init__(**kwargs)
+        self.ids.text_preview.text = text_preview
 
 
 class SlidingPanel(ButtonBehavior, BoxLayout):
@@ -69,8 +88,10 @@ class LoginScreen(Screen):
 
 class LifeHealther(App):
     def build(self):
+        main_screen = MainScreen(name='main')
+        main_screen.load_articles()
         sm = ScreenManager()
-        sm.add_widget(MainScreen(name='main'))
+        sm.add_widget(main_screen)
         sm.add_widget(CommentScreen(name='comment'))
         sm.add_widget(RegistrationScreen(name='registration'))
         sm.add_widget(LoginScreen(name='login'))

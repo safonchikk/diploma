@@ -73,18 +73,11 @@
 
 
         TabbedPanelItem:
-            Button:
-                pos_hint: {'x': 0.8, 'y': 0.27}
-                size_hint: (0.2, 0.1)
-                background_color: (1,1,1,0)
-                on_release:
-                    #root.comment()
-                    root.manager.current = 'comment'
-                    root.manager.transition.direction = 'up'
-                Image:
-                    source: "images/comment.png"
-                    size: self.parent.size
-                    pos: self.parent.pos
+            BoxLayout:
+                size_hint: (1, None)
+                size: (root.width, root.height-dp(50))
+                id: articles_grid
+
 
         TabbedPanelItem:
             text: "hi"
@@ -95,5 +88,4 @@
             text: "bye"
             Label:
                 text: "bye"
-
 
