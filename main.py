@@ -26,7 +26,7 @@ Builder.load_file('creator_preview.kv')
 
 class MainScreen(Screen):
 
-    Window.size = (400, 750)
+    #Window.size = (400, 750)
 
     def load_articles(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
