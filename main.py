@@ -1,3 +1,6 @@
+import json
+
+import requests
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
@@ -12,6 +15,7 @@ from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
+import hashlib
 
 Builder.load_file('sliding_panel.kv')
 Builder.load_file('comment_screen.kv')
@@ -106,7 +110,31 @@ class RegistrationScreen(Screen):
         self.reg(role, login, password)
 
     def reg(self, role, login, password):
-        pass
+        h = hashlib.sha3_256()
+        h.update(bytes(password, 'UTF-8'))
+        password = h.hexdigest()
+        if role == "Viewer":
+            data = {
+                "id":{
+                    "id": {
+                        "username": login,
+                        "password": password
+                    },
+                    "role": "Cu"
+                }
+            }
+            r = requests.post("http://127.0.0.1:8000/customer/create", json=data)
+        else:
+            data = {
+                "id": {
+                    "id": {
+                        "username": login,
+                        "password": password
+                    },
+                    "role": "Cr"
+                }
+            }
+            r = requests.post("http://127.0.0.1:8000/creator/create", json=data)
 
 
 class LoginScreen(Screen):
