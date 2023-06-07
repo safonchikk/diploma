@@ -123,7 +123,7 @@ class RegistrationScreen(Screen):
                     "role": "Cu"
                 }
             }
-            r = requests.post("http://127.0.0.1:8000/customer/create", json=data)
+            r = requests.post("https://lifehealther.onrender.com/customer/create", json=data)
         else:
             data = {
                 "id": {
@@ -134,7 +134,7 @@ class RegistrationScreen(Screen):
                     "role": "Cr"
                 }
             }
-            r = requests.post("http://127.0.0.1:8000/creator/create", json=data)
+            r = requests.post("https://lifehealther.onrender.com/creator/create", json=data)
 
 
 class LoginScreen(Screen):
