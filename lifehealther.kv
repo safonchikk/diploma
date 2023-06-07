@@ -1,4 +1,17 @@
 <MainScreen>
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+            rgba: (1,0.5,0,1)
+        Rectangle:
+            size: (self.width, dp(50))
+            pos: self.pos
+
+
     TabbedPanel:
         size: root.width, root.height
         do_default_tab: False
@@ -6,10 +19,11 @@
         tab_width: self.size[0]/len(self.tab_list)
 
         TabbedPanelItem:
+            background_color: (1,1,1,0)
             canvas:
                 Rectangle:
-                    source: "images/qq.jpg"
-                    size: (self.size[0]/2, self.size[0]/2)
+                    source: "images/short_video.png"
+                    size: (dp(40), dp(40))
                     pos: (self.size[0]/4, 0)
 
             FloatLayout
@@ -73,13 +87,32 @@
 
 
         TabbedPanelItem:
+            background_color: (1,1,1,0)
+            canvas:
+                Rectangle:
+                    source: "images/article.png"
+                    size: (dp(40), dp(40))
+                    pos: (self.size[0]*1.25, 0)
+
             BoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
                 size_hint: (1, None)
                 size: (root.width, root.height-dp(50))
                 id: articles_grid
 
 
         TabbedPanelItem:
+            background_color: (1,1,1,0)
+            canvas:
+                Rectangle:
+                    source: "images/long_video.png"
+                    size: (dp(40), dp(40))
+                    pos: (self.size[0]*2.25, 0)
             BoxLayout:
                 size_hint: (1, None)
                 size: (root.width, root.height-dp(50))
@@ -87,6 +120,12 @@
 
 
         TabbedPanelItem:
+            background_color: (1,1,1,0)
+            canvas:
+                Rectangle:
+                    source: "images/account.png"
+                    size: (dp(40), dp(40))
+                    pos: (self.size[0]*3.25, 0)
             BoxLayout:
                 size_hint: (1, None)
                 size: (root.width, root.height-dp(50))
