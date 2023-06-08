@@ -11,31 +11,28 @@
                 size: self.parent.size
 
         Image:
-            source: 'images/account.png'
+            id: author_avatar
             pos_hint: {'top': 0.95, 'x': 0}
             size_hint: (0.2, 0.2)
 
         Label:
-            text: 'John Doe'
+            id: author_name
             color: (0,0,0,1)
             pos_hint: {'top': 0.8, 'x': 0}
             size_hint: (0.2, 0.2)
 
         Label:
-            text: 'Article Headline'
+            id: headline
             color: (0,0,0,1)
             text_size: self.size
             pos_hint: {'top': 1, 'right': 1}
             size_hint: (0.7, 0.25)
-            font_size: 30
-
-
+            font_size: dp(30)
 
         Label:
             id: text_preview
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
             color: (0,0,0,1)
-            font_size: 24
+            font_size: dp(24)
             multiline: True
             pos_hint: {'top': 0.75, 'right': 1}
             size_hint: (0.95, 0.6)

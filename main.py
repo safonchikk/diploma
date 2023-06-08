@@ -32,7 +32,7 @@ class MainScreen(Screen):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
         for i in range(5):
-            article_preview = ArticlePreview(text_preview=str(i), size_hint_y=None, height=dp(250))
+            article_preview = ArticlePreview(size_hint_y=None, height=dp(250))
             layout.add_widget(article_preview)
 
         scroll_view = ScrollView()
@@ -83,8 +83,14 @@ class CommentScreen(Screen):
 
 
 class ArticlePreview(Button):
-    def __init__(self, text_preview, **kwargs):
+    def __init__(self, author_avatar='images/account.png', author_name='John Doe',
+                 headline='Article Headline',
+                 text_preview='Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', **kwargs):
         super(ArticlePreview, self).__init__(**kwargs)
+        self.ids.author_avatar.source = author_avatar
+        self.ids.author_name.text = author_name
+        self.ids.headline.text = headline
         self.ids.text_preview.text = text_preview
 
 
