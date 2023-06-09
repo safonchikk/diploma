@@ -110,12 +110,17 @@ class SlidingPanel(ButtonBehavior, BoxLayout):
 
 class RegistrationScreen(Screen):
     def register(self):
-        role = self.ids.role_spinner.text
+        if self.ids.creator_checkbox.active:
+            role = 'Cr'
+        else:
+            role = 'Cu'
+        print(role)
         login = self.ids.login_input.text
         password = self.ids.password_input.text
         self.reg(role, login, password)
 
     def reg(self, role, login, password):
+        return 0
         h = hashlib.sha3_256()
         h.update(bytes(password, 'UTF-8'))
         password = h.hexdigest()
