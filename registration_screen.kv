@@ -1,66 +1,89 @@
 <RegistrationScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 0
-        spacing: dp(10)
-        size_hint_y: None
-        height: self.minimum_height
-        pos_hint: {'top': 1.0}
+    MDFloatLayout:
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: dp(10)
+            spacing: dp(10)
+            size_hint: (1, .5)
+            pos_hint: {'top': 1.0}
 
-        Label:
-            text: 'Role'
-            text_size: self.size
-            halign: 'left'
-            size_hint: 1, None
-            height: dp(30)
+            MDFloatLayout:
 
-        Spinner:
-            id: role_spinner
-            text: 'Select role'
-            values: ['Viewer', 'Creator']
-            size_hint: 1, None
-            height: dp(50)
+                MDLabel:
+                    text: "I'm a"
+                    text_size: self.size
+                    font_size: dp(30)
+                    size_hint: None, None
+                    size: dp(200), dp(48)
+                    pos_hint: {'x': 0, 'center_y': .5}
 
-        Label:
-            text: 'Login'
-            text_size: self.size
-            halign: 'left'
-            size_hint: 1, None
-            height: dp(30)
-        TextInput:
-            id: login_input
-            multiline: False
-            size_hint: 1, None
-            height: dp(30)
+                MDCheckbox:
+                    group: 'group'
+                    size_hint: None, None
+                    size: dp(48), dp(48)
+                    active: True
+                    pos_hint: {'x': .3, 'center_y': .4}
+                MDLabel:
+                    text: 'Viewer'
+                    size_hint: None, None
+                    size: dp(200), dp(48)
+                    pos_hint: {'x': .4, 'center_y': .4}
 
-        Label:
-            text: 'Password'
-            text_size: self.size
-            halign: 'left'
-            size_hint: 1, None
-            height: dp(30)
-        TextInput:
-            id: password_input
-            multiline: False
-            password: True
-            size_hint: 1, None
-            height: dp(30)
+                MDCheckbox:
+                    group: 'group'
+                    size_hint: None, None
+                    size: dp(48), dp(48)
+                    active: True
+                    pos_hint: {'x': .7, 'center_y': .4}
+                MDLabel:
+                    text: 'Creator'
+                    size_hint: None, None
+                    size: dp(200), dp(48)
+                    pos_hint: {'x': .8, 'center_y': .4}
 
-    BoxLayout:
-        pos_hint: {'bottom': 1.0}
-        orientation: 'vertical'
+            MDTextField:
+                hint_text: 'Login'
+                id: login_input
+                multiline: False
+                size_hint: 1, None
+                #height: dp(60)
+                font_size: dp(40)
 
-        Button:
-            text: 'Register'
-            size_hint: 1, None
-            height: dp(100)
-            on_release:
-                root.register()
-                app.root.current = 'main'
+            MDTextField:
+                id: password_input
+                password: True
+                hint_text: 'Password'
+                multiline: False
+                size_hint: 1, None
+                font_size: dp(40)
 
-        Button:
-            text: 'I have an account'
-            size_hint: 1, None
-            height: dp(50)
-            on_release:
-                app.root.current = 'login'
+            MDTextField:
+                id: password_confirm_input
+                password: True
+                hint_text: 'Repeat your password'
+                multiline: False
+                size_hint: 1, None
+                font_size: dp(40)
+
+        MDBoxLayout:
+            pos_hint: {'bottom': 1.0}
+            orientation: 'vertical'
+            padding: dp(10)
+            spacing: dp(10)
+            size_hint: (1, .18)
+
+            MDRoundFlatButton:
+                text: 'Register'
+                font_size: dp(40)
+                size_hint: (1, 0.4)
+                on_release:
+                    root.register()
+                    app.root.current = 'main'
+
+            MDRoundFlatButton:
+                text: 'I already have an account'
+                font_size: dp(20)
+                size_hint: (1, 0.2)
+                line_color: (0, 0, 0, 0)
+                on_release:
+                    app.root.current = 'login'

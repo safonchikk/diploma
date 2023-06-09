@@ -15,6 +15,8 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
 import hashlib
 
+from kivymd.app import MDApp
+
 Builder.load_file('sliding_panel.kv')
 Builder.load_file('comment_screen.kv')
 Builder.load_file('login_screen.kv')
@@ -151,8 +153,10 @@ class LoginScreen(Screen):
         pass
 
 
-class LifeHealther(App):
+class LifeHealther(MDApp):
     def build(self):
+        self.theme_cls.primary_palette = 'Orange'
+
         main_screen = MainScreen(name='main')
         main_screen.load_articles()
         main_screen.load_videos()
