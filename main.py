@@ -14,6 +14,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
 import hashlib
+import re
 
 from kivymd.app import MDApp
 
@@ -90,7 +91,7 @@ class ArticlePreview(Button):
                  text_preview='Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', **kwargs):
         super(ArticlePreview, self).__init__(**kwargs)
-        self.ids.author_avatar.source = author_avatar
+        #self.ids.author_avatar.source = author_avatar
         self.ids.author_name.text = author_name
         self.ids.headline.text = headline
         self.ids.text_preview.text = text_preview
@@ -109,19 +110,33 @@ class SlidingPanel(ButtonBehavior, BoxLayout):
 
 
 class RegistrationScreen(Screen):
+    def validate_login(self):
+        pat = re.compile(r"[A-Za-z0-9_]{5,32}")
+        if not re.fullmatch(pat, self.ids.login_input.text):
+            self.ids.login_input.error = True
+
+    def validate_password(self):
+        if len(self.ids.password_input.text) < 8 or len(self.ids.password_input.text) > 32:
+            self.ids.password_input.error = True
+
+    def validate_second_password(self):
+        if self.ids.password_confirm_input.text != self.ids.password_input.text:
+            self.ids.password_confirm_input.error = True
+
     def register(self):
+        role = ''
         if self.ids.creator_checkbox.active:
             role = 'Cr'
         else:
             role = 'Cu'
-        print(role)
+        #print(role)
         login = self.ids.login_input.text
         password = self.ids.password_input.text
         self.reg(role, login, password)
 
     def reg(self, role, login, password):
         return 0
-        h = hashlib.sha3_256()
+        '''h = hashlib.sha3_256()
         h.update(bytes(password, 'UTF-8'))
         password = h.hexdigest()
         if role == "Viewer":
@@ -145,7 +160,7 @@ class RegistrationScreen(Screen):
                     "role": "Cr"
                 }
             }
-            r = requests.post("https://lifehealther.onrender.com/creator/create", json=data)
+            r = requests.post("https://lifehealther.onrender.com/creator/create", json=data)'''
 
 
 class LoginScreen(Screen):
@@ -163,9 +178,9 @@ class LifeHealther(MDApp):
         self.theme_cls.primary_palette = 'Orange'
 
         main_screen = MainScreen(name='main')
-        main_screen.load_articles()
-        main_screen.load_videos()
-        main_screen.load_creators()
+        #main_screen.load_articles()
+        #main_screen.load_videos()
+        #main_screen.load_creators()
         sm = ScreenManager()
         sm.add_widget(main_screen)
         sm.add_widget(CommentScreen(name='comment'))

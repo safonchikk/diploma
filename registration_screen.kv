@@ -44,6 +44,12 @@
 
             MDTextField:
                 hint_text: 'Login'
+                helper_text: '5-32 symbols, a-z, A-Z, 0-9 and _ only'
+                helper_text_mode: "on_error"
+                on_text_validate:
+                    root.validate_login()
+                on_focus:
+                    root.validate_login()
                 id: login_input
                 multiline: False
                 size_hint: 1, None
@@ -51,6 +57,12 @@
 
             MDTextField:
                 id: password_input
+                helper_text: '8-32 symbols'
+                helper_text_mode: "on_error"
+                on_text_validate:
+                    root.validate_password()
+                on_focus:
+                    root.validate_password()
                 password: True
                 hint_text: 'Password'
                 multiline: False
@@ -59,6 +71,12 @@
 
             MDTextField:
                 id: password_confirm_input
+                helper_text: "Passwords don't match!"
+                helper_text_mode: "on_error"
+                on_text_validate:
+                    root.validate_second_password()
+                on_focus:
+                    root.validate_second_password()
                 password: True
                 hint_text: 'Repeat your password'
                 multiline: False
