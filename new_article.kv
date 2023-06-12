@@ -1,0 +1,52 @@
+<NewArticleScreen>:
+    MDBoxLayout:
+        #position:
+        spacing: dp(10)
+        padding: dp(10)
+        orientation: 'vertical'
+        MDLabel:
+            halign: "center"
+            text: "New article"
+            text_size: self.size
+            font_size: dp(40)
+            size_hint: 1, .15
+
+        MDLabel:
+            text: "Headline"
+            text_size: self.size
+            font_size: dp(30)
+            size_hint: 1, .15
+        MDTextField:
+            id: headline
+            mode: 'round'
+            font_size: dp(30)
+            size_hint: 1, .15
+
+        MDLabel:
+            text: "Text"
+            text_size: self.size
+            font_size: dp(30)
+            size_hint: 1, .15
+        MDTextField:
+            id: article_text
+            mode: 'round'
+            multiline: True
+            size_hint: 1, .3
+
+        MDLabel:
+            text: "Tags"
+            text_size: self.size
+            font_size: dp(30)
+            size_hint: 1, .15
+        MDTextField:
+            id: tags
+            mode: 'round'
+            multiline: True
+            size_hint: 1, .2
+
+        MDRoundFlatButton:
+            text: 'Post'
+            font_size: dp(40)
+            size_hint: 1, 0.2
+            on_release:
+                root.publish()

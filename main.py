@@ -25,6 +25,7 @@ Builder.load_file('registration_screen.kv')
 Builder.load_file('article_preview.kv')
 Builder.load_file('video_preview.kv')
 Builder.load_file('creator_preview.kv')
+Builder.load_file('new_article.kv')
 
 
 class MainScreen(Screen):
@@ -91,7 +92,7 @@ class ArticlePreview(Button):
                  text_preview='Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', **kwargs):
         super(ArticlePreview, self).__init__(**kwargs)
-        #self.ids.author_avatar.source = author_avatar
+        self.ids.author_avatar.source = author_avatar
         self.ids.author_name.text = author_name
         self.ids.headline.text = headline
         self.ids.text_preview.text = text_preview
@@ -173,20 +174,28 @@ class LoginScreen(Screen):
         pass
 
 
+class NewArticleScreen(Screen):
+    def publish(self):
+        headline = self.ids.headline.text
+        article_text = self.ids.article_text.text
+        tags = self.ids.tags.text
+
+
 class LifeHealther(MDApp):
     def build(self):
         self.theme_cls.primary_palette = 'Orange'
 
         main_screen = MainScreen(name='main')
-        #main_screen.load_articles()
-        #main_screen.load_videos()
-        #main_screen.load_creators()
+        main_screen.load_articles()
+        main_screen.load_videos()
+        main_screen.load_creators()
         sm = ScreenManager()
         sm.add_widget(main_screen)
         sm.add_widget(CommentScreen(name='comment'))
         sm.add_widget(RegistrationScreen(name='registration'))
         sm.add_widget(LoginScreen(name='login'))
-        return sm
+        #return sm
+        return NewArticleScreen()
 
 
 if __name__ == '__main__':
