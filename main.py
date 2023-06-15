@@ -202,26 +202,37 @@ class NewVideoScreen(Screen):
     def __init__(self, **kwargs):
         super(NewVideoScreen, self).__init__(**kwargs)
         self.chosen_video = ''
+        self.chosen_thumbnail = ''
         self.video_file_manager = MDFileManager(
-            select_path=self.select_path,
+            select_path=self.select_video_path,
+            exit_manager=self.exit_manager
+        )
+        self.thumbnail_file_manager = MDFileManager(
+            select_path=self.select_thumbnail_path,
             exit_manager=self.exit_manager
         )
 
-    def open_manager(self):
-        self.video_file_manager.show('\\')
+    def open_manager(self, file_manager):
+        file_manager.show('\\Games')
 
-    def exit_manager(self):
-        self.video_file_manager.close()
+    def exit_manager(self, file_manager):
+        file_manager.close()
 
-    def select_path(self, path):
+    def select_video_path(self, path):
         print(path)
         self.chosen_video = path
-        self.exit_manager()
+        self.exit_manager(self.video_file_manager)
+
+    def select_thumbnail_path(self, path):
+        print(path)
+        self.chosen_thumbnail = path
+        self.exit_manager(self.thumbnail_file_manager)
 
     def publish(self):
         title = self.ids.title.text
-        # = self.ids.article_text.text
         tags = self.ids.tags.text
+        video_path = self.chosen_video
+        thumbnail_path = self.chosen_thumbnail
 
 
 class LifeHealther(MDApp):

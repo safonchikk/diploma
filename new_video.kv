@@ -32,7 +32,20 @@
             font_size: dp(30)
             size_hint: 0.5, 0.1
             on_release:
-                root.open_manager()
+                root.open_manager(root.video_file_manager)
+
+        MDLabel:
+            text: "Thumbnail"
+            text_size: self.size
+            font_size: dp(20)
+            size_hint: 1, .1
+        MDRoundFlatButton:
+            text: 'Choose thumbnail'
+            id: thumbnail
+            font_size: dp(30)
+            size_hint: 0.5, 0.1
+            on_release:
+                root.open_manager(root.thumbnail_file_manager)
 
         MDLabel:
             text: "Tags"
