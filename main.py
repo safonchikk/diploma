@@ -219,13 +219,13 @@ class NewVideoScreen(Screen):
         file_manager.close()
 
     def select_video_path(self, path):
-        print(path)
         self.chosen_video = path
+        self.ids.video_path.text = path
         self.exit_manager(self.video_file_manager)
 
     def select_thumbnail_path(self, path):
-        print(path)
         self.chosen_thumbnail = path
+        self.ids.thumbnail_path.text = path
         self.exit_manager(self.thumbnail_file_manager)
 
     def publish(self):
