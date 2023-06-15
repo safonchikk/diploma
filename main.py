@@ -13,6 +13,7 @@ from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
+from kivymd.uix.filemanager import MDFileManager
 import hashlib
 import re
 
@@ -26,6 +27,7 @@ Builder.load_file('article_preview.kv')
 Builder.load_file('video_preview.kv')
 Builder.load_file('creator_preview.kv')
 Builder.load_file('new_article.kv')
+Builder.load_file('new_video.kv')
 
 
 class MainScreen(Screen):
@@ -196,6 +198,31 @@ class NewArticleScreen(Screen):
         r = requests.post("http://127.0.0.1:8000/article/create", json=data)
 
 
+class NewVideoScreen(Screen):
+    def __init__(self, **kwargs):
+        super(NewVideoScreen, self).__init__(**kwargs)
+        self.chosen_video = ''
+        self.video_file_manager = MDFileManager(
+            select_path=self.select_path,
+            exit_manager=self.exit_manager
+        )
+
+    def open_manager(self):
+        self.video_file_manager.show('\\')
+
+    def exit_manager(self):
+        self.video_file_manager.close()
+
+    def select_path(self, path):
+        print(path)
+        self.chosen_video = path
+        self.exit_manager()
+
+    def publish(self):
+        title = self.ids.title.text
+        # = self.ids.article_text.text
+        tags = self.ids.tags.text
+
 
 class LifeHealther(MDApp):
     def build(self):
@@ -211,7 +238,7 @@ class LifeHealther(MDApp):
         sm.add_widget(RegistrationScreen(name='registration'))
         sm.add_widget(LoginScreen(name='login'))
         #return sm
-        return NewArticleScreen()
+        return NewVideoScreen()
 
 
 if __name__ == '__main__':
