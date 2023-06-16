@@ -9,5 +9,5 @@ class VideoPreview(Button):
         super(VideoPreview, self).__init__(**kwargs)
         self.ids.author_avatar.source = author_avatar
         self.ids.author_name.text = author_name
-        self.ids.thumbnail.source = thumbnail
+        self.ids.thumbnail.texture = thumbnail
         self.ids.title.text = title
