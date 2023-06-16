@@ -3,39 +3,34 @@
     FloatLayout:
         pos: root.pos
         size: self.parent.size
-        canvas.before:
-            Color:
-                rgba: 0.9, 0.9, 0.9, 1
-            Rectangle:
-                pos: self.parent.pos
-                size: self.parent.size
+        #md_bg_color: .8, .8, .8, 1
 
         Image:
             id: thumbnail
             source: 'images/thumbnail.jpg'
-            pos_hint: {'top': 0.99, 'x': 0.02}
+            pos_hint: {'top': .99, 'x': .02}
             size: self.size
-            size_hint: (0.96, 0.8)
+            size_hint: (.96, .8)
 
         Image:
             id: author_avatar
             source: 'images/account.png'
-            pos_hint: {'top': 0.2, 'x': 0.02}
-            size_hint: (0.15, 0.15)
+            pos_hint: {'top': .2, 'x': .02}
+            size_hint: (.15, .15)
 
         Label:
             id: author_name
             text: 'John Doe'
             color: (0,0,0,1)
-            pos_hint: {'top': 0.23, 'x': 0.18}
-            size_hint: (0.2, 0.2)
+            pos_hint: {'top': .23, 'x': .18}
+            size_hint: (.2, .2)
             text_size: self.size
 
-        Label:
+        MDLabel:
             id: title
             text: 'Video Title'
             color: (0,0,0,1)
             text_size: self.size
-            pos_hint: {'top': 0.34, 'x': 0.18}
-            size_hint: (0.7, 0.25)
+            pos_hint: {'top': .34, 'x': .18}
+            size_hint: (.7, .25)
             font_size: 30

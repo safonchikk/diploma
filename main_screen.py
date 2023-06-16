@@ -1,21 +1,24 @@
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
+from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
+from kivymd.uix.button import MDRoundFlatButton
 
 from creator_preview import CreatorPreview
+from my_screen import MyScreen
 from video_preview import VideoPreview
 from article_preview import ArticlePreview
 import requests
 
 
-class MainScreen(Screen):
+class MainScreen(MyScreen):
 
-    #Window.size = (400, 750)
+    Window.size = (400, 750)
 
     def load_articles(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)

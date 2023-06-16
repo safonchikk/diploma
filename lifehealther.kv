@@ -11,7 +11,7 @@
             size: (self.width, dp(50))
             pos: self.pos
 
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
         BoxLayout:
             size_hint: (1, 0.06)
@@ -112,13 +112,8 @@
                         size: (dp(40), dp(40))
                         pos: (self.size[0]*1.25, 0)
 
-                BoxLayout:
-                    canvas.before:
-                        Color:
-                            rgba: (1,1,1,1)
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
+                MDBoxLayout:
+                    md_bg_color: 1,1,1,1
                     size_hint: (1, None)
                     size: (root.width, root.height-dp(100))
                     id: articles_grid
@@ -131,13 +126,8 @@
                         source: "images/long_video.png"
                         size: (dp(40), dp(40))
                         pos: (self.size[0]*2.25, 0)
-                BoxLayout:
-                    canvas.before:
-                        Color:
-                            rgba: (1,1,1,1)
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
+                MDBoxLayout:
+                    md_bg_color: 1,1,1,1
                     size_hint: (1, None)
                     size: (root.width, root.height-dp(100))
                     id: videos_grid
@@ -150,13 +140,8 @@
                         source: "images/account.png"
                         size: (dp(40), dp(40))
                         pos: (self.size[0]*3.25, 0)
-                BoxLayout:
-                    canvas.before:
-                        Color:
-                            rgba: (1,1,1,1)
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
+                MDBoxLayout:
+                    md_bg_color: 1,1,1,1
                     size_hint: (1, None)
                     size: (root.width, root.height-dp(100))
                     id: creators_grid

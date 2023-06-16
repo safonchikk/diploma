@@ -46,6 +46,9 @@
             text: 'Videos'
             size_hint: 1, 0.15
             font_size: dp(20)
+            on_press:
+                app.root.screen_history.append(app.root.current)
+                app.root.current = 'video_page'
 
         MDRoundFlatButton:
             text: 'Articles'
