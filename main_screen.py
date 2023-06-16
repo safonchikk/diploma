@@ -58,7 +58,8 @@ class MainScreen(Screen):
         else:
             self.ids.like_icon.source = "images/like.png"
 
-    def share(self):
+    @staticmethod
+    def share():
         Clipboard.copy("Linkie")
         popup = Popup(title='Copied', content=Label(text='Link has been copied.'), size_hint=(None, None),
                       size=(200, 100), auto_dismiss=True, overlay_color=(0, 0, 0, 0))

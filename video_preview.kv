@@ -11,17 +11,20 @@
                 size: self.parent.size
 
         Image:
+            id: thumbnail
             source: 'images/thumbnail.jpg'
             pos_hint: {'top': 0.99, 'x': 0.02}
             size: self.size
             size_hint: (0.96, 0.8)
 
         Image:
+            id: author_avatar
             source: 'images/account.png'
             pos_hint: {'top': 0.2, 'x': 0.02}
             size_hint: (0.15, 0.15)
 
         Label:
+            id: author_name
             text: 'John Doe'
             color: (0,0,0,1)
             pos_hint: {'top': 0.23, 'x': 0.18}
@@ -29,6 +32,7 @@
             text_size: self.size
 
         Label:
+            id: title
             text: 'Video Title'
             color: (0,0,0,1)
             text_size: self.size

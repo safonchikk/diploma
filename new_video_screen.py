@@ -17,10 +17,12 @@ class NewVideoScreen(Screen):
             exit_manager=self.exit_manager
         )
 
-    def open_manager(self, file_manager):
+    @staticmethod
+    def open_manager(file_manager):
         file_manager.show('\\Games')
 
-    def exit_manager(self, file_manager):
+    @staticmethod
+    def exit_manager(file_manager):
         file_manager.close()
 
     def select_video_path(self, path):
