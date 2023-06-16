@@ -1,9 +1,9 @@
 <VideoPreview>
     on_press: app.root.current = 'login'
-    FloatLayout:
+    MDFloatLayout:
         pos: root.pos
         size: self.parent.size
-        #md_bg_color: .8, .8, .8, 1
+        md_bg_color: .8, .8, .8, 1
 
         Image:
             id: thumbnail
@@ -18,7 +18,7 @@
             pos_hint: {'top': .2, 'x': .02}
             size_hint: (.15, .15)
 
-        Label:
+        MDLabel:
             id: author_name
             text: 'John Doe'
             color: (0,0,0,1)

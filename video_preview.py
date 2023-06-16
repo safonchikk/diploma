@@ -3,9 +3,8 @@ from kivy.properties import ObjectProperty
 
 
 class VideoPreview(Button):
-    def __init__(self, author_avatar='images/account.png',
+    def __init__(self, thumbnail, author_avatar='images/account.png',
                  author_name='John Doe',
-                 thumbnail='images/thumbnail.jpg',
                  title='Lorem ipsum dolor sit amet.', **kwargs):
         super(VideoPreview, self).__init__(**kwargs)
         self.ids.author_avatar.source = author_avatar

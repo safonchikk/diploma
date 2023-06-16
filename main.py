@@ -1,5 +1,7 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
+
+from article_page import ArticlePageScreen
 from comment_screen import CommentScreen
 from creator_profile_screen import CreatorProfileScreen
 from login_screen import LoginScreen
@@ -20,6 +22,7 @@ Builder.load_file('new_article.kv')
 Builder.load_file('new_video.kv')
 Builder.load_file('creator_profile_screen.kv')
 Builder.load_file('video_page.kv')
+Builder.load_file('article_page.kv')
 
 
 class LifeHealther(MDApp):
@@ -37,7 +40,8 @@ class LifeHealther(MDApp):
         sm.add_widget(LoginScreen(name='login'))
         sm.add_widget(CreatorProfileScreen(name='creator_profile'))
         sm.add_widget(NewVideoScreen(name='new_video'))
-        sm.add_widget(VideoPageScreen(name='video_page'))
+        #sm.add_widget(VideoPageScreen(name='video_page'))
+        sm.add_widget(ArticlePageScreen(name='article_page'))
         sm.current = 'creator_profile'
         return sm
 
