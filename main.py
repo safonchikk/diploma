@@ -2,7 +2,6 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 from comment_screen import CommentScreen
-from creator_profile_screen import CreatorProfileScreen
 from login_screen import LoginScreen
 from main_screen import MainScreen
 from new_video_screen import NewVideoScreen
@@ -18,8 +17,6 @@ Builder.load_file('video_preview.kv')
 Builder.load_file('creator_preview.kv')
 Builder.load_file('new_article.kv')
 Builder.load_file('new_video.kv')
-Builder.load_file('creator_profile_screen.kv')
-
 
 class LifeHealther(MDApp):
     def build(self):
@@ -34,8 +31,8 @@ class LifeHealther(MDApp):
         sm.add_widget(CommentScreen(name='comment'))
         sm.add_widget(RegistrationScreen(name='registration'))
         sm.add_widget(LoginScreen(name='login'))
-        #return sm
-        return CreatorProfileScreen()
+        return sm
+        # return NewVideoScreen()
 
 
 if __name__ == '__main__':

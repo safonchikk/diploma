@@ -10,6 +10,7 @@ from kivy.uix.scrollview import ScrollView
 from creator_preview import CreatorPreview
 from video_preview import VideoPreview
 from article_preview import ArticlePreview
+import requests
 
 
 class MainScreen(Screen):
@@ -19,8 +20,22 @@ class MainScreen(Screen):
     def load_articles(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        for i in range(5):
-            article_preview = ArticlePreview(size_hint_y=None, height=dp(250))
+        articles = requests.get("http://127.0.0.1:8000/article/free")
+        for i in articles.json().values():
+            url = "http://127.0.0.1:8000/article/" + str(i["id"])
+            article_info = requests.get(url)
+            article_info = article_info.json()
+            url = "http://127.0.0.1:8000/user/" + str(i["creator"])
+            article_text = article_info["text"]
+            if len(article_text) > 115:
+                article_text = article_text[:115] + "..."
+            creator_info = requests.get(url)
+            creator_info = creator_info.json()
+            article_preview = ArticlePreview(size_hint_y=None,
+                                             height=dp(250),
+                                             author_name=creator_info["username"],
+                                             headline=article_info["article_name"],
+                                             text_preview=article_text)
             layout.add_widget(article_preview)
 
         scroll_view = ScrollView()
