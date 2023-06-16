@@ -1,3 +1,5 @@
+import os
+
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
 from kivy.core.window import Window
@@ -9,26 +11,31 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
 from kivymd.uix.button import MDRoundFlatButton
 
+from kivy.uix.image import Image
+from kivy.core.image import Image as CoreImage
+from io import BytesIO
 from creator_preview import CreatorPreview
 from my_screen import MyScreen
 from video_preview import VideoPreview
 from article_preview import ArticlePreview
 import requests
+import base64
+import logging
 
 
 class MainScreen(MyScreen):
 
-    Window.size = (400, 750)
+    #Window.size = (400, 750)
 
     def load_articles(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        articles = requests.get("http://127.0.0.1:8000/article/free")
+        articles = requests.get("https://lifehealther.onrender.com/article/free")
         for i in articles.json().values():
-            url = "http://127.0.0.1:8000/article/" + str(i["id"])
+            url = "https://lifehealther.onrender.com/article/" + str(i["id"])
             article_info = requests.get(url)
             article_info = article_info.json()
-            url = "http://127.0.0.1:8000/user/" + str(i["creator"])
+            url = "https://lifehealther.onrender.com/user/" + str(i["creator"])
             article_text = article_info["text"]
             if len(article_text) > 115:
                 article_text = article_text[:115] + "..."
@@ -47,12 +54,32 @@ class MainScreen(MyScreen):
         self.ids.articles_grid.add_widget(scroll_view)
 
     def load_videos(self):
+        logging.basicConfig(level=logging.DEBUG)
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        for i in range(5):
-            video_preview = VideoPreview(size_hint_y=None, height=dp(300))
-            layout.add_widget(video_preview)
+        videos = requests.get("https://lifehealther.onrender.com/video/free")
+        for i in videos.json().values():
+            url = "https://lifehealther.onrender.com/video/info/" + str(i["id"])
+            video_info = requests.get(url)
+            video_info = video_info.json()
+            decoded_bytes = base64.b64decode(video_info["preview"])
+            temp_filename = 'temp_image.png'
+            with open(temp_filename, 'wb') as file:
+                file.write(decoded_bytes)
 
+            # Створення об'єкта CoreImage з тимчасового зображення
+            core_image = CoreImage(temp_filename)
+            url = "https://lifehealther.onrender.com/user/" + str(i["creator"])
+            creator_info = requests.get(url)
+            creator_info = creator_info.json()
+            video_preview = VideoPreview(size_hint_y=None,
+                                         height=dp(300),
+                                         author_name=creator_info["username"],
+                                         thumbnail=core_image.texture,
+                                         title=video_info["video_name"]
+                                         )
+            layout.add_widget(video_preview)
+            os.remove(temp_filename)
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
 
