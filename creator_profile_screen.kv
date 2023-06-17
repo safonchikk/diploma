@@ -44,6 +44,7 @@
             on_press:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'short_page'
+                app.root.current_screen.load_videos()
 
         MDRoundFlatButton:
             text: 'Videos'
@@ -52,6 +53,7 @@
             on_press:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'video_page'
+                app.root.current_screen.load_videos()
 
         MDRoundFlatButton:
             text: 'Articles'
@@ -60,4 +62,5 @@
             on_press:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'article_page'
+                app.root.current_screen.load_articles()
 

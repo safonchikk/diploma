@@ -36,22 +36,31 @@ class LifeHealther(MDApp):
     def build(self):
         self.theme_cls.primary_palette = 'Orange'
 
-        main_screen = MainScreen(name='main')
-        #main_screen.load_articles()
-        #main_screen.load_videos()
-        #main_screen.load_creators()
         sm = MyScreenManager()
-        sm.add_widget(main_screen)
-        #sm.add_widget(CommentScreen(name='comment'))
+
         sm.add_widget(RegistrationScreen(name='registration'))
         sm.add_widget(LoginScreen(name='login'))
-        sm.add_widget(CreatorProfileScreen(name='creator_profile'))
-        sm.add_widget(NewVideoScreen(name='new_video'))
-        #sm.add_widget(UpdateVideoScreen(name='update_video'))
-        sm.add_widget(VideoPageScreen(name='video_page'))
-        sm.add_widget(ShortPageScreen(name='short_page'))
-        sm.add_widget(ArticlePageScreen(name='article_page'))
-        sm.current = 'creator_profile'
+
+        creator_flag = True
+
+        if creator_flag:
+            sm.add_widget(CreatorProfileScreen(name='creator_profile'))
+            sm.add_widget(NewVideoScreen(name='new_video'))
+            sm.add_widget(VideoPageScreen(name='video_page'))
+            sm.add_widget(ShortPageScreen(name='short_page'))
+            sm.add_widget(ArticlePageScreen(name='article_page'))
+
+            sm.current = 'creator_profile'
+
+        else:
+            main_screen = MainScreen(name='main')
+            # main_screen.load_articles()
+            # main_screen.load_videos()
+            # main_screen.load_creators()
+            sm.add_widget(main_screen)
+
+            #sm.add_widget(CommentScreen(name='comment'))
+
         return sm
 
 

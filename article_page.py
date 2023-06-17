@@ -12,7 +12,7 @@ class ArticlePageScreen(MyScreen):
     def __init__(self, **kwargs):
         super(ArticlePageScreen, self).__init__(**kwargs)
         self.ids.articles_grid.bind(minimum_height=self.ids.articles_grid.setter('height'))
-        self.load_articles()
+        #self.load_articles()
 
     def load_articles(self):
         articles = requests.get("https://lifehealther.onrender.com/article/creator/19")

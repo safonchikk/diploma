@@ -17,7 +17,7 @@ class VideoPageScreen(MyScreen):
         super(VideoPageScreen, self).__init__(**kwargs)
         self.ids.videos_grid.bind(minimum_height=self.ids.videos_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
-        self.load_videos()
+        #self.load_videos()
 
     def load_videos(self):
         self.ids.videos_grid.clear_widgets()
