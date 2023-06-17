@@ -15,7 +15,7 @@ class NewArticleScreen(MyScreen):
             'like_count': 0,
             'is_paid': False
         }
-        r = requests.post("http://127.0.0.1:8000/content/create", json=data)
+        r = requests.post("https://lifehealther.onrender.com/content/create", json=data)
         data = {
             "content_id": r.json()["id"],
             "article_name": headline,
@@ -23,4 +23,4 @@ class NewArticleScreen(MyScreen):
             "keywords": tags
 
         }
-        r = requests.post("http://127.0.0.1:8000/article/create", json=data)
+        r = requests.post("https://lifehealther.onrender.com/create", json=data)
