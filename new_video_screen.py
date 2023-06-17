@@ -53,12 +53,12 @@ class NewVideoScreen(MyScreen):
             "like_count": 0,
             "is_paid": False
         }
-        r = requests.post("http://127.0.0.1:8000/content/create", json=content_data)
+        r = requests.post("https://lifehealther.onrender.com/content/create", json=content_data)
         data = {
             "content_id": r.json()["id"],
             "video_name": title,
             "keywords": tags
         }
-        r = requests.post("http://127.0.0.1:8000/video/create", data=data, files=files)
+        r = requests.post("https://lifehealther.onrender.com/video/create", data=data, files=files)
         f.close()
         video_file.close()
