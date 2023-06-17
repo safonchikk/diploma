@@ -13,3 +13,6 @@ class CreatorVideoPreview(Button):
     def delete(self):
         requests.delete("http://127.0.0.1:8000/video/delete/" + str(self.content_id))
         requests.delete("http://127.0.0.1:8000/content/" + str(self.content_id)+"/delete")
+
+    def update(self):
+        pass

@@ -27,6 +27,9 @@
                 size_hint: .3, 1
                 font_size: dp(20)
                 md_bg_color: 1,1,1,1
+                on_release:
+                    app.root.screen_history.append(app.root.current)
+                    app.root.current = 'update_video'
 
             MDRoundFlatButton:
                 text: 'Delete'

@@ -9,6 +9,8 @@ from main_screen import MainScreen
 from my_screen_manager import MyScreenManager
 from new_video_screen import NewVideoScreen
 from registration_screen import RegistrationScreen
+from short_page import ShortPageScreen
+from update_video_screen import UpdateVideoScreen
 from video_page import VideoPageScreen
 
 Builder.load_file('sliding_panel.kv')
@@ -20,10 +22,13 @@ Builder.load_file('creator_article_preview.kv')
 Builder.load_file('video_preview.kv')
 Builder.load_file('creator_video_preview.kv')
 Builder.load_file('creator_preview.kv')
+Builder.load_file('short_preview.kv')
 Builder.load_file('new_article.kv')
 Builder.load_file('new_video.kv')
+Builder.load_file('update_video.kv')
 Builder.load_file('creator_profile_screen.kv')
 Builder.load_file('video_page.kv')
+Builder.load_file('short_page.kv')
 Builder.load_file('article_page.kv')
 
 
@@ -42,7 +47,9 @@ class LifeHealther(MDApp):
         sm.add_widget(LoginScreen(name='login'))
         sm.add_widget(CreatorProfileScreen(name='creator_profile'))
         sm.add_widget(NewVideoScreen(name='new_video'))
+        sm.add_widget(UpdateVideoScreen(name='update_video'))
         sm.add_widget(VideoPageScreen(name='video_page'))
+        sm.add_widget(ShortPageScreen(name='short_page'))
         sm.add_widget(ArticlePageScreen(name='article_page'))
         sm.current = 'creator_profile'
         return sm
