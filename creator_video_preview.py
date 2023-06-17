@@ -7,3 +7,6 @@ class CreatorVideoPreview(Button):
         super(CreatorVideoPreview, self).__init__(**kwargs)
         self.ids.thumbnail.texture = thumbnail
         self.ids.title.text = title
+
+    def delete(self):
+        pass
