@@ -6,3 +6,6 @@ class CreatorArticlePreview(Button):
         super(CreatorArticlePreview, self).__init__(**kwargs)
         self.ids.headline.text = headline
         self.ids.text_preview.text = text_preview
+
+    def delete(self):
+        pass
