@@ -1,7 +1,7 @@
 <VideoPageScreen>
     ScrollView:
         MDBoxLayout:
-            id: videos_grid
+            id: layout
             orientation: 'vertical'
             size_hint_y: None
             padding: dp(10)
@@ -30,3 +30,10 @@
                 on_release:
                     app.root.screen_history.append(app.root.current)
                     app.root.current = 'new_video'
+
+            MDBoxLayout:
+                id: videos_grid
+                orientation: 'vertical'
+                size_hint_y: None
+                #padding: dp(10)
+                spacing: dp(10)

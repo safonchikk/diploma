@@ -16,9 +16,11 @@ class VideoPageScreen(MyScreen):
     def __init__(self, **kwargs):
         super(VideoPageScreen, self).__init__(**kwargs)
         self.ids.videos_grid.bind(minimum_height=self.ids.videos_grid.setter('height'))
+        self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         self.load_videos()
 
     def load_videos(self):
+        self.ids.videos_grid.clear_widgets()
         videos = requests.get("https://lifehealther.onrender.com/video/creator/14")
         for i in videos.json().values():
             url = "https://lifehealther.onrender.com/video/info/" + str(i["id"])
@@ -39,6 +41,12 @@ class VideoPageScreen(MyScreen):
                                                 thumbnail=core_image.texture,
                                                 content_id=i["id"],
                                                 title=video_info["video_name"],
+                                                create_upd=self.create_upd
                                                 )
             os.remove(temp_filename)
             self.ids.videos_grid.add_widget(video_preview)
+
+    def create_upd(self, upd_screen):
+        self.manager.add_widget(upd_screen)
+        self.manager.screen_history.append(self.manager.current)
+        self.manager.current = 'update_video'
