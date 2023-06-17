@@ -7,14 +7,18 @@ from my_screen import MyScreen
 
 import requests
 
+from new_article_screen import NewArticleScreen
+
 
 class ArticlePageScreen(MyScreen):
     def __init__(self, **kwargs):
         super(ArticlePageScreen, self).__init__(**kwargs)
         self.ids.articles_grid.bind(minimum_height=self.ids.articles_grid.setter('height'))
+        self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         #self.load_articles()
 
     def load_articles(self):
+        self.ids.articles_grid.clear_widgets()
         articles = requests.get("https://lifehealther.onrender.com/article/creator/19")
         for i in articles.json().values():
             url = "https://lifehealther.onrender.com/article/" + str(i["id"])
@@ -31,4 +35,13 @@ class ArticlePageScreen(MyScreen):
                                                     content_id=i["id"],
                                                     headline=article_info["article_name"],
                                                     text_preview=article_text)
+
             self.ids.articles_grid.add_widget(article_preview)
+
+    def create_upd(self, upd_screen):
+        self.manager.add_widget(upd_screen)
+        self.manager.screen_history.append(self.manager.current)
+        self.manager.current = 'update_article'
+
+    def create_add(self):
+        self.manager.add_widget(NewArticleScreen(name='new_article'))

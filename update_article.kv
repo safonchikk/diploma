@@ -1,4 +1,4 @@
-<NewArticleScreen>:
+<UpdateArticleScreen>:
     MDBoxLayout:
         spacing: dp(10)
         padding: dp(10)
@@ -12,10 +12,10 @@
                 font_size: dp(20)
                 on_release:
                     root.go_back(self)
-                    app.root.remove_widget(app.root.get_screen('new_article'))
+                    app.root.remove_widget(app.root.get_screen('update_article'))
             MDLabel:
-                text: 'New article'
-                font_size: dp(40)
+                text: 'Edit article info'
+                font_size: dp(20)
                 size_hint: .8, 1
 
         MDLabel:
@@ -28,17 +28,6 @@
             mode: 'round'
             font_size: dp(25)
             size_hint: 1, .15
-
-        MDLabel:
-            text: "Text"
-            text_size: self.size
-            font_size: dp(20)
-            size_hint: 1, .1
-        MDTextField:
-            id: article_text
-            mode: 'round'
-            multiline: True
-            size_hint: 1, .3
 
         MDLabel:
             text: "Tags"
@@ -59,4 +48,4 @@
                 root.publish()
                 root.go_back(self)
                 app.root.current_screen.load_articles()
-                app.root.remove_widget(app.root.get_screen('new_article'))
+                app.root.remove_widget(app.root.get_screen('update_article'))
