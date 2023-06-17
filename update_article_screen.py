@@ -10,23 +10,23 @@ class UpdateArticleScreen(MyScreen):
     def __init__(self, content_id, **kwargs):
         super(UpdateArticleScreen, self).__init__(**kwargs)
         self.content_id = content_id
-        '''url = "https://lifehealther.onrender.com/video/info/" + str(content_id)
-        video_data = requests.get(url).json()
-        keywords = video_data["keywords"]
+        url = "https://lifehealther.onrender.com/article/" + str(content_id)
+        data = requests.get(url).json()
+        keywords = data["keywords"]
         keywords_text = ""
         for keyword in keywords:
             keywords_text += keyword + ","
         keywords_text = keywords_text[:-1]
-        self.ids.title.text = video_data["video_name"]
-        self.ids.tags.text = keywords_text'''
+        self.ids.headline.text = data["article_name"]
+        self.ids.tags.text = keywords_text
 
     def publish(self):
         headline = self.ids.headline.text
         tags = self.ids.tags.text
-        '''data = {
-            "video_name": title,
+        data = {
+            "article_name": headline,
             "keywords": tags
         }
-        r = requests.put("https://lifehealther.onrender.com/video/update/"+str(self.content_id), data=data)'''
+        r = requests.put("https://lifehealther.onrender.com/article/update/"+str(self.content_id), data=data)
 
 
