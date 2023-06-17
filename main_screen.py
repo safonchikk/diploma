@@ -21,6 +21,7 @@ from article_preview import ArticlePreview
 import requests
 import base64
 import logging
+import tempfile
 
 
 class MainScreen(MyScreen):
@@ -57,6 +58,16 @@ class MainScreen(MyScreen):
         logging.basicConfig(level=logging.DEBUG)
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
+        response = requests.get("https://lifehealther.onrender.com/video/15", stream=True)
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp4')
+        file_path = temp_file.name
+
+        with open(file_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=1024):
+                f.write(chunk)
+
+        # Вставка відео у VideoPlayer
+        self.ids.video.source =  file_path
         videos = requests.get("https://lifehealther.onrender.com/video/free")
         for i in videos.json().values():
             url = "https://lifehealther.onrender.com/video/info/" + str(i["id"])

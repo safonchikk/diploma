@@ -42,7 +42,7 @@ class LifeHealther(MDApp):
         sm.add_widget(NewVideoScreen(name='new_video'))
         sm.add_widget(VideoPageScreen(name='video_page'))
         sm.add_widget(ArticlePageScreen(name='article_page'))
-        sm.current = 'creator_profile'
+        # sm.current = 'creator_profile'
         return sm
 
 
