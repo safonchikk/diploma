@@ -12,6 +12,7 @@
                 font_size: dp(20)
                 on_release:
                     root.go_back(self)
+                    app.root.remove_widget(app.root.get_screen('new_video'))
             MDLabel:
                 text: 'New video'
                 font_size: dp(40)
@@ -84,3 +85,5 @@
             on_release:
                 root.publish()
                 root.go_back(self)
+                app.root.current_screen.load_videos()
+                app.root.remove_widget(app.root.get_screen('new_video'))

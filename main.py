@@ -45,7 +45,7 @@ class LifeHealther(MDApp):
 
         if creator_flag:
             sm.add_widget(CreatorProfileScreen(name='creator_profile'))
-            sm.add_widget(NewVideoScreen(name='new_video'))
+            #sm.add_widget(NewVideoScreen(name='new_video'))
             sm.add_widget(VideoPageScreen(name='video_page'))
             sm.add_widget(ShortPageScreen(name='short_page'))
             sm.add_widget(ArticlePageScreen(name='article_page'))

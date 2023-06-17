@@ -4,6 +4,7 @@ from kivy.core.image import Image as CoreImage
 
 from my_screen import MyScreen
 from creator_video_preview import CreatorVideoPreview
+from new_video_screen import NewVideoScreen
 
 import requests
 import base64
@@ -52,3 +53,6 @@ class VideoPageScreen(MyScreen):
         self.manager.add_widget(upd_screen)
         self.manager.screen_history.append(self.manager.current)
         self.manager.current = 'update_video'
+
+    def create_add(self):
+        self.manager.add_widget(NewVideoScreen(name='new_video'))

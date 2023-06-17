@@ -28,6 +28,7 @@
                 text: 'New video'
                 font_size: dp(30)
                 on_release:
+                    root.create_add()
                     app.root.screen_history.append(app.root.current)
                     app.root.current = 'new_video'
 
