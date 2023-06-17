@@ -23,4 +23,4 @@ class NewArticleScreen(MyScreen):
             "keywords": tags
 
         }
-        r = requests.post("https://lifehealther.onrender.com/create", json=data)
+        r = requests.post("https://lifehealther.onrender.com/article/create", json=data)
