@@ -2,8 +2,10 @@ import requests
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.filemanager import MDFileManager
 
+from my_screen import MyScreen
 
-class NewVideoScreen(Screen):
+
+class NewVideoScreen(MyScreen):
     def __init__(self, **kwargs):
         super(NewVideoScreen, self).__init__(**kwargs)
         self.chosen_video = ''

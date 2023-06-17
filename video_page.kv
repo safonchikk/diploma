@@ -23,3 +23,10 @@
                     font_size: dp(30)
                     height: dp(35)
 
+            MDRoundFlatButton:
+                size_hint: 1, None
+                text: 'New video'
+                font_size: dp(30)
+                on_release:
+                    app.root.screen_history.append(app.root.current)
+                    app.root.current = 'new_video'

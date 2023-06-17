@@ -2,8 +2,10 @@ import re
 
 from kivy.uix.screenmanager import Screen
 
+from my_screen import MyScreen
 
-class RegistrationScreen(Screen):
+
+class RegistrationScreen(MyScreen):
     def validate_login(self):
         pat = re.compile(r"[A-Za-z0-9_]{5,32}")
         if not re.fullmatch(pat, self.ids.login_input.text):

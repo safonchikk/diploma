@@ -2,6 +2,7 @@ from kivy.metrics import dp
 from kivy.uix.screenmanager import Screen
 
 from article_preview import ArticlePreview
+from creator_article_preview import CreatorArticlePreview
 from my_screen import MyScreen
 
 import requests
@@ -25,9 +26,8 @@ class ArticlePageScreen(MyScreen):
                 article_text = article_text[:115] + "..."
             creator_info = requests.get(url)
             creator_info = creator_info.json()
-            article_preview = ArticlePreview(size_hint_y=None,
+            article_preview = CreatorArticlePreview(size_hint_y=None,
                                              height=dp(250),
-                                             author_name=creator_info["username"],
                                              headline=article_info["article_name"],
                                              text_preview=article_text)
             self.ids.articles_grid.add_widget(article_preview)

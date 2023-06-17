@@ -1,0 +1,37 @@
+<CreatorArticlePreview>
+    on_press: app.root.current = 'login'
+    MDBoxLayout:
+        orientation: 'vertical'
+        pos: root.pos
+        size: self.parent.size
+        md_bg_color: .9, .9, .9, 1
+        spacing: dp(10)
+        padding: dp(10)
+
+        MDLabel:
+            id: headline
+            size_hint: 1, .2
+            font_size: dp(30)
+            halign: 'center'
+
+        MDLabel:
+            id: text_preview
+            font_size: dp(24)
+            multiline: True
+            size_hint: 1, .6
+
+        MDBoxLayout:
+            size_hint: 1, .2
+            spacing: dp(30)
+
+            MDRoundFlatButton:
+                text: 'Update'
+                size_hint: .3, 1
+                font_size: dp(20)
+                md_bg_color: 1,1,1,1
+
+            MDRoundFlatButton:
+                text: 'Delete'
+                size_hint: .3, 1
+                font_size: dp(20)
+                md_bg_color: .8,.3,.3,1

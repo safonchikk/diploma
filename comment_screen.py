@@ -1,5 +1,7 @@
 from kivy.uix.screenmanager import Screen
 
+from my_screen import MyScreen
 
-class CommentScreen(Screen):
+
+class CommentScreen(MyScreen):
     pass

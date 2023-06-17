@@ -17,6 +17,7 @@ from io import BytesIO
 from creator_preview import CreatorPreview
 from my_screen import MyScreen
 from video_preview import VideoPreview
+from creator_video_preview import CreatorVideoPreview
 from article_preview import ArticlePreview
 import requests
 import base64

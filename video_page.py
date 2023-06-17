@@ -3,11 +3,13 @@ from kivy.uix.screenmanager import Screen
 from kivy.core.image import Image as CoreImage
 
 from my_screen import MyScreen
-from video_preview import VideoPreview
+from creator_video_preview import CreatorVideoPreview
 
 import requests
 import base64
 import os
+
+from video_preview import VideoPreview
 
 
 class VideoPageScreen(MyScreen):
@@ -33,9 +35,8 @@ class VideoPageScreen(MyScreen):
                 url = "https://lifehealther.onrender.com/user/" + str(i["creator"])
                 creator_info = requests.get(url)
                 creator_info = creator_info.json()
-                video_preview = VideoPreview(size_hint_y=None,
+                video_preview = CreatorVideoPreview(size_hint_y=None,
                                              height=dp(300),
-                                             author_name=creator_info["username"],
                                              thumbnail=core_image.texture,
                                              title=video_info["video_name"]
                                              )

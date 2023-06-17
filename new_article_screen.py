@@ -1,8 +1,10 @@
 import requests
 from kivy.uix.screenmanager import Screen
 
+from my_screen import MyScreen
 
-class NewArticleScreen(Screen):
+
+class NewArticleScreen(MyScreen):
     def publish(self):
         headline = self.ids.headline.text
         article_text = self.ids.article_text.text

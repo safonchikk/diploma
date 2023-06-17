@@ -16,7 +16,9 @@ Builder.load_file('comment_screen.kv')
 Builder.load_file('login_screen.kv')
 Builder.load_file('registration_screen.kv')
 Builder.load_file('article_preview.kv')
+Builder.load_file('creator_article_preview.kv')
 Builder.load_file('video_preview.kv')
+Builder.load_file('creator_video_preview.kv')
 Builder.load_file('creator_preview.kv')
 Builder.load_file('new_article.kv')
 Builder.load_file('new_video.kv')
@@ -31,8 +33,8 @@ class LifeHealther(MDApp):
 
         main_screen = MainScreen(name='main')
         #main_screen.load_articles()
-        main_screen.load_videos()
-        main_screen.load_creators()
+        #main_screen.load_videos()
+        #main_screen.load_creators()
         sm = MyScreenManager()
         sm.add_widget(main_screen)
         #sm.add_widget(CommentScreen(name='comment'))
@@ -42,7 +44,7 @@ class LifeHealther(MDApp):
         sm.add_widget(NewVideoScreen(name='new_video'))
         sm.add_widget(VideoPageScreen(name='video_page'))
         sm.add_widget(ArticlePageScreen(name='article_page'))
-        # sm.current = 'creator_profile'
+        sm.current = 'creator_profile'
         return sm
 
 
