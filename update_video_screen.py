@@ -28,6 +28,6 @@ class UpdateVideoScreen(MyScreen):
             "video_name": title,
             "keywords": tags
         }
-        r = requests.put("http://127.0.0.1:8000/video/update/"+str(self.content_id), data=data)
+        r = requests.put("https://lifehealther.onrender.com/video/update/"+str(self.content_id), data=data)
 
 
