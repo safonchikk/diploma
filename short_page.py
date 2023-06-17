@@ -1,16 +1,13 @@
 from kivy.metrics import dp
-from kivy.uix.screenmanager import Screen
 from kivy.core.image import Image as CoreImage
 
 from my_screen import MyScreen
-from creator_video_preview import CreatorVideoPreview
 
 import requests
 import base64
 import os
 
-from short_preview import ShortPreview
-from video_preview import VideoPreview
+from previews.short_preview import ShortPreview
 
 
 class ShortPageScreen(MyScreen):

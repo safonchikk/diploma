@@ -2,23 +2,17 @@ import os
 
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
-from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivy.uix.screenmanager import Screen
 from kivy.uix.scrollview import ScrollView
-from kivymd.uix.button import MDRoundFlatButton
 
-from kivy.uix.image import Image
 from kivy.core.image import Image as CoreImage
-from io import BytesIO
-from creator_preview import CreatorPreview
+from previews.creator_preview import CreatorPreview
 from my_screen import MyScreen
-from video_preview import VideoPreview
-from creator_video_preview import CreatorVideoPreview
-from article_preview import ArticlePreview
+from previews.video_preview import VideoPreview
+from previews.article_preview import ArticlePreview
 import requests
 import base64
 import logging

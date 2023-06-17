@@ -1,8 +1,6 @@
 from kivy.metrics import dp
-from kivy.uix.screenmanager import Screen
 
-from article_preview import ArticlePreview
-from creator_article_preview import CreatorArticlePreview
+from previews.creator_article_preview import CreatorArticlePreview
 from my_screen import MyScreen
 
 import requests
@@ -34,8 +32,9 @@ class ArticlePageScreen(MyScreen):
                                                     height=dp(250),
                                                     content_id=i["id"],
                                                     headline=article_info["article_name"],
-                                                    text_preview=article_text)
-
+                                                    text_preview=article_text,
+                                                    create_upd=self.create_upd
+                                                    )
             self.ids.articles_grid.add_widget(article_preview)
 
     def create_upd(self, upd_screen):
