@@ -27,7 +27,8 @@ class ArticlePageScreen(MyScreen):
             creator_info = requests.get(url)
             creator_info = creator_info.json()
             article_preview = CreatorArticlePreview(size_hint_y=None,
-                                             height=dp(250),
-                                             headline=article_info["article_name"],
-                                             text_preview=article_text)
+                                                    height=dp(250),
+                                                    content_id=i["id"],
+                                                    headline=article_info["article_name"],
+                                                    text_preview=article_text)
             self.ids.articles_grid.add_widget(article_preview)

@@ -42,4 +42,4 @@ class ShortPageScreen(MyScreen):
                                              title=video_info["video_name"]
                                              )
                 os.remove(temp_filename)
-            self.ids.videos_grid.add_widget(short_preview)
+            # self.ids.videos_grid.add_widget(short_preview)
