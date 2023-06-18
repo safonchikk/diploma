@@ -16,7 +16,7 @@ def log(login, password):
         "username": login,
         "password": password
     }
-    r = requests.get("http://127.0.0.1:8000/login", params=data)
+    r = requests.get("https://lifehealther.onrender.com/login", params=data)
     if r.status_code == 404:
         return False
     data = r.json()
