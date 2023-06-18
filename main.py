@@ -56,7 +56,7 @@ class LifeHealther(MDApp):
             sm.add_widget(DiplomaPageScreen(name='diploma_page'))
             sm.add_widget(CreatorEditProfile(name='edit_profile'))
 
-            sm.current = 'creator_profile'
+            #sm.current = 'creator_profile'
 
         else:
             main_screen = MainScreen(name='main')

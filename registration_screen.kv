@@ -1,46 +1,41 @@
-<RegistrationScreen>:
+<RegistrationScreen>
     MDFloatLayout:
+        size: root.size
+        pos: root.pos
         MDBoxLayout:
+            id:layout
+            size_hint: 1, None
+            height: self.minimum_height
             orientation: 'vertical'
             padding: dp(10)
             spacing: dp(10)
-            size_hint: (1, .5)
-            pos_hint: {'top': 1.0}
+            pos_hint: {'top': .85}
 
-            MDFloatLayout:
-
+            MDBoxLayout:
                 MDLabel:
                     text: "I'm a"
                     text_size: self.size
                     font_size: dp(30)
-                    size_hint: None, None
-                    size: dp(200), dp(48)
-                    pos_hint: {'x': 0, 'center_y': .5}
+                    size_hint: 0.3, None
 
                 MDCheckbox:
                     group: 'group'
-                    size_hint: None, None
-                    size: dp(48), dp(48)
+                    size_hint: 0.1, None
                     active: True
-                    pos_hint: {'x': .3, 'center_y': .4}
                 MDLabel:
                     text: 'Viewer'
-                    size_hint: None, None
-                    size: dp(200), dp(48)
-                    pos_hint: {'x': .4, 'center_y': .4}
+                    font_size: dp(25)
+                    size_hint: 0.25, None
 
                 MDCheckbox:
                     id: creator_checkbox
                     group: 'group'
-                    size_hint: None, None
-                    size: dp(48), dp(48)
+                    size_hint: 0.1, None
                     active: True
-                    pos_hint: {'x': .7, 'center_y': .4}
                 MDLabel:
                     text: 'Creator'
-                    size_hint: None, None
-                    size: dp(200), dp(48)
-                    pos_hint: {'x': .8, 'center_y': .4}
+                    font_size: dp(25)
+                    size_hint: 0.25, None
 
             MDTextField:
                 hint_text: 'Login'
@@ -83,25 +78,18 @@
                 size_hint: 1, None
                 font_size: dp(40)
 
-        MDBoxLayout:
-            pos_hint: {'bottom': 1.0}
-            orientation: 'vertical'
-            padding: dp(10)
-            spacing: dp(10)
-            size_hint: (1, .18)
-
             MDRoundFlatButton:
                 text: 'Register'
                 font_size: dp(40)
-                size_hint: (1, 0.4)
+                size_hint: 1, None
                 on_release:
                     root.register()
-                    app.root.current = 'main'
+                    app.root.current = 'login'
 
             MDRoundFlatButton:
                 text: 'I already have an account'
                 font_size: dp(20)
-                size_hint: (1, 0.2)
+                size_hint: 1, None
                 line_color: (0, 0, 0, 0)
                 on_release:
                     app.root.current = 'login'

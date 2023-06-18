@@ -1,52 +1,46 @@
-<LoginScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 0
-        spacing: dp(10)
-        size_hint_y: None
-        height: self.minimum_height
-        pos_hint: {'top': 1.0}
+<LoginScreen>
+    MDFloatLayout:
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: dp(10)
+            spacing: dp(10)
+            size_hint: 1, None
+            height: self.minimum_height
+            pos_hint: {'top': 1.0}
 
-        Label:
-            text: 'Login'
-            text_size: self.size
-            halign: 'left'
-            size_hint: 1, None
-            height: dp(30)
-        TextInput:
-            id: login_input
-            multiline: False
-            size_hint: 1, None
-            height: dp(30)
+            MDTextField:
+                hint_text: 'Login'
+                id: login_input
+                multiline: False
+                size_hint: 1, None
+                font_size: dp(40)
 
-        Label:
-            text: 'Password'
-            text_size: self.size
-            halign: 'left'
-            size_hint: 1, None
-            height: dp(30)
-        TextInput:
-            id: password_input
-            multiline: False
-            password: True
-            size_hint: 1, None
-            height: dp(30)
+            MDTextField:
+                id: password_input
+                password: True
+                hint_text: 'Password'
+                multiline: False
+                size_hint: 1, None
+                font_size: dp(40)
 
-    BoxLayout:
-        pos_hint: {'bottom': 1.0}
-        orientation: 'vertical'
+        MDBoxLayout:
+            pos_hint: {'bottom': 1.0}
+            orientation: 'vertical'
+            padding: dp(10)
+            spacing: dp(10)
+            size_hint: (1, .18)
 
-        Button:
-            text: 'Log in'
-            size_hint: 1, None
-            height: dp(100)
-            on_release:
-                root.login()
-                app.root.current = 'main'
+            MDRoundFlatButton:
+                text: 'Log in'
+                font_size: dp(40)
+                size_hint: (1, 0.4)
+                on_release:
+                    root.login()
 
-        Button:
-            text: 'Create an account'
-            size_hint: 1, None
-            height: dp(50)
-            on_release:
-                app.root.current = 'registration'
+            MDRoundFlatButton:
+                text: 'Create an account'
+                font_size: dp(20)
+                size_hint: (1, 0.2)
+                line_color: (0, 0, 0, 0)
+                on_release:
+                    app.root.current = 'registration'
