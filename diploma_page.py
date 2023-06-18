@@ -47,6 +47,7 @@ class DiplomaPageScreen(MyScreen):
             diploma.texture = core_image.texture
             self.ids.diplomas_grid.add_widget(diploma)
             self.k += 1
+            os.remove(temp_filename)
 
 
     def choose(self):
