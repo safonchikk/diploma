@@ -1,5 +1,8 @@
 from kivymd.uix.filemanager import MDFileManager
 from kivy.core.image import Image as CoreImage
+from plyer import filechooser
+from kivy.properties import ListProperty
+from kivy.utils import platform
 
 from my_screen import MyScreen
 import requests
@@ -10,14 +13,10 @@ import os
 class CreatorEditProfile(MyScreen):
     def __init__(self, **kwargs):
         super(CreatorEditProfile, self).__init__(**kwargs)
+        self.selection = ListProperty([])
         self.chosen_avatar = ''
         self.k = 0
-        self.file_manager = MDFileManager(
-            select_path=self.select_path,
-            exit_manager=self.exit_manager
-        )
 
-    #тут завантаж старі теги і аву
     def load_current_info(self):
         creator_content = requests.get("https://lifehealther.onrender.com/creator/info/14").json()
         creator_mongo = requests.get('https://lifehealther.onrender.com/creator/mongo/14').json()
@@ -32,6 +31,8 @@ class CreatorEditProfile(MyScreen):
             # Створення об'єкта CoreImage з тимчасового зображення
             core_image = CoreImage(temp_filename)
             self.ids.new_avatar.texture = core_image.texture
+            os.remove(temp_filename)
+            self.k += 1
 
         self.chosen_avatar = ''
         self.ids.avatar_path.text = ''
@@ -39,20 +40,25 @@ class CreatorEditProfile(MyScreen):
 
         self.ids.info.text = creator_content["info"]
 
-    @staticmethod
-    def open_manager(file_manager):
-        file_manager.show('\\Games')
+    def choose(self):
+        '''
+        Call plyer filechooser API to run a filechooser Activity.
+        '''
+        filechooser.open_file(on_selection=self.handle_selection)
 
-    @staticmethod
-    def exit_manager(file_manager):
-        file_manager.close()
 
-    def select_path(self, path):
+    def handle_selection(self, selection):
+        '''
+        Callback function for handling the selection response from Activity.
+        '''
+        self.selection = selection
+        path = self.selection[0]
         self.chosen_avatar = path
         self.ids.avatar_path.text = path
         self.ids.new_avatar.source = path
         self.ids.save_button.disabled = False
-        self.exit_manager(self.file_manager)
+
+
 
     def save_avatar(self):
         avatar_path = self.chosen_avatar
