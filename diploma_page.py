@@ -44,6 +44,8 @@ class DiplomaPageScreen(MyScreen):
             core_image = CoreImage(temp_filename)
             diploma = Image(size_hint=(1, None))
             diploma.texture = core_image.texture
+            diploma.height= dp(200)
+            diploma.width= dp(300)
             self.ids.diplomas_grid.add_widget(diploma)
             self.k += 1
             os.remove(temp_filename)
