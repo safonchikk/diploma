@@ -7,6 +7,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.scrollview import ScrollView
+from kivymd.app import MDApp
 
 from kivy.core.image import Image as CoreImage
 from previews.creator_preview import CreatorPreview
@@ -22,7 +23,7 @@ import tempfile
 class MainScreen(MyScreen):
 
     #Window.size = (400, 750)
-
+    k = 0
     def load_articles(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
@@ -94,9 +95,23 @@ class MainScreen(MyScreen):
     def load_creators(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        for i in range(15):
-            creator_preview = CreatorPreview(size_hint_y=None, height=dp(50))
+        customer_id = MDApp.get_running_app().user
+        creators = requests.get("https://lifehealther.onrender.com/customer/subs/" + str(customer_id)).json()
+        for i in creators["creators"]:
+            avatar = i["avatar"]
+            if avatar != "NO":
+                decoded_bytes = base64.b64decode(avatar)
+                temp_filename = 'temp_avatar' + str(MainScreen.k) + '.png'
+                with open(temp_filename, 'wb') as file:
+                    file.write(decoded_bytes)
+                core_image = CoreImage(temp_filename)
+                os.remove(temp_filename)
+            else:
+                core_image = CoreImage("images/account.png")
+            creator_preview = CreatorPreview(size_hint_y=None, height=dp(50), name=i["username"], avatar=core_image.texture)
             layout.add_widget(creator_preview)
+            MainScreen.k += 1
+
 
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
