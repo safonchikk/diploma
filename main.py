@@ -57,11 +57,12 @@ class LifeHealther(MDApp):
 
         elif self.role == "Cu":
             main_screen = MainScreen(name='main')
-            # main_screen.load_articles()
-            # main_screen.load_videos()
-            # main_screen.load_creators()
+            #main_screen.load_articles()
+            #main_screen.load_videos()
+            main_screen.load_creators()
             self.sm.add_widget(main_screen)
 
+            self.sm.current = 'main'
             # sm.add_widget(CommentScreen(name='comment'))
 
     def build(self):

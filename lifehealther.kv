@@ -1,26 +1,19 @@
 <MainScreen>
-    canvas.before:
-        Color:
-            rgba: (1,1,1,1)
-        Rectangle:
-            size: self.size
-            pos: self.pos
-        Color:
-            rgba: (1,0.5,0,1)
-        Rectangle:
-            size: (self.width, dp(50))
-            pos: self.pos
 
     MDBoxLayout:
         orientation: 'vertical'
-        BoxLayout:
-            size_hint: (1, 0.06)
-            TextInput:
-                hint_text: 'Search'
-                valign: 'middle'
+        MDBoxLayout:
+            padding: dp(10), dp(3), 0, dp(3)
+            spacing: dp(10)
+            size_hint: 1, None
+            height: dp(60)
+            MDTextField:
+                id: login_input
+                mode: "round"
                 multiline: False
-                size_hint: (0.7, 1)
-                font_size: 30
+                size_hint: .7, 1
+                font_size: dp(30)
+
 
             Button:
                 size_hint: (0.15, 1)
@@ -42,24 +35,16 @@
                     size: self.parent.size
                     pos: self.parent.pos
 
-        TabbedPanel:
-            size_hint: (1, 0.85)
-            do_default_tab: False
-            tab_pos: "bottom_mid"
-            tab_width: self.size[0]/len(self.tab_list)
-
-            TabbedPanelItem:
-                background_color: (1,1,1,0)
-                canvas:
-                    Rectangle:
-                        source: "images/short_video.png"
-                        size: (dp(40), dp(40))
-                        pos: (self.size[0]*0.25, 0)
-
+        MDBottomNavigation:
+            panel_color: .2, .2, .2, 1
+            MDBottomNavigationItem:
+                name: 'shorts_screen'
+                text: 'Shorts'
+                icon: 'filmstrip-box'
                 FloatLayout
                     VideoPlayer:
                         id: video
-                        source: "images/cat_video.mp4"
+                        #source: "images/cat_video.mp4"
                         size: self.parent.size
                         pos: self.parent.pos
                         state: 'stop'
@@ -105,8 +90,10 @@
                             pos: self.parent.pos
 
 
-            TabbedPanelItem:
-                background_color: (1,1,1,0)
+            MDBottomNavigationItem:
+                name: 'articles_screen'
+                text: 'Articles'
+                icon: 'script-text-outline'
                 canvas:
                     Rectangle:
                         source: "images/article.png"
@@ -120,13 +107,10 @@
                     id: articles_grid
 
 
-            TabbedPanelItem:
-                background_color: (1,1,1,0)
-                canvas:
-                    Rectangle:
-                        source: "images/long_video.png"
-                        size: (dp(40), dp(40))
-                        pos: (self.size[0]*2.25, 0)
+            MDBottomNavigationItem:
+                name: 'videos_screen'
+                text: 'Videos'
+                icon: 'youtube'
                 MDBoxLayout:
                     md_bg_color: 1,1,1,1
                     size_hint: (1, None)
@@ -134,13 +118,10 @@
                     id: videos_grid
 
 
-            TabbedPanelItem:
-                background_color: (1,1,1,0)
-                canvas:
-                    Rectangle:
-                        source: "images/account.png"
-                        size: (dp(40), dp(40))
-                        pos: (self.size[0]*3.25, 0)
+            MDBottomNavigationItem:
+                name: 'subscriptions_screen'
+                text: 'Subscriptions'
+                icon: 'account-group'
                 MDBoxLayout:
                     md_bg_color: 1,1,1,1
                     size_hint: (1, None)
