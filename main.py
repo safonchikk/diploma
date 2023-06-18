@@ -40,40 +40,39 @@ Builder.load_file('creator_edit_profile.kv')
 class LifeHealther(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.sm = None
         self.user = None
         self.creator_flag = None
 
-    def build(self):
+    def go_to_page(self):
+        if self.creator_flag:
+            self.sm.add_widget(CreatorProfileScreen(name='creator_profile'))
+            self.sm.add_widget(VideoPageScreen(name='video_page'))
+            self.sm.add_widget(ShortPageScreen(name='short_page'))
+            self.sm.add_widget(ArticlePageScreen(name='article_page'))
+            self.sm.add_widget(DiplomaPageScreen(name='diploma_page'))
+            self.sm.add_widget(CreatorEditProfile(name='edit_profile'))
 
-        self.theme_cls.primary_palette = 'Orange'
-
-        sm = MyScreenManager()
-
-        sm.add_widget(RegistrationScreen(name='registration'))
-        sm.add_widget(LoginScreen(name='login'))
-
-        creator_flag = True
-
-        if creator_flag:
-            sm.add_widget(CreatorProfileScreen(name='creator_profile'))
-            sm.add_widget(VideoPageScreen(name='video_page'))
-            sm.add_widget(ShortPageScreen(name='short_page'))
-            sm.add_widget(ArticlePageScreen(name='article_page'))
-            sm.add_widget(DiplomaPageScreen(name='diploma_page'))
-            sm.add_widget(CreatorEditProfile(name='edit_profile'))
-
-            #sm.current = 'creator_profile'
+            self.sm.current = 'creator_profile'
 
         else:
             main_screen = MainScreen(name='main')
             # main_screen.load_articles()
             # main_screen.load_videos()
             # main_screen.load_creators()
-            sm.add_widget(main_screen)
+            self.sm.add_widget(main_screen)
 
-            #sm.add_widget(CommentScreen(name='comment'))
+            # sm.add_widget(CommentScreen(name='comment'))
 
-        return sm
+    def build(self):
+        self.theme_cls.primary_palette = 'Orange'
+
+        self.sm = MyScreenManager()
+
+        self.sm.add_widget(LoginScreen(name='login'))
+        self.sm.add_widget(RegistrationScreen(name='registration'))
+
+        return self.sm
 
 
 if __name__ == '__main__':
