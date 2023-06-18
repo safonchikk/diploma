@@ -38,7 +38,13 @@ Builder.load_file('creator_edit_profile.kv')
 
 
 class LifeHealther(MDApp):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.user = None
+        self.creator_flag = None
+
     def build(self):
+
         self.theme_cls.primary_palette = 'Orange'
 
         sm = MyScreenManager()
