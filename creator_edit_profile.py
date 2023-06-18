@@ -82,4 +82,3 @@ class CreatorEditProfile(MyScreen):
             "info": info
         }
         requests.put("https://lifehealther.onrender.com/creator/14/update", data=data )
-
