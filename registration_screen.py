@@ -5,6 +5,8 @@ from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 
 from my_screen import MyScreen
+import hashlib
+import requests
 
 
 class RegistrationScreen(MyScreen):
@@ -45,10 +47,10 @@ class RegistrationScreen(MyScreen):
 
 
     def reg(self, role, login, password):
-        '''h = hashlib.sha3_256()
+        h = hashlib.sha3_256()
         h.update(bytes(password, 'UTF-8'))
         password = h.hexdigest()
-        if role == "Viewer":
+        if role == "Cu":
             data = {
                 "id":{
                     "id": {
@@ -59,6 +61,12 @@ class RegistrationScreen(MyScreen):
                 }
             }
             r = requests.post("https://lifehealther.onrender.com/customer/create", json=data)
+            MDApp.get_running_app().user = r.json()["id"]
+            MDApp.get_running_app().role = "Cu"
+            data = {
+                "creator_id": r.json()["id"]
+            }
+            r = requests.post("https://lifehealther.onrender.com/customer_mongo/create", json=data)
         else:
             data = {
                 "id": {
@@ -69,5 +77,11 @@ class RegistrationScreen(MyScreen):
                     "role": "Cr"
                 }
             }
-            r = requests.post("https://lifehealther.onrender.com/creator/create", json=data)'''
+            r = requests.post("https://lifehealther.onrender.com/creator/create", json=data)
+            MDApp.get_running_app().user = r.json()["id"]
+            MDApp.get_running_app().role = "Cr"
+            data = {
+                "creator_id": r.json()["id"]
+            }
+            r = requests.post("https://lifehealther.onrender.com/creator_mongo/create", json=data)
         return True
