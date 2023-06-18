@@ -1,5 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.dialog import MDDialog
 
 from my_screen import MyScreen
 
@@ -7,7 +9,7 @@ from my_screen import MyScreen
 def log(login, password):
     MDApp.get_running_app().user = 'user'
     MDApp.get_running_app().creator_flag = True
-    return True
+    return False
 
 
 class LoginScreen(MyScreen):
@@ -17,4 +19,7 @@ class LoginScreen(MyScreen):
         if log(login, password):
             MDApp.get_running_app().go_to_page()
         else:
-            pass
+            dialog = MDDialog(
+                text="Wrong login or password"
+            )
+            dialog.open()
