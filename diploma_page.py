@@ -1,5 +1,8 @@
 from kivy.uix.image import Image
 from kivy.metrics import dp
+from plyer import filechooser
+from kivy.properties import ListProperty
+from kivy.utils import platform
 from kivy.core.image import Image as CoreImage
 from kivymd.uix.filemanager import MDFileManager
 
@@ -11,15 +14,23 @@ import os
 
 class DiplomaPageScreen(MyScreen):
     def __init__(self, **kwargs):
+        if platform == 'android':
+            from android.permissions import request_permissions, Permission
+            request_permissions([
+                Permission.WRITE_EXTERNAL_STORAGE,
+                Permission.READ_EXTERNAL_STORAGE,
+                Permission.INTERNET,
+            ])
         super(DiplomaPageScreen, self).__init__(**kwargs)
         self.ids.diplomas_grid.bind(minimum_height=self.ids.diplomas_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         self.chosen_diploma = ''
         self.k = 0
-        self.file_manager = MDFileManager(
-            select_path=self.select_path,
-            exit_manager=self.exit_manager
-        )
+        self.selection = ListProperty([])
+        # self.file_manager = MDFileManager(
+        #     select_path=self.select_path,
+        #     exit_manager=self.exit_manager
+        # )
 
     def load_diplomas(self):
         self.ids.diplomas_grid.clear_widgets()
@@ -37,15 +48,21 @@ class DiplomaPageScreen(MyScreen):
             self.ids.diplomas_grid.add_widget(diploma)
             self.k += 1
 
-    @staticmethod
-    def open_manager(file_manager):
-        file_manager.show('\\Games')
 
-    def exit_manager(self, file_manager):
-        file_manager.close()
-        self.load_diplomas()
+    def choose(self):
+        '''
+        Call plyer filechooser API to run a filechooser Activity.
+        '''
+        filechooser.open_file(on_selection=self.handle_selection)
 
-    def select_path(self, path):
+
+    def handle_selection(self, selection):
+        '''
+        Callback function for handling the selection response from Activity.
+        '''
+
+        self.selection = selection
+        path = self.selection[0]
         self.chosen_diploma = path
         files = {}
         f = open(path, 'rb')
@@ -55,4 +72,6 @@ class DiplomaPageScreen(MyScreen):
         }
         r = requests.post("https://lifehealther.onrender.com/diploma/create", data=data, files=files)
         f.close()
-        self.exit_manager(self.file_manager)
+        self.load_diplomas()
+
+
