@@ -2,11 +2,13 @@
 
     MDBoxLayout:
         orientation: 'vertical'
+
         MDBoxLayout:
             padding: dp(10), dp(3), 0, dp(3)
             spacing: dp(10)
             size_hint: 1, None
             height: dp(60)
+
             MDTextField:
                 id: login_input
                 mode: "round"
@@ -14,9 +16,8 @@
                 size_hint: .7, 1
                 font_size: dp(30)
 
-
             Button:
-                size_hint: (0.15, 1)
+                size_hint: .15, 1
                 id: search_button
                 background_color: (1,1,1,0)
                 on_release: app.root.current = 'login'
@@ -26,7 +27,7 @@
                     pos: self.parent.pos
 
             Button:
-                size_hint: (0.15, 1)
+                size_hint: .15, 1
                 id: profile_button
                 background_color: (1,1,1,0)
                 on_release: app.root.current = 'login'
@@ -35,7 +36,9 @@
                     size: self.parent.size
                     pos: self.parent.pos
 
+
         MDBottomNavigation:
+            #size: root.width, root.height - dp(200)
             panel_color: .2, .2, .2, 1
             MDBottomNavigationItem:
                 name: 'shorts_screen'
