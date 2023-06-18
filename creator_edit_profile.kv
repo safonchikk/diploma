@@ -1,0 +1,69 @@
+<CreatorEditProfile>
+    MDBoxLayout:
+        spacing: dp(10)
+        padding: dp(10)
+        orientation: 'vertical'
+        MDBoxLayout:
+            size_hint: 1, .1
+            spacing: dp(30)
+            MDRoundFlatButton:
+                size_hint: .2, 1
+                text: 'Back'
+                font_size: dp(20)
+                on_release:
+                    root.go_back(self)
+            MDLabel:
+                text: 'Edit profile'
+                font_size: dp(40)
+                size_hint: .8, 1
+
+        MDLabel:
+            text: "New avatar"
+            text_size: self.size
+            font_size: dp(20)
+            size_hint: 1, .1
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            MDRoundFlatButton:
+                text: 'Choose'
+                font_size: dp(30)
+                size_hint: 0.4, 1
+                on_release:
+                    root.open_manager(root.file_manager)
+            MDLabel:
+                id: avatar_path
+                text_size: self.size
+                font_size: dp(14)
+                size_hint: 0.6, 1
+        Image:
+            id: new_avatar
+            size_hint: 1, None
+
+        MDRoundFlatButton:
+            text: 'Save'
+            id: save_button
+            disabled: True
+            font_size: dp(30)
+            size_hint: 1, .15
+            on_release:
+                root.save_avatar()
+
+
+
+        MDLabel:
+            text: "Info"
+            text_size: self.size
+            font_size: dp(20)
+            size_hint: 1, .1
+        MDTextField:
+            id: info
+            multiline: True
+            mode: 'round'
+            font_size: dp(25)
+            size_hint: 1, .15
+        MDRoundFlatButton:
+            text: 'Save'
+            font_size: dp(30)
+            size_hint: 1, .15
+            on_release:
+                root.save_info()

@@ -32,7 +32,7 @@ class DiplomaPageScreen(MyScreen):
 
             # Створення об'єкта CoreImage з тимчасового зображення
             core_image = CoreImage(temp_filename)
-            diploma = Image()
+            diploma = Image(size_hint=(1, None))
             diploma.texture = core_image.texture
             self.ids.diplomas_grid.add_widget(diploma)
             self.k += 1
