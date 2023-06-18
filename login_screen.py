@@ -4,11 +4,24 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 
 from my_screen import MyScreen
+import requests
+import hashlib
 
 
 def log(login, password):
-    MDApp.get_running_app().user = 'user'
-    MDApp.get_running_app().creator_flag = True
+    h = hashlib.sha3_256()
+    h.update(bytes(password, 'UTF-8'))
+    password = h.hexdigest()
+    data = {
+        "username": login,
+        "password": password
+    }
+    r = requests.get("http://127.0.0.1:8000/login", params=data)
+    if r.status_code == 404:
+        return False
+    data = r.json()
+    MDApp.get_running_app().user = data['id']
+    MDApp.get_running_app().role = data['role']
     return False
 
 

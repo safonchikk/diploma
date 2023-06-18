@@ -42,10 +42,10 @@ class LifeHealther(MDApp):
         super().__init__(**kwargs)
         self.sm = None
         self.user = None
-        self.creator_flag = None
+        self.role = None
 
     def go_to_page(self):
-        if self.creator_flag:
+        if self.role == "Cr":
             self.sm.add_widget(CreatorProfileScreen(name='creator_profile'))
             self.sm.add_widget(VideoPageScreen(name='video_page'))
             self.sm.add_widget(ShortPageScreen(name='short_page'))
@@ -55,7 +55,7 @@ class LifeHealther(MDApp):
 
             self.sm.current = 'creator_profile'
 
-        else:
+        elif self.role == "Cu":
             main_screen = MainScreen(name='main')
             # main_screen.load_articles()
             # main_screen.load_videos()
