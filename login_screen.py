@@ -22,7 +22,7 @@ def log(login, password):
     data = r.json()
     MDApp.get_running_app().user = data['id']
     MDApp.get_running_app().role = data['role']
-    return False
+    return True
 
 
 class LoginScreen(MyScreen):
