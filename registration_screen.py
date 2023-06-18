@@ -27,9 +27,6 @@ class RegistrationScreen(MyScreen):
 
     def register(self):
         if not (self.validate_login() & self.validate_password() & self.validate_second_password()):
-            dialog = MDDialog(
-                text='Some data is invalid'
-            )
             return
         role = ''
         if self.ids.creator_checkbox.active:
