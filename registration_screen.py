@@ -61,6 +61,8 @@ class RegistrationScreen(MyScreen):
                 }
             }
             r = requests.post("https://lifehealther.onrender.com/customer/create", json=data)
+            if r.status_code != 201:
+                return False
             MDApp.get_running_app().user = r.json()["id"]
             MDApp.get_running_app().role = "Cu"
             data = {
@@ -78,6 +80,8 @@ class RegistrationScreen(MyScreen):
                 }
             }
             r = requests.post("https://lifehealther.onrender.com/creator/create", json=data)
+            if r.status_code != 201:
+                return False
             MDApp.get_running_app().user = r.json()["id"]
             MDApp.get_running_app().role = "Cr"
             data = {
