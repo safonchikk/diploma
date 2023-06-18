@@ -1,41 +1,46 @@
 import requests
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.filemanager import MDFileManager
-
+from plyer import filechooser
+from kivy.properties import ListProperty
+from kivy.utils import platform
 from my_screen import MyScreen
 
 
 class NewVideoScreen(MyScreen):
     def __init__(self, **kwargs):
         super(NewVideoScreen, self).__init__(**kwargs)
+        self.selection = ListProperty([])
         self.chosen_video = ''
         self.chosen_thumbnail = ''
-        self.video_file_manager = MDFileManager(
-            select_path=self.select_video_path,
-            exit_manager=self.exit_manager
-        )
-        self.thumbnail_file_manager = MDFileManager(
-            select_path=self.select_thumbnail_path,
-            exit_manager=self.exit_manager
-        )
 
-    @staticmethod
-    def open_manager(file_manager):
-        file_manager.show('\\Games')
+    def choose_video(self):
+        '''
+        Call plyer filechooser API to run a filechooser Activity.
+        '''
+        filechooser.open_file(on_selection=self.handle_selection_video)
 
-    @staticmethod
-    def exit_manager(file_manager):
-        file_manager.close()
 
-    def select_video_path(self, path):
+    def handle_selection_video(self, selection):
+        '''
+        Callback function for handling the selection response from Activity.
+        '''
+        self.selection = selection
+        path = self.selection[0]
         self.chosen_video = path
         self.ids.video_path.text = path
-        self.exit_manager(self.video_file_manager)
 
-    def select_thumbnail_path(self, path):
+
+    def choose_thumbnail(self):
+        filechooser.open_file(on_selection=self.handle_selection_thumbnail)
+
+
+    def handle_selection_thumbnail(self, selection):
+        self.selection = selection
+        path = self.selection[0]
         self.chosen_thumbnail = path
         self.ids.thumbnail_path.text = path
-        self.exit_manager(self.thumbnail_file_manager)
+
 
     def publish(self):
         title = self.ids.title.text

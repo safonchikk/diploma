@@ -41,7 +41,7 @@
                 font_size: dp(30)
                 size_hint: 0.4, 1
                 on_release:
-                    root.open_manager(root.video_file_manager)
+                    root.choose_video()
             MDLabel:
                 id: video_path
                 text_size: self.size
@@ -60,7 +60,7 @@
                 font_size: dp(30)
                 size_hint: 0.4, 1
                 on_release:
-                    root.open_manager(root.thumbnail_file_manager)
+                    root.choose_thumbnail()
             MDLabel:
                 id: thumbnail_path
                 text_size: self.size

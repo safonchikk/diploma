@@ -12,6 +12,13 @@ import os
 
 class CreatorEditProfile(MyScreen):
     def __init__(self, **kwargs):
+        if platform == 'android':
+            from android.permissions import request_permissions, Permission
+            request_permissions([
+                Permission.WRITE_EXTERNAL_STORAGE,
+                Permission.READ_EXTERNAL_STORAGE,
+                Permission.INTERNET,
+            ])
         super(CreatorEditProfile, self).__init__(**kwargs)
         self.selection = ListProperty([])
         self.chosen_avatar = ''
