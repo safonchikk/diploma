@@ -2,6 +2,7 @@ from kivy.metrics import dp
 
 from previews.creator_article_preview import CreatorArticlePreview
 from my_screen import MyScreen
+from kivymd.app import MDApp
 
 import requests
 
@@ -17,25 +18,24 @@ class ArticlePageScreen(MyScreen):
 
     def load_articles(self):
         self.ids.articles_grid.clear_widgets()
-        articles = requests.get("https://lifehealther.onrender.com/article/creator/19")
-        for i in articles.json().values():
-            url = "https://lifehealther.onrender.com/article/" + str(i["id"])
-            article_info = requests.get(url)
-            article_info = article_info.json()
-            url = "https://lifehealther.onrender.com/user/" + str(i["creator"])
-            article_text = article_info["text"]
-            if len(article_text) > 115:
-                article_text = article_text[:115] + "..."
-            creator_info = requests.get(url)
-            creator_info = creator_info.json()
-            article_preview = CreatorArticlePreview(size_hint_y=None,
-                                                    height=dp(250),
-                                                    content_id=i["id"],
-                                                    headline=article_info["article_name"],
-                                                    text_preview=article_text,
-                                                    create_upd=self.create_upd
-                                                    )
-            self.ids.articles_grid.add_widget(article_preview)
+        creator_id = MDApp.get_running_app().user
+        articles = requests.get("https://lifehealther.onrender.com/article/creator/" + str(creator_id))
+        if articles.json() != {}:
+            for i in articles.json().values():
+                url = "https://lifehealther.onrender.com/article/" + str(i["id"])
+                article_info = requests.get(url)
+                article_info = article_info.json()
+                article_text = article_info["text"]
+                if len(article_text) > 115:
+                    article_text = article_text[:115] + "..."
+                article_preview = CreatorArticlePreview(size_hint_y=None,
+                                                        height=dp(250),
+                                                        content_id=i["id"],
+                                                        headline=article_info["article_name"],
+                                                        text_preview=article_text,
+                                                        create_upd=self.create_upd
+                                                        )
+                self.ids.articles_grid.add_widget(article_preview)
 
     def create_upd(self, upd_screen):
         self.manager.add_widget(upd_screen)

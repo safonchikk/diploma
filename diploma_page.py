@@ -5,6 +5,7 @@ from kivy.properties import ListProperty
 from kivy.utils import platform
 from kivy.core.image import Image as CoreImage
 from kivymd.uix.filemanager import MDFileManager
+from kivymd.app import MDApp
 
 from my_screen import MyScreen
 import requests
@@ -27,14 +28,12 @@ class DiplomaPageScreen(MyScreen):
         self.chosen_diploma = ''
         self.k = 0
         self.selection = ListProperty([])
-        # self.file_manager = MDFileManager(
-        #     select_path=self.select_path,
-        #     exit_manager=self.exit_manager
-        # )
+
 
     def load_diplomas(self):
+        creator_id = MDApp.get_running_app().user
         self.ids.diplomas_grid.clear_widgets()
-        diplomas = requests.get("https://lifehealther.onrender.com/diploma/creator/get/14")
+        diplomas = requests.get("https://lifehealther.onrender.com/diploma/creator/get/" + str(creator_id))
         for i in diplomas.json().values():
             decoded_bytes = base64.b64decode(i["file"])
             temp_filename = 'temp_diploma' + str(self.k) + '.png'
@@ -51,17 +50,11 @@ class DiplomaPageScreen(MyScreen):
 
 
     def choose(self):
-        '''
-        Call plyer filechooser API to run a filechooser Activity.
-        '''
         filechooser.open_file(on_selection=self.handle_selection)
 
 
     def handle_selection(self, selection):
-        '''
-        Callback function for handling the selection response from Activity.
-        '''
-
+        creator_id = MDApp.get_running_app().user
         self.selection = selection
         path = self.selection[0]
         self.chosen_diploma = path
@@ -69,7 +62,7 @@ class DiplomaPageScreen(MyScreen):
         f = open(path, 'rb')
         files['diploma_file'] = f
         data = {
-            "creator_id": 14,
+            "creator_id": int(creator_id),
         }
         r = requests.post("https://lifehealther.onrender.com/diploma/create", data=data, files=files)
         f.close()

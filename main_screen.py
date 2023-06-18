@@ -53,7 +53,7 @@ class MainScreen(MyScreen):
         logging.basicConfig(level=logging.DEBUG)
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        response = requests.get("https://lifehealther.onrender.com/video/15", stream=True)
+        response = requests.get("https://lifehealther.onrender.com/video/30", stream=True)
         temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp4')
         file_path = temp_file.name
 

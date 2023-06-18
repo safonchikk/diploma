@@ -3,6 +3,7 @@ from kivy.core.image import Image as CoreImage
 from plyer import filechooser
 from kivy.properties import ListProperty
 from kivy.utils import platform
+from kivymd.app import MDApp
 
 from my_screen import MyScreen
 import requests
@@ -25,10 +26,11 @@ class CreatorEditProfile(MyScreen):
         self.k = 0
 
     def load_current_info(self):
-        creator_content = requests.get("https://lifehealther.onrender.com/creator/info/14").json()
-        creator_mongo = requests.get('https://lifehealther.onrender.com/creator/mongo/14').json()
+        creator_id = MDApp.get_running_app().user
+        creator_content = requests.get("https://lifehealther.onrender.com/creator/info/" + str(creator_id)).json()
+        creator_mongo = requests.get('https://lifehealther.onrender.com/creator/mongo/' + str(creator_id)).json()
         self.ids.save_button.disabled = True
-        if creator_mongo["avatar"] == "no":
+        if creator_mongo["avatar"] == "NO":
             self.ids.new_avatar.source = 'images/account.png'
         else:
             decoded_bytes = base64.b64decode(creator_mongo["avatar"])
@@ -68,17 +70,19 @@ class CreatorEditProfile(MyScreen):
 
 
     def save_avatar(self):
+        creator_id = MDApp.get_running_app().user
         avatar_path = self.chosen_avatar
         files = {}
         f = open(avatar_path, 'rb')
         files['avatar'] = f
-        r = requests.put("https://lifehealther.onrender.com/creator/update/avatar/14", files=files)
+        r = requests.put("https://lifehealther.onrender.com/creator/update/avatar/" + str(creator_id), files=files)
         f.close()
 
 
     def save_info(self):
+        creator_id = MDApp.get_running_app().user
         info = self.ids.info.text
         data = {
             "info": info
         }
-        requests.put("https://lifehealther.onrender.com/creator/14/update", data=data )
+        requests.put("https://lifehealther.onrender.com/creator/" + str(creator_id) +"/update", data=data )

@@ -1,30 +1,30 @@
 import requests
-from kivy.uix.screenmanager import Screen
-from kivymd.uix.filemanager import MDFileManager
 from plyer import filechooser
 from kivy.properties import ListProperty
 from kivy.utils import platform
 from my_screen import MyScreen
+from kivymd.app import MDApp
 
 
 class NewVideoScreen(MyScreen):
     def __init__(self, **kwargs):
+        if platform == 'android':
+            from android.permissions import request_permissions, Permission
+            request_permissions([
+                Permission.WRITE_EXTERNAL_STORAGE,
+                Permission.READ_EXTERNAL_STORAGE,
+                Permission.INTERNET,
+            ])
         super(NewVideoScreen, self).__init__(**kwargs)
         self.selection = ListProperty([])
         self.chosen_video = ''
         self.chosen_thumbnail = ''
 
     def choose_video(self):
-        '''
-        Call plyer filechooser API to run a filechooser Activity.
-        '''
         filechooser.open_file(on_selection=self.handle_selection_video)
 
 
     def handle_selection_video(self, selection):
-        '''
-        Callback function for handling the selection response from Activity.
-        '''
         self.selection = selection
         path = self.selection[0]
         self.chosen_video = path
@@ -43,6 +43,7 @@ class NewVideoScreen(MyScreen):
 
 
     def publish(self):
+        creator_id = MDApp.get_running_app().user
         title = self.ids.title.text
         tags = self.ids.tags.text
         video_path = self.chosen_video
@@ -53,7 +54,7 @@ class NewVideoScreen(MyScreen):
         f = open(thumbnail_path, 'rb')
         files['preview'] = f
         content_data = {
-            "creator": 14,
+            "creator": int(creator_id),
             "content_type": "video",
             "like_count": 0,
             "is_paid": False
