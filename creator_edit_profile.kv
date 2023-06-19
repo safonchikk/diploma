@@ -11,6 +11,7 @@
                 text: 'Back'
                 font_size: dp(20)
                 on_release:
+                    app.root.get_screen('creator_profile').load_info()
                     root.go_back(self)
             MDLabel:
                 text: 'Edit profile'

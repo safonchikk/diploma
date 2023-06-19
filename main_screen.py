@@ -12,6 +12,7 @@ from kivymd.app import MDApp
 from kivy.core.image import Image as CoreImage
 
 from article_screen import ArticleScreen
+from creator_screen import CreatorScreen
 from previews.creator_preview import CreatorPreview
 from my_screen import MyScreen
 from previews.video_preview import VideoPreview
@@ -128,26 +129,25 @@ class MainScreen(MyScreen):
                 os.remove(temp_filename)
             else:
                 core_image = CoreImage("images/account.png")
-            creator_preview = CreatorPreview(size_hint_y=None, height=dp(50), name=i["username"], avatar=core_image.texture)
+            creator_preview = CreatorPreview(size_hint_y=None, height=dp(50), author_id=i['id'],
+                                             name=i["username"], avatar=core_image.texture,
+                                             on_release=lambda instance: self.open_creator(creator_preview.author_id))
             layout.add_widget(creator_preview)
             MainScreen.k += 1
-
 
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
 
         self.ids.creators_grid.add_widget(scroll_view)
 
+    def open_creator(self, author_id):
+        creator_screen = CreatorScreen(author_id)
+        self.manager.add_widget(creator_screen)
+        self.manager.screen_history.append(self.manager.current)
+        self.manager.current = 'creator'
+
     def like(self):
         if self.ids.like_icon.source == "images/like.png":
             self.ids.like_icon.source = "images/liked.png"
         else:
             self.ids.like_icon.source = "images/like.png"
-
-    @staticmethod
-    def share():
-        Clipboard.copy("Linkie")
-        popup = Popup(title='Copied', content=Label(text='Link has been copied.'), size_hint=(None, None),
-                      size=(200, 100), auto_dismiss=True, overlay_color=(0, 0, 0, 0))
-        popup.open()
-        Clock.schedule_once(lambda dt: popup.dismiss(), 1)

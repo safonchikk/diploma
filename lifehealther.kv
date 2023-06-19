@@ -77,20 +77,6 @@
                             size: self.parent.size
                             pos: self.parent.pos
 
-                    Button:
-                        id: share_button
-                        pos_hint: {'x': 0.8, 'y': 0.14}
-                        size_hint: (0.2, 0.1)
-                        background_color: (1,1,1,0)
-                        on_release:
-                            root.share()
-                        Image:
-                            id: share_icon
-                            source: "images/share.png"
-                            size: self.parent.size
-                            pos: self.parent.pos
-
-
             MDBottomNavigationItem:
                 name: 'articles_screen'
                 text: 'Articles'

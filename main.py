@@ -28,6 +28,7 @@ Builder.load_file('previews/short_preview.kv')
 Builder.load_file('new_article.kv')
 Builder.load_file('article_screen.kv')
 Builder.load_file('video_screen.kv')
+Builder.load_file('creator_screen.kv')
 Builder.load_file('new_video.kv')
 Builder.load_file('update_video.kv')
 Builder.load_file('update_article.kv')
@@ -55,7 +56,9 @@ class LifeHealther(MDApp):
             self.sm.add_widget(DiplomaPageScreen(name='diploma_page'))
             self.sm.add_widget(CreatorEditProfile(name='edit_profile'))
 
+            self.sm.get_screen('creator_profile').load_info()
             self.sm.current = 'creator_profile'
+
 
         elif self.role == "Cu":
             main_screen = MainScreen(name='main')
@@ -64,7 +67,7 @@ class LifeHealther(MDApp):
             self.sm.current = 'main'
             main_screen.load_articles()
             main_screen.load_videos()
-            # main_screen.load_creators()
+            main_screen.load_creators()
 
             # sm.add_widget(CommentScreen(name='comment'))
 

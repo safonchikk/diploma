@@ -4,4 +4,8 @@ from my_screen import MyScreen
 
 
 class CreatorProfileScreen(MyScreen):
-    pass
+    def load_info(self):
+        # self.ids.info.text =
+        # self.ids.login.text =
+        # self.ids.avatar.texture =
+        ...
