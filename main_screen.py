@@ -36,9 +36,10 @@ class MainScreen(MyScreen):
     k = 0
 
     def load_articles(self):
+        customer_id = MDApp.get_running_app().user
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        r = requests.get("https://lifehealther.onrender.com/recomendetion/article/21").json()
+        r = requests.get("https://lifehealther.onrender.com/recomendetion/article/" + str(customer_id)).json()
         articles = r["contents"]
         if articles:
             for i in articles:
@@ -95,41 +96,39 @@ class MainScreen(MyScreen):
     def load_videos(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        # response = requests.get("https://lifehealther.onrender.com/video/30", stream=True)
-        # temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp4')
-        # file_path = temp_file.name
-        #
-        # with open(file_path, 'wb') as f:
-        #     for chunk in response.iter_content(chunk_size=1024):
-        #         f.write(chunk)
-        #
-        # # Вставка відео у VideoPlayer
-        # self.ids.video.source = file_path
-        videos = requests.get("https://lifehealther.onrender.com/video/free")
-        k = 0
-        for i in videos.json().values():
-            url = "https://lifehealther.onrender.com/video/info/" + str(i["id"])
-            video_info = requests.get(url)
-            video_info = video_info.json()
-            decoded_bytes = base64.b64decode(video_info["preview"])
-            temp_filename = 'temp_image' + str(k) +"_" + str(i["id"]) + '.png'
-            with open(temp_filename, 'wb') as file:
-                file.write(decoded_bytes)
-
-            # Створення об'єкта CoreImage з тимчасового зображення
-            core_image = CoreImage(temp_filename)
-            url = "https://lifehealther.onrender.com/user/" + str(i["creator"])
-            creator_info = requests.get(url)
-            creator_info = creator_info.json()
-            video_preview = VideoPreview(size_hint_y=None,
-                                         height=dp(300),
-                                         author_name=creator_info["username"],
-                                         thumbnail=core_image.texture,
-                                         title=video_info["video_name"],
-                                         content_id=i['id'],
-                                         on_release=lambda instance: self.open_video(video_preview.content_id))
-            layout.add_widget(video_preview)
-            os.remove(temp_filename)
+        customer_id = MDApp.get_running_app().user
+        r = requests.get("https://lifehealther.onrender.com/recomendetion/video/" + str(customer_id)).json()
+        videos = r["contents"]
+        if videos:
+            for i in videos:
+                avatar = i["avatar"]
+                if avatar != "NO":
+                    decoded_bytes = base64.b64decode(i["avatar"])
+                    temp_filename = 'temp_video_avatar' + str(MainScreen.k) + "_" + str(i["content_id"]) + '.png'
+                    with open(temp_filename, 'wb') as file:
+                        file.write(decoded_bytes)
+                    core_image = CoreImage(temp_filename)
+                    avatar = core_image.texture
+                    MainScreen.k += 1
+                    os.remove(temp_filename)
+                decoded_bytes = base64.b64decode(i["preview"])
+                temp_filename = 'temp_image' + str(MainScreen.k) +"_" + str(i["content_id"]) + '.png'
+                with open(temp_filename, 'wb') as file:
+                    file.write(decoded_bytes)
+                core_image = CoreImage(temp_filename)
+                video_preview = VideoPreview(size_hint_y=None,
+                                             height=dp(300),
+                                             content_id=i['content_id'],
+                                             title=i["video_name"],
+                                             author_name=i["username"],
+                                             thumbnail=core_image.texture,
+                                             creator_id=i["creator_id"],
+                                             author_avatar=avatar,
+                                             like_count=i["like_count"],
+                                             on_release=lambda instance: self.open_video(video_preview.content_id))
+                layout.add_widget(video_preview)
+                os.remove(temp_filename)
+                MainScreen.k += 1
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
 
