@@ -2,6 +2,7 @@ import os
 
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
+from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
@@ -73,9 +74,8 @@ class MainScreen(MyScreen):
         layout.bind(minimum_height=layout.setter('height'))
 
         for i in range(3):
-            short = Short(content_id=1, height=dp(500))
-            layout.add_widget(VideoPlayer(source='images/cat_video.mp4'))
-            #self.ids.shorts_player.add_widget(Button(height=dp(300)))
+            short = Short(content_id=1, size_hint=(1, None), height=Window.height-dp(120))
+            layout.add_widget(short)
 
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
