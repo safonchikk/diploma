@@ -12,7 +12,7 @@ class CreatorSubPreview(Button):
         self.ids.name.text = name
         self.ids.description.text = info
         self.create_upd = create_upd
-        self.price = price
+        self.ids.price.text = str(price)+'$'
 
     def delete(self):
         requests.delete("https://lifehealther.onrender.com/sponsor_tier/mongo/delete/" + str(self.sponsor_tier_id))
