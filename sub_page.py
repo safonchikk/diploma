@@ -22,7 +22,7 @@ class SubPageScreen(MyScreen):
         creator_id = MDApp.get_running_app().user
         sponsor_tiers = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/" + str(creator_id))
         if sponsor_tiers.json() != {}:
-            for i in sponsor_tiers.json().values():
+            for i in sponsor_tiers.values():
                 url = "https://lifehealther.onrender.com/sponsor_tier/mongo/" + str(i["id"])
                 sponsor_tiers_info = requests.get(url)
                 sponsor_tiers_info = sponsor_tiers_info.json()
