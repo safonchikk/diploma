@@ -10,6 +10,8 @@ from kivy.uix.scrollview import ScrollView
 from kivymd.app import MDApp
 
 from kivy.core.image import Image as CoreImage
+
+from article_screen import ArticleScreen
 from previews.creator_preview import CreatorPreview
 from my_screen import MyScreen
 from previews.video_preview import VideoPreview
@@ -42,13 +44,21 @@ class MainScreen(MyScreen):
                                              height=dp(250),
                                              author_name=creator_info["username"],
                                              headline=article_info["article_name"],
-                                             text_preview=article_text)
+                                             text_preview=article_text,
+                                             content_id=i['id'],
+                                             on_release=lambda instance: self.open_article(article_preview.content_id))
             layout.add_widget(article_preview)
 
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
 
         self.ids.articles_grid.add_widget(scroll_view)
+
+    def open_article(self, content_id):
+        article_screen = ArticleScreen(content_id)
+        self.manager.add_widget(article_screen)
+        self.manager.screen_history.append(self.manager.current)
+        self.manager.current = 'article'
 
     def load_videos(self):
         logging.basicConfig(level=logging.DEBUG)
@@ -63,7 +73,7 @@ class MainScreen(MyScreen):
                 f.write(chunk)
 
         # Вставка відео у VideoPlayer
-        self.ids.video.source =  file_path
+        self.ids.video.source = file_path
         videos = requests.get("https://lifehealther.onrender.com/video/free")
         for i in videos.json().values():
             url = "https://lifehealther.onrender.com/video/info/" + str(i["id"])

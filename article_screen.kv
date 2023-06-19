@@ -1,0 +1,30 @@
+<ArticleScreen>:
+    MDBoxLayout:
+        spacing: dp(10)
+        padding: dp(10)
+        orientation: 'vertical'
+        MDBoxLayout:
+            size_hint: 1, .1
+            spacing: dp(30)
+            MDRoundFlatButton:
+                size_hint: .2, 1
+                text: 'Back'
+                font_size: dp(20)
+                on_release:
+                    root.go_back(self)
+                    app.root.remove_widget(app.root.get_screen('article'))
+        ScrollView:
+            MDBoxLayout:
+                height: self.minimum_height
+                MDLabel:
+                    id: headline
+                    text: "Headline"
+                    text_size: self.size
+                    font_size: dp(20)
+
+                MDLabel:
+                    id: text
+                    text: "Text"
+                    text_size: self.size
+                    font_size: dp(20)
+                    multiline: True

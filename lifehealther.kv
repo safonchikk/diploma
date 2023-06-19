@@ -16,30 +16,25 @@
                 size_hint: .7, 1
                 font_size: dp(30)
 
-            Button:
+            MDIconButton:
                 size_hint: .15, 1
                 id: search_button
-                background_color: (1,1,1,0)
-                on_release: app.root.current = 'login'
-                Image:
-                    source: "images/search.png"
-                    size: self.parent.size
-                    pos: self.parent.pos
+                background_color: 1,1,1,0
+                #on_release: app.root.current = 'login'
+                icon: 'magnify'
+                icon_size: dp(55)
 
-            Button:
+            MDIconButton:
                 size_hint: .15, 1
                 id: profile_button
-                background_color: (1,1,1,0)
-                on_release: app.root.current = 'login'
-                Image:
-                    source: "images/account.png"
-                    size: self.parent.size
-                    pos: self.parent.pos
+                background_color: 1,1,1,0
+                #on_release: app.root.current = 'login'
+                icon: 'cog'
+                icon_size: dp(55)
 
 
         MDBottomNavigation:
-            #size: root.width, root.height - dp(200)
-            panel_color: .2, .2, .2, 1
+            panel_color: .4, .4, .4, 1
             MDBottomNavigationItem:
                 name: 'shorts_screen'
                 text: 'Shorts'
@@ -54,9 +49,9 @@
 
                     Button:
                         id: like_button
-                        pos_hint: {'x': 0.8, 'y': 0.4}
-                        size_hint: (0.2, 0.1)
-                        background_color: (1,1,1,0)
+                        pos_hint: {'x': .8, 'y': .4}
+                        size_hint: .2, .1
+                        background_color: 1,1,1,0
                         on_release: root.like()
                         Image:
                             id: like_icon
@@ -66,9 +61,9 @@
 
                     Button:
                         id: comment_button
-                        pos_hint: {'x': 0.8, 'y': 0.27}
-                        size_hint: (0.2, 0.1)
-                        background_color: (1,1,1,0)
+                        pos_hint: {'x': .8, 'y': .27}
+                        size_hint: .2, .1
+                        background_color: 1,1,1,0
                         on_release:
                             #root.comment()
                             app.root.current = 'comment'
@@ -97,16 +92,11 @@
                 name: 'articles_screen'
                 text: 'Articles'
                 icon: 'script-text-outline'
-                canvas:
-                    Rectangle:
-                        source: "images/article.png"
-                        size: (dp(40), dp(40))
-                        pos: (self.size[0]*1.25, 0)
 
                 MDBoxLayout:
                     md_bg_color: 1,1,1,1
                     size_hint: (1, None)
-                    size: (root.width, root.height-dp(100))
+                    size: (root.width, root.height-dp(120))
                     id: articles_grid
 
 
@@ -114,20 +104,22 @@
                 name: 'videos_screen'
                 text: 'Videos'
                 icon: 'youtube'
+
                 MDBoxLayout:
                     md_bg_color: 1,1,1,1
                     size_hint: (1, None)
-                    size: (root.width, root.height-dp(100))
+                    size: (root.width, root.height-dp(120))
                     id: videos_grid
 
 
             MDBottomNavigationItem:
                 name: 'subscriptions_screen'
-                text: 'Subscriptions'
+                text: 'Subs'
                 icon: 'account-group'
+
                 MDBoxLayout:
                     md_bg_color: 1,1,1,1
                     size_hint: (1, None)
-                    size: (root.width, root.height-dp(100))
+                    size: (root.width, root.height-dp(120))
                     id: creators_grid
 
