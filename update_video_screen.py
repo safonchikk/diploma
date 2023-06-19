@@ -10,7 +10,9 @@ class UpdateVideoScreen(MyScreen):
     def __init__(self, content_id, **kwargs):
         super(UpdateVideoScreen, self).__init__(**kwargs)
         self.content_id = content_id
-        url = "https://lifehealther.onrender.com/video/info/" + str(content_id)
+        content_data = requests.get("https://lifehealther.onrender.com/content/" + str(self.content_id)).json()
+        self.content_type = content_data["content_type"]
+        url = "https://lifehealther.onrender.com/" + self.content_type + "/info/" + str(content_id)
         video_data = requests.get(url).json()
         keywords = video_data["keywords"]
         keywords_text = ""
@@ -27,6 +29,6 @@ class UpdateVideoScreen(MyScreen):
             "video_name": title,
             "keywords": tags
         }
-        r = requests.put("https://lifehealther.onrender.com/video/update/"+str(self.content_id), data=data)
+        r = requests.put("https://lifehealther.onrender.com/" + self.content_type + "/update/"+str(self.content_id), data=data)
 
 
