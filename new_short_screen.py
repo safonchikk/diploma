@@ -51,7 +51,7 @@ class NewShortScreen(MyScreen):
         files['preview'] = f
         content_data = {
             "creator": int(creator_id),
-            "content_type": "video",
+            "content_type": "short",
             "like_count": 0,
             "is_paid": False
         }
@@ -61,6 +61,6 @@ class NewShortScreen(MyScreen):
             "video_name": title,
             "keywords": tags
         }
-        r = requests.post("https://lifehealther.onrender.com/video/create", data=data, files=files)
+        r = requests.post("https://lifehealther.onrender.com/short/create", data=data, files=files)
         f.close()
         video_file.close()
