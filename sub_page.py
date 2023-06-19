@@ -22,7 +22,7 @@ class SubPageScreen(MyScreen):
         creator_id = MDApp.get_running_app().user
         sponsor_tiers = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/" + str(creator_id))
         if sponsor_tiers.json() != {}:
-            for i in sponsor_tiers.values():
+            for i in sponsor_tiers.json().values():
                 url = "https://lifehealther.onrender.com/sponsor_tier/mongo/" + str(i["id"])
                 sponsor_tiers_info = requests.get(url)
                 sponsor_tiers_info = sponsor_tiers_info.json()
@@ -35,7 +35,7 @@ class SubPageScreen(MyScreen):
                                                         price=i["price"],
                                                         create_upd=self.create_upd
                                                         )
-                self.ids.articles_grid.add_widget(sponsor_tier_preview)
+                self.ids.subs_grid.add_widget(sponsor_tier_preview)
 
     def create_upd(self, upd_screen):
         self.manager.add_widget(upd_screen)
