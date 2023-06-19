@@ -78,12 +78,13 @@ class MainScreen(MyScreen):
         # # Вставка відео у VideoPlayer
         # self.ids.video.source = file_path
         videos = requests.get("https://lifehealther.onrender.com/video/free")
+        k = 0
         for i in videos.json().values():
             url = "https://lifehealther.onrender.com/video/info/" + str(i["id"])
             video_info = requests.get(url)
             video_info = video_info.json()
             decoded_bytes = base64.b64decode(video_info["preview"])
-            temp_filename = 'temp_image.png'
+            temp_filename = 'temp_image' + str(k) +"_" + str(i["id"]) + '.png'
             with open(temp_filename, 'wb') as file:
                 file.write(decoded_bytes)
 
