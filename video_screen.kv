@@ -22,11 +22,10 @@
             state: 'stop'
 
         MDLabel:
-            size_hint: None, .2
+            size_hint: 1, .2
             halign: 'left'
             id: title
             text: "Title"
-            text_size: self.size
             font_size: dp(30)
 
         MDBoxLayout:
@@ -39,6 +38,7 @@
 
             MDLabel:
                 halign: 'left'
+                valign: 'center'
                 size_hint: .7, 1
                 id: author
                 text: "Author's name"

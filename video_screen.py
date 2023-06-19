@@ -37,6 +37,10 @@ class VideoScreen(MyScreen):
 
         # Вставка відео у VideoPlayer
         self.ids.video.source = file_path
+        self.ids.video.state = 'play'
         self.ids.author.text = user["username"]
         self.ids.title.text = video_info["video_name"]
+
+    def like(self):
+        #self.content_id
         ...
