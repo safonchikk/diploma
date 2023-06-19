@@ -1,5 +1,6 @@
 from kivy.uix.button import Button
 from kivy.properties import ObjectProperty
+from video_screen import VideoScreen
 
 
 class VideoPreview(Button):
@@ -19,3 +20,6 @@ class VideoPreview(Button):
         self.content_id = content_id
         self.creator_id = creator_id
         self.like_count = like_count
+
+    def get_screen(self):
+        return VideoScreen(self.content_id)

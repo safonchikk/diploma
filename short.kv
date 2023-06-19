@@ -15,10 +15,10 @@
 
         Button:
             id: author_button
-            pos_hint: {'x': .8, 'y': .53}
+            pos_hint: {'x': .8, 'y': .5}
             size_hint: .2, .1
             background_color: 1,1,1,0
-            on_release: root.like()
+            on_release: root.open_creator()
             Image:
                 id: author_avatar
                 source: "images/like.png"
@@ -27,7 +27,7 @@
 
         Button:
             id: like_button
-            pos_hint: {'x': .8, 'y': .4}
+            pos_hint: {'x': .8, 'y': .37}
             size_hint: .2, .1
             background_color: 1,1,1,0
             on_release: root.like()
@@ -39,7 +39,7 @@
 
         Button:
             id: comment_button
-            pos_hint: {'x': .8, 'y': .27}
+            pos_hint: {'x': .8, 'y': .24}
             size_hint: .2, .1
             background_color: 1,1,1,0
             on_release:

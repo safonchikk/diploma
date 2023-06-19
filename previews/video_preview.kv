@@ -1,4 +1,8 @@
 <VideoPreview>
+    on_release:
+        app.root.add_widget(self.get_screen())
+        app.root.screen_history.append(app.root.current)
+        app.root.current = 'video'
     MDBoxLayout:
         orientation: 'vertical'
         pos: root.pos

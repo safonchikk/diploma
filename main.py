@@ -54,6 +54,7 @@ file_names = [
 for file_name in file_names:
     Builder.load_file(file_name)
 
+
 class LifeHealther(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

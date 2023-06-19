@@ -6,7 +6,6 @@ import os
 from kivymd.app import MDApp
 
 
-
 class CreatorScreen(MyScreen):
     def __init__(self, creator_id, **kwargs):
         super(CreatorScreen, self).__init__(name='creator', **kwargs)
@@ -27,7 +26,6 @@ class CreatorScreen(MyScreen):
         user = requests.get('https://lifehealther.onrender.com/user/' + str(creator_id)).json()
         self.ids.info.text = creator_content["info"]
         self.ids.login.text = user["username"]
-        ...
 
     def subscribe(self):
         customer_id = MDApp.get_running_app().user

@@ -124,8 +124,7 @@ class MainScreen(MyScreen):
                                              thumbnail=core_image.texture,
                                              creator_id=i["creator_id"],
                                              author_avatar=avatar,
-                                             like_count=i["like_count"],
-                                             on_release=lambda instance: self.open_video(video_preview.content_id))
+                                             like_count=i["like_count"])
                 layout.add_widget(video_preview)
                 os.remove(temp_filename)
                 MainScreen.k += 1
