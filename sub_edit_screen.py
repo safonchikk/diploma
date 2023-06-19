@@ -16,7 +16,7 @@ class SubEditScreen(MyScreen):
         self.ids.content_grid.bind(minimum_height=self.ids.content_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
 
-    def load_content(self):
+    def load_content(self, sub_id):
         self.ids.content_grid.clear_widgets()
         creator_id = MDApp.get_running_app().user
         #preview=CreatorContentPreview(content_id)
