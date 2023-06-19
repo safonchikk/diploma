@@ -27,6 +27,7 @@ Builder.load_file('previews/creator_preview.kv')
 Builder.load_file('previews/short_preview.kv')
 Builder.load_file('new_article.kv')
 Builder.load_file('article_screen.kv')
+Builder.load_file('video_screen.kv')
 Builder.load_file('new_video.kv')
 Builder.load_file('update_video.kv')
 Builder.load_file('update_article.kv')
@@ -60,12 +61,11 @@ class LifeHealther(MDApp):
             main_screen = MainScreen(name='main')
 
             self.sm.add_widget(main_screen)
-
+            self.sm.current = 'main'
             main_screen.load_articles()
-            # main_screen.load_videos()
+            main_screen.load_videos()
             # main_screen.load_creators()
 
-            self.sm.current = 'main'
             # sm.add_widget(CommentScreen(name='comment'))
 
     def build(self):

@@ -21,11 +21,14 @@ import base64
 import logging
 import tempfile
 
+from video_screen import VideoScreen
+
 
 class MainScreen(MyScreen):
 
     #Window.size = (400, 750)
     k = 0
+
     def load_articles(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
@@ -93,14 +96,21 @@ class MainScreen(MyScreen):
                                          height=dp(300),
                                          author_name=creator_info["username"],
                                          thumbnail=core_image.texture,
-                                         title=video_info["video_name"]
-                                         )
+                                         title=video_info["video_name"],
+                                         content_id=i['id'],
+                                         on_release=lambda instance: self.open_video(video_preview.content_id))
             layout.add_widget(video_preview)
             os.remove(temp_filename)
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
 
         self.ids.videos_grid.add_widget(scroll_view)
+
+    def open_video(self, content_id):
+        video_screen = VideoScreen(content_id)
+        self.manager.add_widget(video_screen)
+        self.manager.screen_history.append(self.manager.current)
+        self.manager.current = 'video'
 
     def load_creators(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
