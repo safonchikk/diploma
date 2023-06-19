@@ -9,10 +9,9 @@ class CreatorContentPreview(Button):
         super(CreatorContentPreview, self).__init__(**kwargs)
         self.sub_id = sub_id
         self.content_id = content_id
-        self.ids.title.text =title
+        self.ids.title.text = title
         self.ids.type.text = content_type
         self.included = included
-        #...
         if self.included:
             self.ids.add_button.opacity = 0
             self.ids.add_button.disabled = True

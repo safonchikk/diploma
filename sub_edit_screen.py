@@ -16,10 +16,10 @@ class SubEditScreen(MyScreen):
         self.ids.content_grid.bind(minimum_height=self.ids.content_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
 
-    def load_content(self, sub_id):
+    def load_content(self):
         self.ids.content_grid.clear_widgets()
         creator_id = MDApp.get_running_app().user
-        tier_content = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/content/" + str(sub_id))
+        tier_content = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/content/" + str(self.sub_id))
         if tier_content.json() != {}:
             for i in tier_content.json().values():
                 preview = CreatorContentPreview(size_hint_y=None,
@@ -27,9 +27,10 @@ class SubEditScreen(MyScreen):
                                                 content_id=i["content_id"],
                                                 title=i["content_name"],
                                                 content_type=i["content_type"],
+                                                sub_id=self.sub_id,
                                                 included=True)
                 self.ids.content_grid.add_widget(preview)
-        content = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/content/no/" + str(sub_id))
+        content = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/content/no/" + str(self.sub_id))
         if content.json() != {}:
             for i in content.json().values():
                 preview = CreatorContentPreview(size_hint_y=None,
@@ -37,7 +38,7 @@ class SubEditScreen(MyScreen):
                                                 content_id=i["content_id"],
                                                 title=i["content_name"],
                                                 content_type=i["content_type"],
-                                                sub_id=sub_id,
+                                                sub_id=self.sub_id,
                                                 included=False)
                 self.ids.content_grid.add_widget(preview)
 

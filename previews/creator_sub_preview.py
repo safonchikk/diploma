@@ -20,5 +20,5 @@ class CreatorSubPreview(Button):
 
     def create_update(self):
         screen = SubEditScreen(self.sponsor_tier_id, name='update_sub')
-        screen.load_content(sub_id=self.sponsor_tier_id)
+        screen.load_content()
         self.create_upd(screen)
