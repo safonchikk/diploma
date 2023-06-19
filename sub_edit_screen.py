@@ -1,12 +1,12 @@
 from kivy.metrics import dp
 
-from previews.creator_article_preview import CreatorArticlePreview
 from my_screen import MyScreen
 from kivymd.app import MDApp
 
 import requests
 
 from new_article_screen import NewArticleScreen
+from previews.creator_content_preview import CreatorContentPreview
 
 
 class SubEditScreen(MyScreen):
@@ -19,22 +19,25 @@ class SubEditScreen(MyScreen):
     def load_content(self, sub_id):
         self.ids.content_grid.clear_widgets()
         creator_id = MDApp.get_running_app().user
-        #preview=CreatorContentPreview(content_id)
-        '''articles = requests.get("https://lifehealther.onrender.com/article/creator/" + str(creator_id))
-        if articles.json() != {}:
-            for i in articles.json().values():
-                url = "https://lifehealther.onrender.com/article/" + str(i["id"])
-                article_info = requests.get(url)
-                article_info = article_info.json()
-                article_text = article_info["text"]
-                if len(article_text) > 115:
-                    article_text = article_text[:115] + "..."
-                article_preview = CreatorArticlePreview(size_hint_y=None,
-                                                        height=dp(250),
-                                                        content_id=i["id"],
-                                                        headline=article_info["article_name"],
-                                                        text_preview=article_text,
-                                                        create_upd=self.create_upd
-                                                        )
-                self.ids.articles_grid.add_widget(article_preview)'''
+        tier_content = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/content/" + str(sub_id))
+        if tier_content.json() != {}:
+            for i in tier_content.json().values():
+                preview = CreatorContentPreview(size_hint_y=None,
+                                                height=dp(250),
+                                                content_id=i["content_id"],
+                                                title=i["content_name"],
+                                                content_type=i["content_type"],
+                                                included=True)
+                self.ids.sub_grid.add_widget(preview)
+        content = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/content/no/" + str(sub_id))
+        if content.json() != {}:
+            for i in content.json().values():
+                preview = CreatorContentPreview(size_hint_y=None,
+                                                height=dp(250),
+                                                content_id=i["content_id"],
+                                                title=i["content_name"],
+                                                content_type=i["content_type"],
+                                                sub_id=sub_id,
+                                                included=False)
+                self.ids.sub_grid.add_widget(preview)
 
