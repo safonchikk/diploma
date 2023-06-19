@@ -14,7 +14,7 @@ class CreatorShortPreview(Button):
         self.create_upd = create_upd
 
     def delete(self):
-        requests.delete("https://lifehealther.onrender.com/video/delete/" + str(self.content_id))
+        requests.delete("https://lifehealther.onrender.com/short/delete/" + str(self.content_id))
         requests.delete("https://lifehealther.onrender.com/content/" + str(self.content_id)+"/delete")
 
     def create_update(self):
