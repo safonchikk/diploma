@@ -1,7 +1,7 @@
 from kivy.metrics import dp
 
 from new_sub_screen import NewSubScreen
-from previews.creator_article_preview import CreatorArticlePreview
+from previews.creator_sub_preview import CreatorSubPreview
 from my_screen import MyScreen
 from kivymd.app import MDApp
 
@@ -20,23 +20,22 @@ class SubPageScreen(MyScreen):
     def load_subs(self):
         self.ids.subs_grid.clear_widgets()
         creator_id = MDApp.get_running_app().user
-        '''articles = requests.get("https://lifehealther.onrender.com/article/creator/" + str(creator_id))
-        if articles.json() != {}:
-            for i in articles.json().values():
-                url = "https://lifehealther.onrender.com/article/" + str(i["id"])
-                article_info = requests.get(url)
-                article_info = article_info.json()
-                article_text = article_info["text"]
-                if len(article_text) > 115:
-                    article_text = article_text[:115] + "..."
-                article_preview = CreatorArticlePreview(size_hint_y=None,
+        sponsor_tiers = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/" + str(creator_id))
+        if sponsor_tiers.json() != {}:
+            for i in sponsor_tiers.json().values():
+                url = "https://lifehealther.onrender.com/sponsor_tier/mongo/" + str(i["id"])
+                sponsor_tiers_info = requests.get(url)
+                sponsor_tiers_info = sponsor_tiers_info.json()
+                info = sponsor_tiers_info["info"]
+                sponsor_tier_preview = CreatorSubPreview(size_hint_y=None,
                                                         height=dp(250),
-                                                        content_id=i["id"],
-                                                        headline=article_info["article_name"],
-                                                        text_preview=article_text,
+                                                        sponsor_tier_id=i["id"],
+                                                        headline=i["name"],
+                                                        info=info,
+                                                        price=i["price"],
                                                         create_upd=self.create_upd
                                                         )
-                self.ids.articles_grid.add_widget(article_preview)'''
+                self.ids.articles_grid.add_widget(sponsor_tier_preview)
 
     def create_upd(self, upd_screen):
         self.manager.add_widget(upd_screen)
