@@ -7,5 +7,9 @@ class Short(MDBoxLayout):
         super(Short, self).__init__(**kwargs)
         ...
         #self.ids.video =
+        #self.ids.author_avatar =
+        #self.ids.title =
+        #self.author_id =
+        self.content_id = content_id
         self.ids.video.source = 'images/cat_video.mp4'
 
