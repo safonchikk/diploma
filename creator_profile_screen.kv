@@ -1,4 +1,16 @@
 <CreatorProfileScreen>:
+    MDFloatLayout:
+        MDIconButton:
+            size_hint: 0.2, 0.1
+            pos_hint: {'top': 1, 'right': 1}
+            #background_color: 1,1,1,0
+            on_release:
+                app.user = ''
+                app.role = ''
+                app.root.current = 'login'
+            icon: 'logout-variant'
+            icon_size: dp(55)
+
     MDBoxLayout:
         size: root.size
         pos: root.pos

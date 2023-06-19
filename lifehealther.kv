@@ -26,7 +26,6 @@
 
             MDIconButton:
                 size_hint: .15, 1
-                id: profile_button
                 background_color: 1,1,1,0
                 on_release:
                     app.user = ''
@@ -38,44 +37,19 @@
 
         MDBottomNavigation:
             panel_color: .4, .4, .4, 1
+
             MDBottomNavigationItem:
                 name: 'shorts_screen'
                 text: 'Shorts'
                 icon: 'filmstrip-box'
-                FloatLayout
-                    VideoPlayer:
-                        id: video
-                        #source: "images/cat_video.mp4"
-                        size: self.parent.size
-                        pos: self.parent.pos
-                        state: 'stop'
 
-                    Button:
-                        id: like_button
-                        pos_hint: {'x': .8, 'y': .4}
-                        size_hint: .2, .1
-                        background_color: 1,1,1,0
-                        on_release: root.like()
-                        Image:
-                            id: like_icon
-                            source: "images/like.png"
-                            size: self.parent.size
-                            pos: self.parent.pos
+                BoxLayout:
+                    md_bg_color: 1,0,0,1
+                    size_hint: (1, None)
+                    size: (root.width, root.height-dp(120))
+                    #orientation: 'vertical'
+                    id: shorts_player
 
-                    Button:
-                        id: comment_button
-                        pos_hint: {'x': .8, 'y': .27}
-                        size_hint: .2, .1
-                        background_color: 1,1,1,0
-                        on_release:
-                            #root.comment()
-                            app.root.current = 'comment'
-                            root.manager.transition.direction = 'up'
-                        Image:
-                            id: comment_icon
-                            source: "images/comment.png"
-                            size: self.parent.size
-                            pos: self.parent.pos
 
             MDBottomNavigationItem:
                 name: 'articles_screen'

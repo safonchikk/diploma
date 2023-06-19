@@ -26,5 +26,3 @@ class CreatorProfileScreen(MyScreen):
         user = requests.get('https://lifehealther.onrender.com/user/' + str(creator_id)).json()
         self.ids.info.text = creator_content["info"]
         self.ids.login.text = user["username"]
-        # self.ids.avatar.texture =
-        ...

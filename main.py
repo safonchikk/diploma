@@ -38,6 +38,8 @@ Builder.load_file('short_page.kv')
 Builder.load_file('article_page.kv')
 Builder.load_file('diploma_page.kv')
 Builder.load_file('creator_edit_profile.kv')
+Builder.load_file('short.kv')
+Builder.load_file('shorts_player.kv')
 
 
 class LifeHealther(MDApp):
@@ -66,7 +68,8 @@ class LifeHealther(MDApp):
             self.sm.add_widget(main_screen)
             self.sm.current = 'main'
             main_screen.load_articles()
-            main_screen.load_videos()
+            main_screen.load_shorts()
+            #main_screen.load_videos()
             main_screen.load_creators()
 
             # sm.add_widget(CommentScreen(name='comment'))

@@ -29,7 +29,6 @@ class DiplomaPageScreen(MyScreen):
         self.k = 0
         self.selection = ListProperty([])
 
-
     def load_diplomas(self):
         creator_id = MDApp.get_running_app().user
         self.ids.diplomas_grid.clear_widgets()

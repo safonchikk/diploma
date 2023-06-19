@@ -3,10 +3,12 @@ import os
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
 from kivy.metrics import dp
+from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.videoplayer import VideoPlayer
 from kivymd.app import MDApp
 
 from kivy.core.image import Image as CoreImage
@@ -22,7 +24,9 @@ import base64
 import logging
 import tempfile
 
+from short import Short
 from video_screen import VideoScreen
+from shorts_player import ShortsPlayer
 
 
 class MainScreen(MyScreen):
@@ -63,6 +67,20 @@ class MainScreen(MyScreen):
         self.manager.add_widget(article_screen)
         self.manager.screen_history.append(self.manager.current)
         self.manager.current = 'article'
+
+    def load_shorts(self):
+        layout = GridLayout(cols=1, size_hint_y=None)
+        layout.bind(minimum_height=layout.setter('height'))
+
+        for i in range(3):
+            short = Short(content_id=1, height=dp(500))
+            layout.add_widget(VideoPlayer(source='images/cat_video.mp4'))
+            #self.ids.shorts_player.add_widget(Button(height=dp(300)))
+
+        scroll_view = ScrollView()
+        scroll_view.add_widget(layout)
+
+        self.ids.shorts_player.add_widget(scroll_view)
 
     def load_videos(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
