@@ -38,25 +38,35 @@ class MainScreen(MyScreen):
     def load_articles(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-        articles = requests.get("https://lifehealther.onrender.com/article/free")
-        for i in articles.json().values():
-            url = "https://lifehealther.onrender.com/article/" + str(i["id"])
-            article_info = requests.get(url)
-            article_info = article_info.json()
-            url = "https://lifehealther.onrender.com/user/" + str(i["creator"])
-            article_text = article_info["text"]
-            if len(article_text) > 115:
-                article_text = article_text[:115] + "..."
-            creator_info = requests.get(url)
-            creator_info = creator_info.json()
-            article_preview = ArticlePreview(size_hint_y=None,
-                                             height=dp(250),
-                                             author_name=creator_info["username"],
-                                             headline=article_info["article_name"],
-                                             text_preview=article_text,
-                                             content_id=i['id'],
-                                             on_release=lambda instance: self.open_article(article_preview.content_id))
-            layout.add_widget(article_preview)
+        r = requests.get("https://lifehealther.onrender.com/recomendetion/article/21").json()
+        articles = r["contents"]
+        if articles:
+            for i in articles:
+                avatar = i["avatar"]
+                if  avatar != "NO":
+                    decoded_bytes = base64.b64decode(i["avatar"])
+                    temp_filename = 'temp_article_avatar' + str(MainScreen.k) + "_" + str(i["content_id"]) + '.png'
+                    with open(temp_filename, 'wb') as file:
+                        file.write(decoded_bytes)
+                    core_image = CoreImage(temp_filename)
+                    avatar = core_image.texture
+                text = i["text"]
+                if len(text) > 115:
+                    text = text[:115]
+                article_preview = ArticlePreview(size_hint_y=None,
+                                                 height=dp(250),
+                                                 author_name=i["username"],
+                                                 author_id=i["creator_id"],
+                                                 headline=i["article_name"],
+                                                 text_preview=text,
+                                                 content_id=i['content_id'],
+                                                 like_count=i["like_count"],
+                                                 author_avatar=avatar,
+                                                 on_release=lambda instance: self.open_article(article_preview.content_id))
+                if avatar != "NO":
+                    MainScreen.k += 1
+                    os.remove(temp_filename)
+                layout.add_widget(article_preview)
 
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
