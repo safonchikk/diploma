@@ -28,7 +28,7 @@ class SubEditScreen(MyScreen):
                                                 title=i["content_name"],
                                                 content_type=i["content_type"],
                                                 included=True)
-                self.ids.sub_grid.add_widget(preview)
+                self.ids.subs_grid.add_widget(preview)
         content = requests.get("https://lifehealther.onrender.com/sponsor_tier/creator/content/no/" + str(sub_id))
         if content.json() != {}:
             for i in content.json().values():
@@ -39,5 +39,5 @@ class SubEditScreen(MyScreen):
                                                 content_type=i["content_type"],
                                                 sub_id=sub_id,
                                                 included=False)
-                self.ids.sub_grid.add_widget(preview)
+                self.ids.subs_grid.add_widget(preview)
 
