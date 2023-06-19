@@ -12,37 +12,45 @@ from my_screen_manager import MyScreenManager
 from new_video_screen import NewVideoScreen
 from registration_screen import RegistrationScreen
 from short_page import ShortPageScreen
+from sub_page import SubPageScreen
 from update_video_screen import UpdateVideoScreen
 from video_page import VideoPageScreen
 
-Builder.load_file('sliding_panel.kv')
-Builder.load_file('comment_screen.kv')
-Builder.load_file('login_screen.kv')
-Builder.load_file('registration_screen.kv')
-Builder.load_file('previews/article_preview.kv')
-Builder.load_file('previews/creator_article_preview.kv')
-Builder.load_file('previews/video_preview.kv')
-Builder.load_file('previews/creator_video_preview.kv')
-Builder.load_file('previews/creator_short_preview.kv')
-Builder.load_file('previews/creator_preview.kv')
-Builder.load_file('previews/short_preview.kv')
-Builder.load_file('new_article.kv')
-Builder.load_file('article_screen.kv')
-Builder.load_file('video_screen.kv')
-Builder.load_file('creator_screen.kv')
-Builder.load_file('new_video.kv')
-Builder.load_file('new_short.kv')
-Builder.load_file('update_video.kv')
-Builder.load_file('update_article.kv')
-Builder.load_file('creator_profile_screen.kv')
-Builder.load_file('video_page.kv')
-Builder.load_file('short_page.kv')
-Builder.load_file('article_page.kv')
-Builder.load_file('diploma_page.kv')
-Builder.load_file('creator_edit_profile.kv')
-Builder.load_file('short.kv')
-Builder.load_file('shorts_player.kv')
+file_names = [
+    'article_page.kv',
+    'article_screen.kv',
+    'comment_screen.kv',
+    'creator_edit_profile.kv',
+    'creator_profile_screen.kv',
+    'creator_screen.kv',
+    'diploma_page.kv',
+    'login_screen.kv',
+    'new_article.kv',
+    'new_short.kv',
+    'new_sub.kv',
+    'new_video.kv',
+    'previews/article_preview.kv',
+    'previews/creator_article_preview.kv',
+    'previews/creator_preview.kv',
+    'previews/creator_short_preview.kv',
+    'previews/creator_sub_preview.kv',
+    'previews/creator_video_preview.kv',
+    'previews/short_preview.kv',
+    'previews/video_preview.kv',
+    'registration_screen.kv',
+    'short.kv',
+    'short_page.kv',
+    'shorts_player.kv',
+    'sliding_panel.kv',
+    'sub_page.kv',
+    'update_article.kv',
+    'update_video.kv',
+    'video_page.kv',
+    'video_screen.kv'
+]
 
+for file_name in file_names:
+    Builder.load_file(file_name)
 
 class LifeHealther(MDApp):
     def __init__(self, **kwargs):
@@ -58,6 +66,7 @@ class LifeHealther(MDApp):
             self.sm.add_widget(ShortPageScreen(name='short_page'))
             self.sm.add_widget(ArticlePageScreen(name='article_page'))
             self.sm.add_widget(DiplomaPageScreen(name='diploma_page'))
+            self.sm.add_widget(SubPageScreen(name='sub_page'))
             self.sm.add_widget(CreatorEditProfile(name='edit_profile'))
 
             self.sm.get_screen('creator_profile').load_info()

@@ -1,4 +1,4 @@
-<CreatorArticlePreview>
+<CreatorSubPreview>
     MDBoxLayout:
         orientation: 'vertical'
         pos: root.pos
@@ -8,13 +8,19 @@
         padding: dp(10)
 
         MDLabel:
-            id: headline
+            id: name
             size_hint: 1, .2
             font_size: dp(30)
             halign: 'center'
 
         MDLabel:
-            id: text_preview
+            id: price
+            size_hint: 1, .2
+            font_size: dp(30)
+            halign: 'center'
+
+        MDLabel:
+            id: description
             font_size: dp(24)
             multiline: True
             size_hint: 1, .6
@@ -39,4 +45,4 @@
                 md_bg_color: .8,.3,.3,1
                 on_release:
                     root.delete()
-                    app.root.current_screen.load_articles()
+                    app.root.current_screen.load_subs()
