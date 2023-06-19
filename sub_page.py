@@ -15,7 +15,6 @@ class SubPageScreen(MyScreen):
         super(SubPageScreen, self).__init__(**kwargs)
         self.ids.subs_grid.bind(minimum_height=self.ids.subs_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
-        #self.load_articles()
 
     def load_subs(self):
         self.ids.subs_grid.clear_widgets()
@@ -30,7 +29,7 @@ class SubPageScreen(MyScreen):
                 sponsor_tier_preview = CreatorSubPreview(size_hint_y=None,
                                                         height=dp(250),
                                                         sponsor_tier_id=i["id"],
-                                                        headline=i["name"],
+                                                        name=i["name"],
                                                         info=info,
                                                         price=i["price"],
                                                         create_upd=self.create_upd

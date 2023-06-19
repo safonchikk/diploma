@@ -1,0 +1,45 @@
+<CreatorContentPreview>
+    MDBoxLayout:
+        orientation: 'vertical'
+        pos: root.pos
+        size: self.parent.size
+        md_bg_color: .9, .9, .9, 1
+        spacing: dp(10)
+        padding: dp(10)
+
+        MDLabel:
+            id: title
+            size_hint: 1, .2
+            font_size: dp(30)
+            halign: 'center'
+
+        MDLabel:
+            id: type
+            size_hint: 1, .2
+            font_size: dp(30)
+            halign: 'center'
+
+        MDBoxLayout:
+            size_hint: 1, .2
+            spacing: dp(30)
+
+            MDRoundFlatButton:
+                id: add_button
+                text: 'Add to sub'
+                size_hint: .4, 1
+                font_size: dp(20)
+                md_bg_color: 1,1,1,1
+                on_release:
+                    root.add()
+                    app.root.current_screen.load_subs()
+
+
+            MDRoundFlatButton:
+                id: delete_button
+                text: 'Delete from sub'
+                size_hint: .4, 1
+                font_size: dp(20)
+                md_bg_color: 1,1,1,1
+                on_release:
+                    root.delete()
+                    app.root.current_screen.load_subs()
