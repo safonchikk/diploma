@@ -3,11 +3,14 @@ from kivy.core.image import Image as CoreImage
 import requests
 import base64
 import os
+from kivymd.app import MDApp
+
 
 
 class CreatorScreen(MyScreen):
     def __init__(self, creator_id, **kwargs):
         super(CreatorScreen, self).__init__(name='creator', **kwargs)
+        self.creator_id = creator_id
         creator_content = requests.get("https://lifehealther.onrender.com/creator/info/" + str(creator_id)).json()
         creator_mongo = requests.get("https://lifehealther.onrender.com/creator/mongo/" + str(creator_id)).json()
         if creator_mongo["avatar"] == "NO":
@@ -27,4 +30,9 @@ class CreatorScreen(MyScreen):
         ...
 
     def subscribe(self):
-        pass
+        customer_id = MDApp.get_running_app().user
+        data = {
+            "creator":self.creator_id,
+            "customer": customer_id
+        }
+        r = requests.post("https://lifehealther.onrender.com/subscription/create")
