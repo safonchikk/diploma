@@ -4,7 +4,7 @@
         padding: dp(10)
         orientation: 'vertical'
         MDBoxLayout:
-            size_hint: 1, .1
+            size_hint: .2, .1
             spacing: dp(30)
             MDRoundFlatButton:
                 size_hint: .2, 1
@@ -15,7 +15,16 @@
                     app.root.remove_widget(app.root.get_screen('article'))
         ScrollView:
             MDBoxLayout:
+                orientation: 'vertical'
                 height: self.minimum_height
+                Image:
+                    source: 'images/account.png'
+                MDLabel:
+                    id: author
+                    text: "Author's name"
+                    text_size: self.size
+                    font_size: dp(20)
+
                 MDLabel:
                     id: headline
                     text: "Headline"
