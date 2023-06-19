@@ -39,7 +39,7 @@
             text: 'Subscribe'
             size_hint: 1, 0.15
             font_size: dp(20)
-            on_press:
+            on_release:
                 root.subscribe()
 
         MDRoundFlatButton:
@@ -51,7 +51,7 @@
             text: 'Diplomas'
             size_hint: 1, 0.15
             font_size: dp(20)
-            on_press:
+            on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'diploma_page'
                 app.root.current_screen.load_diplomas()
@@ -60,7 +60,7 @@
             text: 'Shorts'
             size_hint: 1, 0.15
             font_size: dp(20)
-            on_press:
+            on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'short_page'
                 app.root.current_screen.load_videos()
@@ -69,7 +69,7 @@
             text: 'Videos'
             size_hint: 1, 0.15
             font_size: dp(20)
-            on_press:
+            on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'video_page'
                 app.root.current_screen.load_videos()
@@ -78,7 +78,7 @@
             text: 'Articles'
             size_hint: 1, 0.15
             font_size: dp(20)
-            on_press:
+            on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'article_page'
                 app.root.current_screen.load_articles()
