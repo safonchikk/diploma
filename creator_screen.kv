@@ -1,4 +1,4 @@
-<CreatorProfileScreen>:
+<CreatorScreen>:
     MDBoxLayout:
         size: root.size
         pos: root.pos
@@ -26,7 +26,7 @@
             size_hint: 1, 0.2
 
         MDRoundFlatButton:
-            text: 'Edit profile'
+            text: 'Subscribe'
             size_hint: 1, 0.15
             font_size: dp(20)
             on_press:
@@ -35,7 +35,7 @@
                 app.root.current_screen.load_current_info()
 
         MDRoundFlatButton:
-            text: 'Configure subscriptions'
+            text: 'Paid subscriptions'
             size_hint: 1, 0.15
             font_size: dp(20)
 
