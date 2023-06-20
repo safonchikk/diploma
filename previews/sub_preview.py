@@ -1,3 +1,4 @@
+import requests
 from kivy.uix.button import Button
 from kivymd.uix.button import MDRoundFlatButton
 from kivymd.uix.dialog import MDDialog
@@ -8,6 +9,7 @@ class SubPreview(Button):
     def __init__(self, sponsor_tier_id, name='Subscription',
                  info='Text', price=0, subbed=False, **kwargs):
         super(SubPreview, self).__init__(**kwargs)
+        self.customer_id = MDApp.get_running_app().user
         self.sponsor_tier_id = sponsor_tier_id
         self.ids.name.text = name
         self.ids.description.text = info
@@ -43,8 +45,12 @@ class SubPreview(Button):
         self.ids.unsub_button.opacity = 1
         self.ids.unsub_button.disabled = False
         self.subbed = True
-        # MDApp.get_running_app().sm.get_screen('creator').load_all_info()
-        ...
+        data = {
+            "customer": self.customer_id,
+            "sponsor_tier": self.sponsor_tier_id
+        }
+        r = requests.post("https://lifehealther.onrender.com/sponsor_subscription/create", json=data)
+        MDApp.get_running_app().sm.get_screen('creator').load_all_info()
 
     def unsub(self):
         title = "Unsubscribe?"
@@ -64,4 +70,6 @@ class SubPreview(Button):
         self.ids.unsub_button.opacity = 0
         self.ids.unsub_button.disabled = True
         self.subbed = False
-        ...
+        self.subbed = True
+        r = requests.delete("https://lifehealther.onrender.com/sponsor_subscription/delete/" + str(self.sponsor_tier_id) + "/" + str(self.customer_id))
+        MDApp.get_running_app().sm.get_screen('creator').load_all_info()
