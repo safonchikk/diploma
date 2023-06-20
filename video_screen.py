@@ -1,6 +1,6 @@
 from kivymd.app import MDApp
 
-from creator_screen import CreatorScreen
+import creator_screen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
 import requests
@@ -79,5 +79,5 @@ class VideoScreen(MyScreen):
     def open_creator(self):
         sm = MDApp.get_running_app().sm
         sm.screen_history.append(sm.current)
-        sm.add_widget(CreatorScreen(self.author_id))
+        sm.add_widget(creator_screen.CreatorScreen(self.author_id))
         sm.current = 'creator'
