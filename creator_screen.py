@@ -1,3 +1,4 @@
+from author_subs import AuthorSubsScreen
 from author_videos import AuthorVideosScreen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
@@ -56,3 +57,6 @@ class CreatorScreen(MyScreen):
 
     def get_videos_screen(self):
         return AuthorVideosScreen(self.creator_id, self.videos, self.username, self.avatar, self.info)
+
+    def get_subs_screen(self):
+        return AuthorSubsScreen(self.creator_id)

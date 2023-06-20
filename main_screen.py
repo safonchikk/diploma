@@ -180,9 +180,3 @@ class MainScreen(MyScreen):
         scroll_view.add_widget(layout)
 
         self.ids.creators_grid.add_widget(scroll_view)
-
-    def open_creator(self, author_id):
-        creator_screen = CreatorScreen(author_id)
-        self.manager.add_widget(creator_screen)
-        self.manager.screen_history.append(self.manager.current)
-        self.manager.current = 'creator'

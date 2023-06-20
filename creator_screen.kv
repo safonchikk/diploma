@@ -1,10 +1,10 @@
 <CreatorScreen>:
     MDFloatLayout:
-        MDIconButton:
-            size_hint: 0.2, 0.1
+        MDRoundFlatButton:
+            size_hint: .2, .1
             pos_hint: {'top': 1}
-            icon: 'arrow-left'
-            icon_size: dp(40)
+            text: 'Back'
+            font_size: dp(20)
             on_release:
                 root.go_back(self)
                 app.root.remove_widget(app.root.get_screen('creator'))
@@ -47,6 +47,10 @@
             text: 'Paid subscriptions'
             size_hint: 1, 0.15
             font_size: dp(20)
+            on_release:
+                app.root.add_widget(root.get_subs_screen())
+                app.root.screen_history.append(app.root.current)
+                app.root.current = 'author_subs'
 
         MDRoundFlatButton:
             text: 'Diplomas'

@@ -45,7 +45,6 @@ class CreatorEditProfile(MyScreen):
 
         self.chosen_avatar = ''
         self.ids.avatar_path.text = ''
-        #отут
 
         self.ids.info.text = creator_content["info"]
 
