@@ -13,7 +13,7 @@ class CreatorScreen(MyScreen):
         super(CreatorScreen, self).__init__(name='creator', **kwargs)
         self.creator_id = creator_id
         self.customer_id = MDApp.get_running_app().user
-        all_info = requests.get("https://lifehealther.onrender.com/load_creator/" + str(creator_id) + "/" + str(self.customer_id)).json()
+        all_info = requests.get("http://127.0.0.1:8000/load_creator/" + str(creator_id) + "/" + str(self.customer_id)).json()
         if all_info["avatar"] == "NO":
             self.ids.avatar.source = 'images/account.png'
         else:

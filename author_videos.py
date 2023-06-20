@@ -17,12 +17,12 @@ class AuthorVideosScreen(MyScreen):
         self.ids.videos_grid.bind(minimum_height=self.ids.videos_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         self.k = 0
-        self.load_videos()
         self.author_id = author_id
         self.videos = videos
         self.username = username
         self.avatar = avatar
         self.info = info
+        self.load_videos()
 
     def load_videos(self):
         self.ids.videos_grid.clear_widgets()
@@ -36,7 +36,7 @@ class AuthorVideosScreen(MyScreen):
                 video_preview = VideoPreview(size_hint_y=None,
                                              height=dp(300),
                                              content_id=i['content_id'],
-                                             title=i["video_name"],
+                                             title=i["title"],
                                              author_name=self.username,
                                              thumbnail=core_image.texture,
                                              creator_id=self.author_id,
