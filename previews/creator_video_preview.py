@@ -31,6 +31,7 @@ class CreatorVideoPreview(Button):
         self.dialog.dismiss()
 
     def confirmed_delete(self):
+        self.close_popup(0)
         requests.delete("https://lifehealther.onrender.com/video/delete/" + str(self.content_id))
         requests.delete("https://lifehealther.onrender.com/content/" + str(self.content_id) + "/delete")
 
