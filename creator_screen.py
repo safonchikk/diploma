@@ -12,13 +12,18 @@ class CreatorScreen(MyScreen):
     def __init__(self, creator_id, **kwargs):
         super(CreatorScreen, self).__init__(name='creator', **kwargs)
         self.creator_id = creator_id
+        self.load_all_info()
+
+
+    def load_all_info(self):
         self.customer_id = MDApp.get_running_app().user
-        all_info = requests.get("https://lifehealther.onrender.com/load_creator/" + str(creator_id) + "/" + str(self.customer_id)).json()
+        all_info = requests.get(
+            "https://lifehealther.onrender.com/load_creator/" + str(self.creator_id) + "/" + str(self.customer_id)).json()
         if all_info["avatar"] == "NO":
             self.ids.avatar.source = 'images/account.png'
         else:
             decoded_bytes = base64.b64decode(all_info["avatar"])
-            temp_filename = 'temp_image_avatar_self_screen' + str(creator_id) + '.png'
+            temp_filename = 'temp_image_avatar_self_screen' + str(self.creator_id) + '.png'
             with open(temp_filename, 'wb') as file:
                 file.write(decoded_bytes)
             core_image = CoreImage(temp_filename)
@@ -35,7 +40,7 @@ class CreatorScreen(MyScreen):
         avatar = all_info["avatar"]
         if avatar != "NO":
             decoded_bytes = base64.b64decode(avatar)
-            temp_filename = 'temp_self_scren_avatar_nnnn_' + str(creator_id) + '.png'
+            temp_filename = 'temp_self_scren_avatar_nnnn_' + str(self.creator_id) + '.png'
             with open(temp_filename, 'wb') as file:
                 file.write(decoded_bytes)
             core_image = CoreImage(temp_filename)
