@@ -23,20 +23,20 @@ class SubPreview(Button):
 
     def sub(self):
         title = "Subscribe for " + self.ids.price.text + "?"
-        if not self.dialog:
-            self.dialog = MDDialog(
-                title=title,
-                buttons=[
-                    MDRoundFlatButton(text="Cancel", on_release=self.close_popup),
-                    MDRoundFlatButton(text="Yes", on_release=self.subscribe),
-                ],
-            )
+        self.dialog = MDDialog(
+            title=title,
+            buttons=[
+                MDRoundFlatButton(text="Cancel", on_release=self.close_popup),
+                MDRoundFlatButton(text="Yes", on_release=self.subscribe),
+            ],
+        )
         self.dialog.open()
 
     def close_popup(self, instance):
         self.dialog.dismiss()
 
     def subscribe(self, instance):
+        print(self.ids.sub_button.text)
         self.close_popup(0)
         self.ids.sub_button.opacity = 0
         self.ids.sub_button.disabled = True
@@ -48,14 +48,13 @@ class SubPreview(Button):
 
     def unsub(self):
         title = "Unsubscribe?"
-        if not self.dialog:
-            self.dialog = MDDialog(
-                title=title,
-                buttons=[
-                    MDRoundFlatButton(text="Cancel", on_release=self.close_popup),
-                    MDRoundFlatButton(text="Yes", on_release=self.unsubscribe),
-                ],
-            )
+        self.dialog = MDDialog(
+            title=title,
+            buttons=[
+                MDRoundFlatButton(text="Cancel", on_release=self.close_popup),
+                MDRoundFlatButton(text="Yes", on_release=self.unsubscribe),
+            ],
+        )
         self.dialog.open()
 
     def unsubscribe(self, instance):
@@ -64,4 +63,5 @@ class SubPreview(Button):
         self.ids.sub_button.disabled = False
         self.ids.unsub_button.opacity = 0
         self.ids.unsub_button.disabled = True
+        self.subbed = False
         ...

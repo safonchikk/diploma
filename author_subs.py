@@ -23,7 +23,7 @@ class AuthorSubsScreen(MyScreen):
     def load_subs(self):
         self.ids.subs_grid.clear_widgets()
         sponsor_tiers = self.sponsor_tiers
-        if  sponsor_tiers:
+        if sponsor_tiers:
             for i in sponsor_tiers:
                 video_preview = SubPreview(size_hint_y=None,
                                            height=dp(300),
