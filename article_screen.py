@@ -41,14 +41,19 @@ class ArticleScreen(MyScreen):
         self.ids.headline.text = article_info["article_name"]
         self.like_count = content_info["like_count"]
 
+        if self.liked:
+            self.ids.like_icon.source = "images/liked.png"
+
     def like(self):
         if self.liked:
+            self.ids.like_icon.source = "images/like.png"
             r = requests.delete(
                 "https://lifehealther.onrender.com/content_like/delete/" +
                 str(self.content_id) + "/" + str(self.customer_id))
             self.liked = False
             self.like_count -= 1
         else:
+            self.ids.like_icon.source = "images/liked.png"
             data = {
                 "content_id": int(self.content_id),
                 "customer_id": int(self.customer_id)
@@ -56,6 +61,7 @@ class ArticleScreen(MyScreen):
             r = requests.post("https://lifehealther.onrender.com/content_like/create", json=data)
             self.liked = True
             self.like_count += 1
+
 
 
     def open_creator(self):
