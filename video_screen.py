@@ -1,5 +1,6 @@
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
+from kivymd.app import MDApp
 import requests
 import base64
 import os
@@ -9,6 +10,8 @@ import tempfile
 class VideoScreen(MyScreen):
     def __init__(self, content_id, **kwargs):
         super(VideoScreen, self).__init__(name='video', **kwargs)
+        self.customer_id = MDApp.get_running_app().user
+        self.content_id = content_id
         url = "https://lifehealther.onrender.com/video/info/" + str(content_id)
         video_info = requests.get(url)
         video_info = video_info.json()
@@ -16,6 +19,12 @@ class VideoScreen(MyScreen):
         creator_id = content_info["creator"]
         creator_mongo = requests.get('https://lifehealther.onrender.com/creator/mongo/' + str(creator_id)).json()
         user = requests.get('https://lifehealther.onrender.com/user/' + str(creator_id)).json()
+        liked_r = requests.get(
+            "https://lifehealther.onrender.com/content_like/" + str(content_id) + "/" + str(self.customer_id))
+        if liked_r.status_code == 404:
+            self.liked = False
+        elif liked_r.status_code == 200:
+            self.liked = True
         if creator_mongo["avatar"] == "NO":
             self.ids.author_avatar.source = 'images/account.png'
         else:
@@ -42,5 +51,17 @@ class VideoScreen(MyScreen):
         self.ids.title.text = video_info["video_name"]
 
     def like(self):
-        #self.content_id
-        ...
+        if self.liked:
+            r = requests.delete(
+                "https://lifehealther.onrender.com/content_like/delete/" +
+                str(self.content_id) + "/" + str(self.customer_id))
+            self.liked = False
+            self.like_count -= 1
+        else:
+            data = {
+                "content_id": int(self.content_id),
+                "customer_id": int(self.customer_id)
+            }
+            r = requests.post("https://lifehealther.onrender.com/content_like/create", json=data)
+            self.liked = True
+            self.like_count += 1
