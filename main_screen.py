@@ -103,6 +103,7 @@ class MainScreen(MyScreen):
                               avatar=avatar,
                               like_count=i["like_count"])
                 layout.add_widget(short)
+                os.remove(temp_filename)
 
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)
