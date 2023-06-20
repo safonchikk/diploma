@@ -1,6 +1,7 @@
 from kivy.uix.button import Button
 from kivymd.uix.button import MDRoundFlatButton
 from kivymd.uix.dialog import MDDialog
+from kivymd.app import MDApp
 
 
 class SubPreview(Button):
@@ -41,6 +42,8 @@ class SubPreview(Button):
         self.ids.sub_button.disabled = True
         self.ids.unsub_button.opacity = 1
         self.ids.unsub_button.disabled = False
+        self.subbed = True
+        # MDApp.get_running_app().sm.get_screen('creator').load_all_info()
         ...
 
     def unsub(self):
