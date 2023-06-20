@@ -32,7 +32,16 @@ class CreatorScreen(MyScreen):
         self.shorts = all_info["shorts"]
         self.diplomas = all_info["diplomas"]
         self.sponsor_tiers = all_info["sponsor_tiers"]
-        self.avatar = all_info["avatar"]
+        avatar = all_info["avatar"]
+        if avatar != "NO":
+            decoded_bytes = base64.b64decode(avatar)
+            temp_filename = 'temp_self_scren_avatar_nnnn_' + str(creator_id) + '.png'
+            with open(temp_filename, 'wb') as file:
+                file.write(decoded_bytes)
+            core_image = CoreImage(temp_filename)
+            avatar = core_image.texture
+            os.remove(temp_filename)
+        self.avatar = avatar
         self.info = all_info["info"]
         self.username = all_info["username"]
         if self.subscribed:
