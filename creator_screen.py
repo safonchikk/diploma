@@ -75,4 +75,4 @@ class CreatorScreen(MyScreen):
         return AuthorSubsScreen(self.creator_id, self.sponsor_tiers)
 
     def get_diplomas_screen(self):
-        return AuthorDiplomasScreen(self.creator_id)
+        return AuthorDiplomasScreen(self.creator_id, self.diplomas)
