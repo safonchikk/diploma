@@ -29,10 +29,9 @@
             font_size: dp(30)
 
         MDBoxLayout:
-            size_hint: 1, .2
+            size_hint: 1, .15
             #height: dp(30)
             Button:
-                id: like_button
                 size_hint: .3, 1
                 #width: dp(50)
                 background_color: 1,1,1,0
@@ -71,9 +70,7 @@
                 size_hint: .5, 1
                 background_color: 1,1,1,0
                 on_release:
-                    #root.comment()
-                    app.root.current = 'comment'
-                    root.manager.transition.direction = 'up'
+                    root.comment()
                 Image:
                     id: comment_icon
                     source: "images/comment.png"

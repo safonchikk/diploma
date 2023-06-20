@@ -1,6 +1,7 @@
 from kivymd.app import MDApp
 
 import creator_screen
+from comment_screen import CommentScreen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
 import requests
@@ -81,3 +82,10 @@ class VideoScreen(MyScreen):
         sm.screen_history.append(sm.current)
         sm.add_widget(creator_screen.CreatorScreen(self.author_id))
         sm.current = 'creator'
+
+    def comment(self):
+        sm = MDApp.get_running_app().sm
+        sm.screen_history.append(sm.current)
+        sm.add_widget(CommentScreen(self.content_id))
+        sm.current = 'comment'
+        sm.transition.direction = 'up'

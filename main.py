@@ -50,12 +50,10 @@ class LifeHealther(MDApp):
 
             self.sm.add_widget(main_screen)
             self.sm.current = 'main'
-            # main_screen.load_articles()
-            # main_screen.load_shorts()
-            # main_screen.load_videos()
+            main_screen.load_articles()
+            main_screen.load_shorts()
+            main_screen.load_videos()
             main_screen.load_creators()
-
-            # sm.add_widget(CommentScreen(name='comment'))
 
     def build(self):
         Window.softinput_mode = 'below_target'

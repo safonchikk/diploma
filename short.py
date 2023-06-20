@@ -5,6 +5,7 @@ import requests
 import tempfile
 import logging
 
+from comment_screen import CommentScreen
 from creator_screen import CreatorScreen
 
 
@@ -62,3 +63,10 @@ class Short(MDBoxLayout):
             r = requests.post("https://lifehealther.onrender.com/content_like/create", json=data)
             self.liked = True
             self.like_count += 1
+
+    def comment(self):
+        sm = MDApp.get_running_app().sm
+        sm.screen_history.append(sm.current)
+        sm.add_widget(CommentScreen(self.content_id))
+        sm.current = 'comment'
+        sm.transition.direction = 'up'

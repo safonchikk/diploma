@@ -1,3 +1,4 @@
+from comment_screen import CommentScreen
 from creator_screen import CreatorScreen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
@@ -62,10 +63,15 @@ class ArticleScreen(MyScreen):
             self.liked = True
             self.like_count += 1
 
-
-
     def open_creator(self):
         sm = MDApp.get_running_app().sm
         sm.screen_history.append(sm.current)
         sm.add_widget(CreatorScreen(self.author_id))
         sm.current = 'creator'
+
+    def comment(self):
+        sm = MDApp.get_running_app().sm
+        sm.screen_history.append(sm.current)
+        sm.add_widget(CommentScreen(self.content_id))
+        sm.current = 'comment'
+        sm.transition.direction = 'up'

@@ -1,17 +1,22 @@
 <Comment>
     MDBoxLayout:
+        size_hint: 1, None
+        height: self.minimum_height
         pos: root.pos
         size: self.parent.size
         md_bg_color: .9, .9, .9, 1
         padding: dp(10)
-        spacing: dp(10)
-        Label:
+        spacing: dp(20)
+        orientation: 'vertical'
+        MDLabel:
             id: author_login
             color: (0,0,0,1)
             size_hint: .4, .2
             font_size: dp(24)
+            height: self.texture_size[1]
+            text_size: self.texture_size
 
-        Label:
+        MDLabel:
             id: text
             color: (0,0,0,1)
             font_size: dp(24)
