@@ -47,6 +47,7 @@ class VideoScreen(MyScreen):
                 f.write(chunk)
 
         self.author_id = creator_id
+        self.like_count = content_info["like_count"]
 
         # Вставка відео у VideoPlayer
         self.ids.video.source = file_path
