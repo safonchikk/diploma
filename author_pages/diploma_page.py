@@ -49,10 +49,8 @@ class DiplomaPageScreen(MyScreen):
             self.k += 1
             os.remove(temp_filename)
 
-
     def choose(self):
         filechooser.open_file(on_selection=self.handle_selection)
-
 
     def handle_selection(self, selection):
         creator_id = MDApp.get_running_app().user
