@@ -1,3 +1,5 @@
+import glob
+
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
@@ -49,8 +51,16 @@ file_names = [
     'video_screen.kv'
 ]
 
-for file_name in file_names:
-    Builder.load_file(file_name)
+#for file_name in file_names:
+#    Builder.load_file(file_name)
+
+directories = ['.', 'author_pages', 'previews']
+
+for directory in directories:
+    kv_files = glob.glob(f"{directory}/*.kv")
+
+    for kv_file in kv_files:
+        Builder.load_file(kv_file)
 
 
 class LifeHealther(MDApp):

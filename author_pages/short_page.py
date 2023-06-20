@@ -18,7 +18,6 @@ class ShortPageScreen(MyScreen):
         self.ids.videos_grid.bind(minimum_height=self.ids.videos_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         self.k = 0
-        #self.load_videos()
 
     def load_videos(self):
         self.ids.videos_grid.clear_widgets()
