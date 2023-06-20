@@ -1,4 +1,8 @@
 <ArticlePreview>
+    on_release:
+        app.root.add_widget(self.get_screen())
+        app.root.screen_history.append(app.root.current)
+        app.root.current = 'article'
     MDFloatLayout:
         pos: root.pos
         size: self.parent.size

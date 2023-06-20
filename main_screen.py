@@ -44,7 +44,7 @@ class MainScreen(MyScreen):
         if articles:
             for i in articles:
                 avatar = i["avatar"]
-                if  avatar != "NO":
+                if avatar != "NO":
                     decoded_bytes = base64.b64decode(i["avatar"])
                     temp_filename = 'temp_article_avatar' + str(MainScreen.k) + "_" + str(i["content_id"]) + '.png'
                     with open(temp_filename, 'wb') as file:
@@ -62,8 +62,7 @@ class MainScreen(MyScreen):
                                                  text_preview=text,
                                                  content_id=i['content_id'],
                                                  like_count=i["like_count"],
-                                                 author_avatar=avatar,
-                                                 on_release=lambda instance: self.open_article(article_preview.content_id))
+                                                 author_avatar=avatar)
                 if avatar != "NO":
                     MainScreen.k += 1
                     os.remove(temp_filename)

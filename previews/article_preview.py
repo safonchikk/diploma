@@ -16,3 +16,6 @@ class ArticlePreview(Button):
         self.content_id = content_id
         self.author_id = author_id,
         self.like_count = like_count
+
+    def get_screen(self):
+        return ArticleScreen(self.content_id)
