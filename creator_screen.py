@@ -27,6 +27,12 @@ class CreatorScreen(MyScreen):
         user = requests.get('https://lifehealther.onrender.com/user/' + str(creator_id)).json()
         self.ids.info.text = creator_content["info"]
         self.ids.login.text = user["username"]
+        #!!!!!
+        self.subscribed = True
+        if self.subscribed:
+            self.ids.subscribe_button.text = 'Unsubscribe'
+        else:
+            self.ids.subscribe_button.text = 'Subscribe'
 
     def subscribe(self):
         customer_id = MDApp.get_running_app().user
@@ -34,7 +40,14 @@ class CreatorScreen(MyScreen):
             "creator": self.creator_id,
             "customer": customer_id
         }
-        r = requests.post("https://lifehealther.onrender.com/subscription/create")
+        if self.subscribed:
+            self.ids.subscribe_button.text = 'Subscribe'
+            #!!!
+        else:
+            self.ids.subscribe_button.text = 'Unsubscribe'
+            #!!!
+        #r = requests.post("https://lifehealther.onrender.com/subscription/create")
+        self.subscribed = not self.subscribed
 
     def get_videos_screen(self):
         return AuthorVideosScreen(self.creator_id)
