@@ -22,7 +22,6 @@ class Short(MDBoxLayout):
         self.like_count = like_count
         self.content_id = content_id
         logging.basicConfig(level=logging.DEBUG)
-        logging.debug(content_id)
         response = requests.get("https://lifehealther.onrender.com/short/" + str(content_id), stream=True)
         # response = requests.get("https://lifehealther.onrender.com/video/30", stream=True)
         temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp4')
@@ -31,7 +30,6 @@ class Short(MDBoxLayout):
 
         with open(file_path, 'wb') as f:
             for chunk in response.iter_content(chunk_size=1024):
-                logging.debug("5")
                 f.write(chunk)
 
         # Вставка відео у VideoPlayer
