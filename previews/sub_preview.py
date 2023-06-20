@@ -37,6 +37,7 @@ class SubPreview(Button):
         self.ids.sub_button.disabled = True
         self.ids.unsub_button.opacity = 1
         self.ids.unsub_button.disabled = False
+        ...
 
     def unsub(self):
         title = "Unsubscribe?"
@@ -55,3 +56,4 @@ class SubPreview(Button):
         self.ids.sub_button.disabled = False
         self.ids.unsub_button.opacity = 0
         self.ids.unsub_button.disabled = True
+        ...
