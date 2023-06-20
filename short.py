@@ -36,6 +36,8 @@ class Short(MDBoxLayout):
                 f.write(chunk)
         self.ids.video.source = file_path
 
+        if self.liked:
+            self.ids.like_icon.source = "images/liked.png"
 
     def open_creator(self):
         sm = MDApp.get_running_app().sm
@@ -43,15 +45,16 @@ class Short(MDBoxLayout):
         sm.add_widget(CreatorScreen(self.author_id))
         sm.current = 'creator'
 
-
     def like(self):
         if self.liked:
+            self.ids.like_icon.source = "images/like.png"
             r = requests.delete(
                 "https://lifehealther.onrender.com/content_like/delete/" +
                 str(self.content_id) + "/" + str(self.customer_id))
             self.liked = False
             self.like_count -= 1
         else:
+            self.ids.like_icon.source = "images/liked.png"
             data = {
                 "content_id": int(self.content_id),
                 "customer_id": int(self.customer_id)

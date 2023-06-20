@@ -16,6 +16,7 @@ from author_pages.video_page import VideoPageScreen
 file_names = [
     'author_pages/article_page.kv',
     'article_screen.kv',
+    'author_videos.kv',
     'comment_screen.kv',
     'author_pages/creator_edit_profile.kv',
     'author_pages/creator_profile_screen.kv',

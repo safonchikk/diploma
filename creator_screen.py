@@ -1,3 +1,4 @@
+from author_videos import AuthorVideosScreen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
 import requests
@@ -30,7 +31,10 @@ class CreatorScreen(MyScreen):
     def subscribe(self):
         customer_id = MDApp.get_running_app().user
         data = {
-            "creator":self.creator_id,
+            "creator": self.creator_id,
             "customer": customer_id
         }
         r = requests.post("https://lifehealther.onrender.com/subscription/create")
+
+    def get_videos_screen(self):
+        return AuthorVideosScreen(self.creator_id)
