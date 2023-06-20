@@ -172,8 +172,7 @@ class MainScreen(MyScreen):
             else:
                 core_image = CoreImage("images/account.png")
             creator_preview = CreatorPreview(size_hint_y=None, height=dp(50), author_id=i['id'],
-                                             name=i["username"], avatar=core_image.texture,
-                                             on_release=lambda instance: self.open_creator(creator_preview.author_id))
+                                             name=i["username"], avatar=core_image.texture)
             layout.add_widget(creator_preview)
             MainScreen.k += 1
 
@@ -187,9 +186,3 @@ class MainScreen(MyScreen):
         self.manager.add_widget(creator_screen)
         self.manager.screen_history.append(self.manager.current)
         self.manager.current = 'creator'
-
-    def like(self):
-        if self.ids.like_icon.source == "images/like.png":
-            self.ids.like_icon.source = "images/liked.png"
-        else:
-            self.ids.like_icon.source = "images/like.png"
