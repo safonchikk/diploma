@@ -83,10 +83,26 @@ class MainScreen(MyScreen):
     def load_shorts(self):
         layout = GridLayout(cols=1, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
-
-        for i in range(3):
-            short = Short(content_id=1, size_hint=(1, None), height=Window.height-dp(120))
-            layout.add_widget(short)
+        customer_id = MDApp.get_running_app().user
+        r = requests.get("https://lifehealther.onrender.com/recomendetion/short/" + str(customer_id)).json()
+        shorts = r["contents"]
+        if shorts:
+            for i in shorts:
+                avatar = i["avatar"]
+                if avatar != "NO":
+                    decoded_bytes = base64.b64decode(i["avatar"])
+                    temp_filename = 'temp_article_avatar' + str(MainScreen.k) + "_" + str(i["content_id"]) + '.png'
+                    with open(temp_filename, 'wb') as file:
+                        file.write(decoded_bytes)
+                    core_image = CoreImage(temp_filename)
+                    avatar = core_image.texture
+                short = Short(size_hint=(1, None), height=Window.height-dp(120),
+                              content_id=i["content_id"],
+                              title=i["video_name"],
+                              creator_id=i["creator_id"],
+                              avatar=avatar,
+                              like_count=i["like_count"])
+                layout.add_widget(short)
 
         scroll_view = ScrollView()
         scroll_view.add_widget(layout)

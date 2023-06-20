@@ -14,6 +14,8 @@ class VideoPreview(Button):
         super(VideoPreview, self).__init__(**kwargs)
         if author_avatar == "NO":
             self.ids.author_avatar.source = 'images/account.png'
+        else:
+            self.ids.author_avatar.texture = author_avatar
         self.ids.author_name.text = author_name
         self.ids.thumbnail.texture = thumbnail
         self.ids.title.text = title
