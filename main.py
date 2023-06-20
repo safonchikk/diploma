@@ -58,6 +58,8 @@ class LifeHealther(MDApp):
             # sm.add_widget(CommentScreen(name='comment'))
 
     def build(self):
+        Window.softinput_mode = 'below_target'
+
         self.theme_cls.primary_palette = 'Orange'
         self.sm = MyScreenManager()
 
