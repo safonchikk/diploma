@@ -50,18 +50,16 @@ class CreatorScreen(MyScreen):
             self.ids.subscribe_button.text = 'Subscribe'
 
     def subscribe(self):
-        customer_id = MDApp.get_running_app().user
         data = {
             "creator": self.creator_id,
-            "customer": customer_id
+            "customer": self.customer_id
         }
         if self.subscribed:
             self.ids.subscribe_button.text = 'Subscribe'
-            #!!!
+            r = requests.delete("https://lifehealther.onrender.com/subscription/delete/" + str(self.creator_id) + "/" + str(self.customer_id))
         else:
             self.ids.subscribe_button.text = 'Unsubscribe'
-            #!!!
-        #r = requests.post("https://lifehealther.onrender.com/subscription/create")
+            r = requests.post("https://lifehealther.onrender.com/subscription/create", data)
         self.subscribed = not self.subscribed
 
     def get_videos_screen(self):
