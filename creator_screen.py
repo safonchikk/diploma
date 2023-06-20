@@ -1,3 +1,4 @@
+from author_diplomas import AuthorDiplomasScreen
 from author_subs import AuthorSubsScreen
 from author_videos import AuthorVideosScreen
 from my_screen import MyScreen
@@ -72,3 +73,6 @@ class CreatorScreen(MyScreen):
 
     def get_subs_screen(self):
         return AuthorSubsScreen(self.creator_id, self.sponsor_tiers)
+
+    def get_diplomas_screen(self):
+        return AuthorDiplomasScreen(self.creator_id)
