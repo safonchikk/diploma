@@ -1,5 +1,6 @@
 import glob
 
+from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
@@ -14,45 +15,6 @@ from registration_screen import RegistrationScreen
 from author_pages.short_page import ShortPageScreen
 from author_pages.sub_page import SubPageScreen
 from author_pages.video_page import VideoPageScreen
-
-file_names = [
-    'author_pages/article_page.kv',
-    'article_screen.kv',
-    'author_videos.kv',
-    'comment_screen.kv',
-    'author_pages/creator_edit_profile.kv',
-    'author_pages/creator_profile_screen.kv',
-    'creator_screen.kv',
-    'author_pages/diploma_page.kv',
-    'login_screen.kv',
-    'author_pages/new_article.kv',
-    'author_pages/new_short.kv',
-    'author_pages/new_sub.kv',
-    'author_pages/new_video.kv',
-    'previews/article_preview.kv',
-    'previews/creator_article_preview.kv',
-    'previews/creator_content_preview.kv',
-    'previews/creator_preview.kv',
-    'previews/creator_short_preview.kv',
-    'previews/creator_sub_preview.kv',
-    'previews/creator_video_preview.kv',
-    'previews/short_preview.kv',
-    'previews/video_preview.kv',
-    'registration_screen.kv',
-    'short.kv',
-    'author_pages/short_page.kv',
-    'shorts_player.kv',
-    'sliding_panel.kv',
-    'author_pages/sub_edit_screen.kv',
-    'author_pages/sub_page.kv',
-    'author_pages/update_article.kv',
-    'author_pages/update_video.kv',
-    'author_pages/video_page.kv',
-    'video_screen.kv'
-]
-
-#for file_name in file_names:
-#    Builder.load_file(file_name)
 
 directories = ['.', 'author_pages', 'previews']
 
@@ -97,7 +59,6 @@ class LifeHealther(MDApp):
 
     def build(self):
         self.theme_cls.primary_palette = 'Orange'
-
         self.sm = MyScreenManager()
 
         self.sm.add_widget(LoginScreen(name='login'))

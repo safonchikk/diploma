@@ -35,7 +35,7 @@ class SubPreview(Button):
     def close_popup(self, instance):
         self.dialog.dismiss()
 
-    def subscribe(self):
+    def subscribe(self, instance):
         self.ids.sub_button.opacity = 0
         self.ids.sub_button.disabled = True
         self.ids.unsub_button.opacity = 1
@@ -54,7 +54,7 @@ class SubPreview(Button):
             )
         self.dialog.open()
 
-    def unsubscribe(self):
+    def unsubscribe(self, instance):
         self.ids.sub_button.opacity = 1
         self.ids.sub_button.disabled = False
         self.ids.unsub_button.opacity = 0
