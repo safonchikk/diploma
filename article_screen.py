@@ -1,3 +1,4 @@
+from creator_screen import CreatorScreen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
 from kivymd.app import MDApp
@@ -34,6 +35,7 @@ class ArticleScreen(MyScreen):
             core_image = CoreImage(temp_filename)
             self.ids.author_avatar.texture = core_image.texture
             os.remove(temp_filename)
+        self.author_id = creator_id
         self.ids.author.text = user["username"]
         self.ids.text.text = article_info["text"]
         self.ids.headline.text = article_info["article_name"]
@@ -55,3 +57,9 @@ class ArticleScreen(MyScreen):
             self.liked = True
             self.like_count += 1
 
+
+    def open_creator(self):
+        sm = MDApp.get_running_app().sm
+        sm.screen_history.append(sm.current)
+        sm.add_widget(CreatorScreen(self.author_id))
+        sm.current = 'creator'

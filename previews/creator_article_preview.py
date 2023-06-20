@@ -1,7 +1,7 @@
 from kivy.uix.button import Button
 import requests
 
-from update_article_screen import UpdateArticleScreen
+from author_pages.update_article_screen import UpdateArticleScreen
 
 
 class CreatorArticlePreview(Button):

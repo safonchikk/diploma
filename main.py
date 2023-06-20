@@ -1,34 +1,31 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
-from creator_edit_profile import CreatorEditProfile
-from diploma_page import DiplomaPageScreen
-from article_page import ArticlePageScreen
-from comment_screen import CommentScreen
-from creator_profile_screen import CreatorProfileScreen
+from author_pages.creator_edit_profile import CreatorEditProfile
+from author_pages.diploma_page import DiplomaPageScreen
+from author_pages.article_page import ArticlePageScreen
+from author_pages.creator_profile_screen import CreatorProfileScreen
 from login_screen import LoginScreen
 from main_screen import MainScreen
 from my_screen_manager import MyScreenManager
-from new_video_screen import NewVideoScreen
 from registration_screen import RegistrationScreen
-from short_page import ShortPageScreen
-from sub_page import SubPageScreen
-from update_video_screen import UpdateVideoScreen
-from video_page import VideoPageScreen
+from author_pages.short_page import ShortPageScreen
+from author_pages.sub_page import SubPageScreen
+from author_pages.video_page import VideoPageScreen
 
 file_names = [
-    'article_page.kv',
+    'author_pages/article_page.kv',
     'article_screen.kv',
     'comment_screen.kv',
-    'creator_edit_profile.kv',
-    'creator_profile_screen.kv',
+    'author_pages/creator_edit_profile.kv',
+    'author_pages/creator_profile_screen.kv',
     'creator_screen.kv',
-    'diploma_page.kv',
+    'author_pages/diploma_page.kv',
     'login_screen.kv',
-    'new_article.kv',
-    'new_short.kv',
-    'new_sub.kv',
-    'new_video.kv',
+    'author_pages/new_article.kv',
+    'author_pages/new_short.kv',
+    'author_pages/new_sub.kv',
+    'author_pages/new_video.kv',
     'previews/article_preview.kv',
     'previews/creator_article_preview.kv',
     'previews/creator_content_preview.kv',
@@ -40,14 +37,14 @@ file_names = [
     'previews/video_preview.kv',
     'registration_screen.kv',
     'short.kv',
-    'short_page.kv',
+    'author_pages/short_page.kv',
     'shorts_player.kv',
     'sliding_panel.kv',
-    'sub_edit_screen.kv',
-    'sub_page.kv',
-    'update_article.kv',
-    'update_video.kv',
-    'video_page.kv',
+    'author_pages/sub_edit_screen.kv',
+    'author_pages/sub_page.kv',
+    'author_pages/update_article.kv',
+    'author_pages/update_video.kv',
+    'author_pages/video_page.kv',
     'video_screen.kv'
 ]
 
@@ -74,7 +71,6 @@ class LifeHealther(MDApp):
 
             self.sm.get_screen('creator_profile').load_info()
             self.sm.current = 'creator_profile'
-
 
         elif self.role == "Cu":
             main_screen = MainScreen(name='main')

@@ -1,13 +1,13 @@
 from kivy.metrics import dp
 
-from new_sub_screen import NewSubScreen
+from author_pages.new_sub_screen import NewSubScreen
 from previews.creator_sub_preview import CreatorSubPreview
 from my_screen import MyScreen
 from kivymd.app import MDApp
 
 import requests
 
-from new_article_screen import NewArticleScreen
+from author_pages.new_article_screen import NewArticleScreen
 
 
 class SubPageScreen(MyScreen):

@@ -3,7 +3,7 @@ from kivy.core.image import Image as CoreImage
 
 from my_screen import MyScreen
 from previews.creator_video_preview import CreatorVideoPreview
-from new_video_screen import NewVideoScreen
+from author_pages.new_video_screen import NewVideoScreen
 from kivymd.app import MDApp
 
 import requests
@@ -17,7 +17,6 @@ class VideoPageScreen(MyScreen):
         self.ids.videos_grid.bind(minimum_height=self.ids.videos_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         self.k = 0
-        #self.load_videos()
 
     def load_videos(self):
         self.ids.videos_grid.clear_widgets()

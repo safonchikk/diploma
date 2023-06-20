@@ -1,8 +1,7 @@
 from kivy.uix.button import Button
 import requests
 
-from sub_edit_screen import SubEditScreen
-from update_article_screen import UpdateArticleScreen
+from author_pages.sub_edit_screen import SubEditScreen
 
 
 class CreatorSubPreview(Button):

@@ -1,3 +1,6 @@
+from kivymd.app import MDApp
+
+from creator_screen import CreatorScreen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
 import requests
@@ -35,6 +38,8 @@ class VideoScreen(MyScreen):
             for chunk in response.iter_content(chunk_size=1024):
                 f.write(chunk)
 
+        self.author_id = creator_id
+
         # Вставка відео у VideoPlayer
         self.ids.video.source = file_path
         self.ids.video.state = 'play'
@@ -44,3 +49,9 @@ class VideoScreen(MyScreen):
     def like(self):
         #self.content_id
         ...
+
+    def open_creator(self):
+        sm = MDApp.get_running_app().sm
+        sm.screen_history.append(sm.current)
+        sm.add_widget(CreatorScreen(self.author_id))
+        sm.current = 'creator'

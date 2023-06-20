@@ -1,8 +1,7 @@
 from kivy.uix.button import Button
-from kivy.properties import ObjectProperty
 import requests
 
-from update_video_screen import UpdateVideoScreen
+from author_pages.update_video_screen import UpdateVideoScreen
 
 
 class CreatorVideoPreview(Button):

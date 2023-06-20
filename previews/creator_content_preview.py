@@ -1,8 +1,6 @@
 from kivy.uix.button import Button
 import requests
 
-from update_article_screen import UpdateArticleScreen
-
 
 class CreatorContentPreview(Button):
     def __init__(self, content_id,title, content_type, included, sub_id,  **kwargs):

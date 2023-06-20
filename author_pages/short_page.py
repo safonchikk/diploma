@@ -8,7 +8,7 @@ import requests
 import base64
 import os
 
-from new_short_screen import NewShortScreen
+from author_pages.new_short_screen import NewShortScreen
 from previews.short_preview import ShortPreview
 
 

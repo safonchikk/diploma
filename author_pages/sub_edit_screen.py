@@ -5,7 +5,7 @@ from kivymd.app import MDApp
 
 import requests
 
-from new_article_screen import NewArticleScreen
+from author_pages.new_article_screen import NewArticleScreen
 from previews.creator_content_preview import CreatorContentPreview
 
 

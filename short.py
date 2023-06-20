@@ -39,5 +39,5 @@ class Short(MDBoxLayout):
     def open_creator(self):
         sm = MDApp.get_running_app().sm
         sm.screen_history.append(sm.current)
-        #sm.add_widget(CreatorScreen(self.author_id))
-        #sm.current = 'creator'
+        sm.add_widget(CreatorScreen(self.author_id))
+        sm.current = 'creator'
