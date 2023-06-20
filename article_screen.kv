@@ -39,19 +39,54 @@
                         halign: 'left'
 
                 MDBoxLayout:
-                    orientation: 'vertical'
                     size_hint: 1, None
+                    height: self.minimum_height
                     MDLabel:
-                        size_hint: 1, 0.2
+                        size_hint: 1, None
                         halign: 'center'
                         id: headline
                         text: "Headline"
-                        text_size: self.size
+                        text_size: self.texture_size
                         font_size: dp(30)
 
+                MDBoxLayout:
+                    size_hint: 1, None
+                    height: self.minimum_height
                     MDLabel:
-                        size_hint: 1, 0.7
+                        size_hint: 1, None
                         id: text
                         text: "Text"
+                        text_size: self.width, None
+                        height: self.texture_size[1]
                         font_size: dp(20)
                         multiline: True
+
+                MDBoxLayout:
+                    size_hint: .5, .2
+                    spacing: dp(10)
+                    adaptive_height: True
+
+                    Button:
+                        id: like_button
+                        size_hint: .5, 1
+                        background_color: 1,1,1,0
+                        on_release: root.like()
+                        Image:
+                            id: like_icon
+                            source: "images/like.png"
+                            size: self.parent.size
+                            pos: self.parent.pos
+
+                    Button:
+                        id: comment_button
+                        size_hint: .5, 1
+                        background_color: 1,1,1,0
+                        on_release:
+                            #root.comment()
+                            app.root.current = 'comment'
+                            root.manager.transition.direction = 'up'
+                        Image:
+                            id: comment_icon
+                            source: "images/comment.png"
+                            size: self.parent.size
+                            pos: self.parent.pos

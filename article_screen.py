@@ -29,4 +29,7 @@ class ArticleScreen(MyScreen):
         self.ids.author.text = user["username"]
         self.ids.text.text = article_info["text"]
         self.ids.headline.text = article_info["article_name"]
+
+    def like(self):
         ...
+        #self.content_id
