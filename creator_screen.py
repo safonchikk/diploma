@@ -11,24 +11,29 @@ class CreatorScreen(MyScreen):
     def __init__(self, creator_id, **kwargs):
         super(CreatorScreen, self).__init__(name='creator', **kwargs)
         self.creator_id = creator_id
-        creator_content = requests.get("https://lifehealther.onrender.com/creator/info/" + str(creator_id)).json()
-        creator_mongo = requests.get("https://lifehealther.onrender.com/creator/mongo/" + str(creator_id)).json()
-        if creator_mongo["avatar"] == "NO":
+        self.customer_id = MDApp.get_running_app().user
+        all_info = requests.get("https://lifehealther.onrender.com/load_creator/" + str(creator_id) + "/" + str(self.customer_id)).json()
+        if all_info["avatar"] == "NO":
             self.ids.avatar.source = 'images/account.png'
         else:
-            decoded_bytes = base64.b64decode(creator_mongo["avatar"])
-            temp_filename = 'temp_image_avatar' + str(creator_id) + '.png'
+            decoded_bytes = base64.b64decode(all_info["avatar"])
+            temp_filename = 'temp_image_avatar_self_screen' + str(creator_id) + '.png'
             with open(temp_filename, 'wb') as file:
                 file.write(decoded_bytes)
-            # Створення об'єкта CoreImage з тимчасового зображення
             core_image = CoreImage(temp_filename)
             self.ids.avatar.texture = core_image.texture
             os.remove(temp_filename)
-        user = requests.get('https://lifehealther.onrender.com/user/' + str(creator_id)).json()
-        self.ids.info.text = creator_content["info"]
-        self.ids.login.text = user["username"]
-        #!!!!!
-        self.subscribed = True
+        self.ids.info.text = all_info["info"]
+        self.ids.login.text = all_info["username"]
+        self.subscribed = all_info["subscribed"]
+        self.videos = all_info["videos"]
+        self.articles = all_info["articles"]
+        self.shorts = all_info["shorts"]
+        self.diplomas = all_info["diplomas"]
+        self.sponsor_tiers = all_info["sponsor_tiers"]
+        self.avatar = all_info["avatar"]
+        self.info = all_info["info"]
+        self.username = all_info["username"]
         if self.subscribed:
             self.ids.subscribe_button.text = 'Unsubscribe'
         else:
@@ -50,4 +55,4 @@ class CreatorScreen(MyScreen):
         self.subscribed = not self.subscribed
 
     def get_videos_screen(self):
-        return AuthorVideosScreen(self.creator_id)
+        return AuthorVideosScreen(self.creator_id, self.videos, self.username, self.avatar, self.info)
