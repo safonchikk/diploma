@@ -66,4 +66,4 @@ class CreatorScreen(MyScreen):
         return AuthorVideosScreen(self.creator_id, self.videos, self.username, self.avatar, self.info)
 
     def get_subs_screen(self):
-        return AuthorSubsScreen(self.creator_id)
+        return AuthorSubsScreen(self.creator_id, self.sponsor_tiers)
