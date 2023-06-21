@@ -29,6 +29,7 @@ class CommentScreen(MyScreen):
             "like_count": 0
         }
         r = requests.post("https://lifehealther.onrender.com/comment/create", json=data)
-        comment = Comment(author_login=self.username, text=self.ids.comment.text, size_hint_y=None)
+        comment = Comment(author_login=self.username, text=self.ids.comment.text, size_hint_y=None,
+                          comment_id=None, liked=False)
         self.ids.comments_grid.add_widget(comment)
         self.ids.comment.text = ''

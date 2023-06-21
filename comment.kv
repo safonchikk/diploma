@@ -8,13 +8,28 @@
         padding: dp(10)
         spacing: dp(20)
         orientation: 'vertical'
-        MDLabel:
-            id: author_login
-            color: (0,0,0,1)
-            size_hint: .4, .2
-            font_size: dp(24)
-            height: self.texture_size[1]
-            text_size: self.texture_size
+        MDBoxLayout:
+            size_hint: 1, None
+            height: self.minimum_height
+            MDLabel:
+                halign: 'left'
+                id: author_login
+                color: (0,0,0,1)
+                size_hint: .7, None
+                font_size: dp(24)
+                height: self.texture_size[1]
+                text_size: self.texture_size
+
+            Button:
+                size_hint: None, None
+                size: dp(40), dp(40)
+                background_color: 1,1,1,0
+                on_release: root.like()
+                Image:
+                    id: like_icon
+                    source: "images/like.png"
+                    size: self.parent.size
+                    pos: self.parent.pos
 
         MDLabel:
             id: text
