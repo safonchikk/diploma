@@ -47,22 +47,18 @@ class AdminScreen(MyScreen):
         h = hashlib.sha3_256()
         h.update(bytes(password, 'UTF-8'))
         password = h.hexdigest()
-        '''    data = {
+        data = {
             "id":{
                 "id": {
                     "username": login,
                     "password": password
                 },
-                "role": "Cu"
-            }
+                "role": "MO"
+            },
+            "firstName": "m",
+            "lastName": "m"
         }
-        r = requests.post("https://lifehealther.onrender.com/customer/create", json=data)
+        r = requests.post("https://lifehealther.onrender.com/moderator/create", json=data)
         if r.status_code != 201:
             return False
-        MDApp.get_running_app().user = r.json()["id"]
-        MDApp.get_running_app().role = "Cu"
-        data = {
-            "creator_id": r.json()["id"]
-        }
-        r = requests.post("https://lifehealther.onrender.com/customer_mongo/create", json=data)
-        '''
+        return True
