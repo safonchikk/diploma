@@ -72,12 +72,6 @@ class MainScreen(MyScreen):
 
         self.ids.articles_grid.add_widget(scroll_view)
 
-    '''def open_article(self, content_id):
-        article_screen = ArticleScreen(content_id)
-        self.manager.add_widget(article_screen)
-        self.manager.screen_history.append(self.manager.current)
-        self.manager.current = 'article'''
-
     def load_shorts(self):
         layout = GridLayout(cols=1, size_hint_y=None)
         layout.bind(minimum_height=layout.setter('height'))
@@ -147,12 +141,6 @@ class MainScreen(MyScreen):
         scroll_view.add_widget(layout)
 
         self.ids.videos_grid.add_widget(scroll_view)
-
-    '''def open_video(self, content_id):
-        video_screen = VideoScreen(content_id)
-        self.manager.add_widget(video_screen)
-        self.manager.screen_history.append(self.manager.current)
-        self.manager.current = 'video'''
 
     def load_creators(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)

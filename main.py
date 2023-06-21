@@ -11,6 +11,7 @@ from author_pages.article_page import ArticlePageScreen
 from author_pages.creator_profile_screen import CreatorProfileScreen
 from login_screen import LoginScreen
 from main_screen import MainScreen
+from moder_screen import ModerScreen
 from my_screen_manager import MyScreenManager
 from registration_screen import RegistrationScreen
 from author_pages.short_page import ShortPageScreen
@@ -60,6 +61,10 @@ class LifeHealther(MDApp):
         elif self.role == "Ad":
             self.sm.add_widget(AdminScreen(name='admin'))
             self.sm.current = 'admin'
+
+        elif self.role == "Mo":
+            self.sm.add_widget(ModerScreen())
+            self.sm.current = 'moder'
 
     def build(self):
         Window.softinput_mode = 'below_target'
