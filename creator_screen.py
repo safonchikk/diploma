@@ -83,5 +83,4 @@ class CreatorScreen(MyScreen):
         return AuthorArticlesScreen(self.creator_id, self.articles, self.username, self.avatar, self.info)
 
     def get_shorts_screen(self):
-        pass
-        # return AuthorShortsScreen(self.creator_id, self.shorts, self.username, self.avatar, self.info)
+        return AuthorShortsScreen(self.creator_id, self.shorts, self.username, self.avatar, self.info)

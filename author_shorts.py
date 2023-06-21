@@ -8,6 +8,7 @@ import requests
 import base64
 import os
 
+from previews.short_preview import ShortPreview
 from previews.video_preview import VideoPreview
 
 
@@ -33,7 +34,7 @@ class AuthorShortsScreen(MyScreen):
                 with open(temp_filename, 'wb') as file:
                     file.write(decoded_bytes)
                 core_image = CoreImage(temp_filename)
-                video_preview = VideoPreview(size_hint_y=None,
+                video_preview = ShortPreview(size_hint_y=None,
                                              height=dp(300),
                                              content_id=i['content_id'],
                                              title=i["title"],
@@ -43,5 +44,5 @@ class AuthorShortsScreen(MyScreen):
                                              author_avatar=self.avatar,
                                              like_count=i["like_count"])
                 self.k += 1
-                self.ids.videos_grid.add_widget(video_preview)
+                self.ids.shorts_grid.add_widget(video_preview)
                 os.remove(temp_filename)
