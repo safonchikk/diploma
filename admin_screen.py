@@ -50,7 +50,7 @@ class AdminScreen(MyScreen):
         data = {
                 "username": login,
                 "password": password,
-                "role": "MO",
+                "role": "Mo",
                 "firstName": "m",
                 "lastName": "m"
         }
