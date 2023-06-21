@@ -1,3 +1,4 @@
+from author_articles import AuthorArticlesScreen
 from author_diplomas import AuthorDiplomasScreen
 from author_subs import AuthorSubsScreen
 from author_videos import AuthorVideosScreen
@@ -76,3 +77,11 @@ class CreatorScreen(MyScreen):
 
     def get_diplomas_screen(self):
         return AuthorDiplomasScreen(self.creator_id, self.diplomas)
+
+    def get_articles_screen(self):
+        #return AuthorArticlesScreen()
+        ...
+
+    def get_shorts_screen(self):
+        #return AuthorShortsScreen()
+        ...

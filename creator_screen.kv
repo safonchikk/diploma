@@ -66,9 +66,9 @@
             size_hint: 1, 0.15
             font_size: dp(20)
             on_release:
+                app.root.add_widget(root.get_shorts_screen())
                 app.root.screen_history.append(app.root.current)
-                app.root.current = 'short_page'
-                app.root.current_screen.load_videos()
+                app.root.current = 'author_shorts'
 
         MDRoundFlatButton:
             text: 'Videos'
@@ -84,7 +84,7 @@
             size_hint: 1, 0.15
             font_size: dp(20)
             on_release:
+                app.root.add_widget(root.get_articles_screen())
                 app.root.screen_history.append(app.root.current)
-                app.root.current = 'article_page'
-                app.root.current_screen.load_articles()
+                app.root.current = 'author_articles'
 

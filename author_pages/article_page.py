@@ -14,7 +14,6 @@ class ArticlePageScreen(MyScreen):
         super(ArticlePageScreen, self).__init__(**kwargs)
         self.ids.articles_grid.bind(minimum_height=self.ids.articles_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
-        #self.load_articles()
 
     def load_articles(self):
         self.ids.articles_grid.clear_widgets()
