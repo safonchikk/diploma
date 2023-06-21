@@ -16,6 +16,7 @@
                     text: 'Back'
                     font_size: dp(20)
                     on_release:
+                        sm.transition.direction = 'down'
                         root.go_back(self)
                         app.root.remove_widget(app.root.get_screen('comment'))
                 MDLabel:
