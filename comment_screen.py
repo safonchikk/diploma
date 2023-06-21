@@ -14,6 +14,7 @@ class CommentScreen(MyScreen):
         self.ids.comments_grid.bind(minimum_height=self.ids.comments_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         self.customer_id = MDApp.get_running_app().user
+        self.username = requests.get("https://lifehealther.onrender.com/user/" + str(self.customer_id)).json()["username"]
         comments = requests.get("https://lifehealther.onrender.com/comment/" + str(self.content_id)).json()
         if comments:
             for i in comments:
@@ -29,6 +30,6 @@ class CommentScreen(MyScreen):
             "like_count": 0
         }
         r = requests.post("https://lifehealther.onrender.com/comment/create", json=data)
-        comment = Comment(author_login=self.customer_id, text=self.ids.comment.text, size_hint_y=None)
+        comment = Comment(author_login=self.username, text=self.ids.comment.text, size_hint_y=None)
         self.ids.comments_grid.add_widget(comment)
         self.ids.comment.text = ''
