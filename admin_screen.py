@@ -48,15 +48,11 @@ class AdminScreen(MyScreen):
         h.update(bytes(password, 'UTF-8'))
         password = h.hexdigest()
         data = {
-            "id":{
-                "id": {
-                    "username": login,
-                    "password": password
-                },
-                "role": "MO"
-            },
-            "firstName": "m",
-            "lastName": "m"
+                "username": login,
+                "password": password,
+                "role": "MO",
+                "firstName": "m",
+                "lastName": "m"
         }
         r = requests.post("https://lifehealther.onrender.com/moderator/create", json=data)
         if r.status_code != 201:
