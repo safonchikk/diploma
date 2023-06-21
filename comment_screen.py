@@ -21,7 +21,6 @@ class CommentScreen(MyScreen):
                 comment = Comment(author_login=i["username"], text=i["text"], size_hint_y=None)
                 self.ids.comments_grid.add_widget(comment)
 
-
     def post(self):
         data = {
             "customer": self.customer_id,
