@@ -40,6 +40,7 @@ class ArticlePageScreen(MyScreen):
         self.manager.add_widget(upd_screen)
         self.manager.screen_history.append(self.manager.current)
         self.manager.current = 'update_article'
+        self.manager.transition.direction = 'left'
 
     def create_add(self):
         self.manager.add_widget(NewArticleScreen(name='new_article'))

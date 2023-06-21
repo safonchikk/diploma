@@ -68,6 +68,7 @@ class ArticleScreen(MyScreen):
         sm.screen_history.append(sm.current)
         sm.add_widget(creator_screen.CreatorScreen(self.author_id))
         sm.current = 'creator'
+        sm.transition.direction = 'left'
 
     def comment(self):
         sm = MDApp.get_running_app().sm

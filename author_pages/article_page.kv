@@ -32,6 +32,7 @@
                     root.create_add()
                     app.root.screen_history.append(app.root.current)
                     app.root.current = 'new_article'
+                    app.root.transition.direction = 'left'
 
             MDBoxLayout:
                 id: articles_grid

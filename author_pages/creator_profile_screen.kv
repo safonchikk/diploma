@@ -8,6 +8,7 @@
                 app.user = ''
                 app.role = ''
                 app.root.current = 'login'
+                app.root.transition.direction = 'right'
             icon: 'logout-variant'
             icon_size: dp(55)
 
@@ -44,6 +45,7 @@
             on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'edit_profile'
+                app.root.transition.direction = 'left'
                 app.root.current_screen.load_current_info()
 
         MDRoundFlatButton:
@@ -53,6 +55,7 @@
             on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'sub_page'
+                app.root.transition.direction = 'left'
                 app.root.current_screen.load_subs()
 
         MDRoundFlatButton:
@@ -62,6 +65,7 @@
             on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'diploma_page'
+                app.root.transition.direction = 'left'
                 app.root.current_screen.load_diplomas()
 
         MDRoundFlatButton:
@@ -80,6 +84,7 @@
             on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'video_page'
+                app.root.transition.direction = 'left'
                 app.root.current_screen.load_videos()
 
         MDRoundFlatButton:
@@ -89,5 +94,6 @@
             on_release:
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'article_page'
+                app.root.transition.direction = 'left'
                 app.root.current_screen.load_articles()
 
