@@ -23,6 +23,7 @@ import base64
 import logging
 import tempfile
 
+from search_screen import SearchScreen
 from short import Short
 from video_screen import VideoScreen
 from shorts_player import ShortsPlayer
@@ -178,3 +179,9 @@ class MainScreen(MyScreen):
         scroll_view.add_widget(layout)
 
         self.ids.creators_grid.add_widget(scroll_view)
+
+    def search(self):
+        if self.ids.search_input.text != '':
+            self.manager.add_widget(SearchScreen(self.ids.search_input.text))
+            self.manager.screen_history.append(self.manager.current)
+            self.manager.current = 'search'

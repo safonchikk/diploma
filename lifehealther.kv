@@ -20,9 +20,9 @@
                 size_hint: .15, 1
                 id: search_button
                 background_color: 1,1,1,0
-                #on_release: app.root.current = 'search'
                 icon: 'magnify'
                 icon_size: dp(55)
+                on_release: root.search()
 
             MDIconButton:
                 size_hint: .15, 1

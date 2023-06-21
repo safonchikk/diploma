@@ -65,7 +65,7 @@ class LifeHealther(MDApp):
         self.sm.add_widget(LoginScreen(name='login'))
         self.sm.add_widget(RegistrationScreen(name='registration'))
 
-        return SearchScreen('sport')#self.sm
+        return self.sm
 
 
 if __name__ == '__main__':
