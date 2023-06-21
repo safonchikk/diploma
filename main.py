@@ -15,6 +15,7 @@ from registration_screen import RegistrationScreen
 from author_pages.short_page import ShortPageScreen
 from author_pages.sub_page import SubPageScreen
 from author_pages.video_page import VideoPageScreen
+from search_screen import SearchScreen
 
 directories = ['.', 'author_pages', 'previews']
 
@@ -64,7 +65,7 @@ class LifeHealther(MDApp):
         self.sm.add_widget(LoginScreen(name='login'))
         self.sm.add_widget(RegistrationScreen(name='registration'))
 
-        return self.sm
+        return SearchScreen('sport')#self.sm
 
 
 if __name__ == '__main__':

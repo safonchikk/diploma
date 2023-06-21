@@ -1,22 +1,52 @@
+from textwrap import dedent
+
+from kivy.lang import Builder
 from kivymd.app import MDApp
 
 from my_screen import MyScreen
 
 
 class SearchScreen(MyScreen):
-    def __init__(self, **kwargs):
-        super(SearchScreen, self).__init__(**kwargs)
-        self.ids.articles_grid.bind(minimum_height=self.ids.articles_grid.setter('height'))
-        self.ids.videos_grid.bind(minimum_height=self.ids.videos_grid.setter('height'))
-        self.ids.creators_grid.bind(minimum_height=self.ids.creators_grid.setter('height'))
+    def __init__(self, query, **kwargs):
+        self.videos_grid = Builder.load_string(dedent("""
+            MDBoxLayout:
+                padding: dp(10)
+                size_hint: 1, None
+                height: self.minimum_height
+                id: videos_grid
+            """))
+
+        self.articles_grid = Builder.load_string(dedent("""
+                MDBoxLayout:
+                    padding: dp(10)
+                    size_hint: 1, None
+                    height: self.minimum_height
+                    id: articles_grid
+                """))
+
+        self.creators_grid = Builder.load_string(dedent("""
+                MDBoxLayout:
+                    padding: dp(10)
+                    size_hint: 1, None
+                    height: self.minimum_height
+                    id: creators_grid
+                """))
+
+        super(SearchScreen, self).__init__(name='search', **kwargs)
+        self.articles_grid.bind(minimum_height=self.articles_grid.setter('height'))
+        self.videos_grid.bind(minimum_height=self.videos_grid.setter('height'))
+        self.creators_grid.bind(minimum_height=self.creators_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
+        self.load_results()
+        self.ids.search_input.text = query
+        self.query = query
 
     def load_results(self):
-        self.ids.articles_grid.clear_widgets()
-        self.ids.videos_grid.clear_widgets()
-        self.ids.creators_grid.clear_widgets()
-        creator_id = MDApp.get_running_app().user
-        '''articles = requests.get("https://lifehealther.onrender.com/article/creator/" + str(creator_id))
+        self.articles_grid.clear_widgets()
+        self.videos_grid.clear_widgets()
+        self.creators_grid.clear_widgets()
+        '''creator_id = MDApp.get_running_app().user
+        articles = requests.get("https://lifehealther.onrender.com/article/creator/" + str(creator_id))
         if articles.json() != {}:
             for i in articles.json().values():
                 url = "https://lifehealther.onrender.com/article/" + str(i["id"])
@@ -33,3 +63,31 @@ class SearchScreen(MyScreen):
                                                         create_upd=self.create_upd
                                                         )
                 self.ids.articles_grid.add_widget(article_preview)'''
+        self.go_videos()
+
+    def clear_buttons(self):
+        self.ids.video_button.md_bg_color = (1, 1, 1, 1)
+        self.ids.article_button.md_bg_color = (1, 1, 1, 1)
+        self.ids.author_button.md_bg_color = (1, 1, 1, 1)
+
+    def go_videos(self):
+        self.ids.grid.clear_widgets()
+        self.ids.grid.add_widget(self.videos_grid)
+        self.clear_buttons()
+        self.ids.video_button.md_bg_color = (.8, .8, .8, 1)
+
+    def go_articles(self):
+        self.ids.grid.clear_widgets()
+        self.ids.grid.add_widget(self.articles_grid)
+        self.clear_buttons()
+        self.ids.article_button.md_bg_color = (.8, .8, .8, 1)
+
+    def go_authors(self):
+        self.ids.grid.clear_widgets()
+        self.ids.grid.add_widget(self.creators_grid)
+        self.clear_buttons()
+        self.ids.author_button.md_bg_color = (.8, .8, .8, 1)
+
+    def upd_query(self):
+        self.query = self.ids.search_input.text
+        self.load_results()

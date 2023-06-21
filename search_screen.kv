@@ -1,89 +1,72 @@
 <SearchScreen>
-
-    MDBoxLayout:
-        orientation: 'vertical'
-
+    ScrollView:
         MDBoxLayout:
-            padding: dp(10), dp(3), 0, dp(3)
-            spacing: dp(10)
-            size_hint: 1, None
-            height: dp(60)
+            orientation: 'vertical'
+            id: layout
 
-            MDRoundFlatButton:
-                size_hint: .15, 1
-                text: 'Back'
-                font_size: dp(20)
-                on_release:
-                    root.go_back(self)
-                    app.root.remove_widget(app.root.get_screen('search'))
+            MDBoxLayout:
+                padding: dp(10), dp(3), 0, dp(3)
+                spacing: dp(15)
+                size_hint: 1, None
+                height: dp(60)
 
-            MDTextField:
-                id: login_input
-                mode: "round"
-                multiline: False
-                size_hint: .7, 1
-                font_size: dp(30)
+                MDRoundFlatButton:
+                    size_hint: .1, 1
+                    text: 'Back'
+                    font_size: dp(20)
+                    on_release:
+                        root.go_back(self)
+                        app.root.remove_widget(app.root.get_screen('search'))
 
-            MDIconButton:
-                size_hint: .15, 1
-                id: search_button
-                background_color: 1,1,1,0
-                #on_release: app.root.current = 'search'
-                icon: 'magnify'
-                icon_size: dp(55)
+                MDTextField:
+                    id: search_input
+                    mode: "round"
+                    multiline: False
+                    size_hint: .7, 1
+                    font_size: dp(30)
 
+                MDIconButton:
+                    size_hint: .15, 1
+                    id: search_button
+                    background_color: 1,1,1,0
+                    icon: 'magnify'
+                    icon_size: dp(55)
+                    on_release:
+                        root.upd_query()
 
-        MDBottomNavigation:
-            panel_color: .4, .4, .4, 1
+            MDBoxLayout:
+                padding: dp(10)
+                spacing: dp(10)
+                size_hint: 1, None
+                height: dp(60)
 
-            MDBottomNavigationItem:
-                name: 'shorts_screen'
-                text: 'Shorts'
-                icon: 'filmstrip-box'
+                MDRoundFlatButton:
+                    id: video_button
+                    size_hint: .32, 1
+                    text: 'Videos'
+                    font_size: dp(24)
+                    on_release:
+                        root.go_videos()
 
-                BoxLayout:
-                    md_bg_color: 1,0,0,1
-                    size_hint: (1, None)
-                    size: (root.width, root.height-dp(120))
-                    orientation: 'vertical'
-                    id: shorts_player
+                MDRoundFlatButton:
+                    id: article_button
+                    size_hint: .32, 1
+                    text: 'Articles'
+                    font_size: dp(24)
+                    on_release:
+                        root.go_articles()
 
+                MDRoundFlatButton:
+                    id: author_button
+                    size_hint: .32, 1
+                    text: 'Authors'
+                    font_size: dp(24)
+                    on_release:
+                        root.go_authors()
 
-            MDBottomNavigationItem:
-                name: 'articles_screen'
-                text: 'Articles'
-                icon: 'script-text-outline'
 
                 MDBoxLayout:
-                    padding: dp(10)
-                    md_bg_color: 1,1,1,1
-                    size_hint: (1, None)
-                    size: (root.width, root.height-dp(120))
-                    id: articles_grid
-
-
-            MDBottomNavigationItem:
-                name: 'videos_screen'
-                text: 'Videos'
-                icon: 'youtube'
-
-                MDBoxLayout:
-                    padding: dp(10)
-                    md_bg_color: 1,1,1,1
-                    size_hint: (1, None)
-                    size: (root.width, root.height-dp(120))
-                    id: videos_grid
-
-
-            MDBottomNavigationItem:
-                name: 'subscriptions_screen'
-                text: 'Subs'
-                icon: 'account-group'
-
-                MDBoxLayout:
-                    padding: dp(10)
-                    md_bg_color: 1,1,1,1
-                    size_hint: (1, None)
-                    size: (root.width, root.height-dp(120))
-                    id: creators_grid
+                    size_hint: 1, None
+                    height: self.minimum_height
+                    id: grid
 
