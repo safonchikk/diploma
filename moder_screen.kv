@@ -1,0 +1,53 @@
+<ModerScreen>
+    MDFloatLayout:
+        size: root.size
+        pos: root.pos
+        MDBoxLayout:
+            size_hint: 1, None
+            height: self.minimum_height
+            orientation: 'vertical'
+            padding: dp(10)
+            spacing: dp(10)
+            pos_hint: {'top': 1}
+
+            MDIconButton:
+                size_hint: 1, None
+                halign: 'right'
+                height: dp(60)
+                on_release:
+                    app.user = ''
+                    app.role = ''
+                    app.root.current = 'login'
+                icon: 'logout-variant'
+                icon_size: dp(55)
+
+            Image:
+                id: diploma
+                size_hint: 1, None
+                height: dp(400)
+                source: 'images\like.png'
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: self.minimum_height
+                spacing: dp(5)
+
+                MDRoundFlatButton:
+                    halign: 'center'
+                    text: 'Accept'
+                    font_size: dp(40)
+                    size_hint: .5, None
+                    text_color: 0, .9, 0, 1
+                    line_color: 0, .9, 0, 1
+                    on_release:
+                        root.accept()
+
+                MDRoundFlatButton:
+                    halign: 'center'
+                    text: 'Reject'
+                    font_size: dp(40)
+                    size_hint: .5, None
+                    text_color: 1, 0, 0, 1
+                    line_color: 1, 0, 0, 1
+                    on_release:
+                        root.reject()
