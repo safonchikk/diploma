@@ -56,6 +56,7 @@
                 name: 'articles_screen'
                 text: 'Articles'
                 icon: 'script-text-outline'
+                on_tab_release: root.load_articles()
 
                 MDBoxLayout:
                     padding: dp(10)
@@ -69,6 +70,7 @@
                 name: 'videos_screen'
                 text: 'Videos'
                 icon: 'youtube'
+                on_tab_release: root.load_videos()
 
                 MDBoxLayout:
                     padding: dp(10)
@@ -82,6 +84,7 @@
                 name: 'subscriptions_screen'
                 text: 'Subs'
                 icon: 'account-group'
+                on_tab_release: root.load_creators()
 
                 MDBoxLayout:
                     padding: dp(10)
