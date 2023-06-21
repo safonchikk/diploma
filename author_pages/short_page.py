@@ -9,6 +9,7 @@ import base64
 import os
 
 from author_pages.new_short_screen import NewShortScreen
+from previews.creator_short_preview import CreatorShortPreview
 from previews.short_preview import ShortPreview
 
 
@@ -35,7 +36,7 @@ class ShortPageScreen(MyScreen):
 
                 # Створення об'єкта CoreImage з тимчасового зображення
                 core_image = CoreImage(temp_filename)
-                short_preview = ShortPreview(size_hint_y=None,
+                short_preview = CreatorShortPreview(size_hint_y=None,
                                              height=dp(300),
                                              thumbnail=core_image.texture,
                                              title=video_info["video_name"],

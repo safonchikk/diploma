@@ -5,12 +5,11 @@ from author_pages.update_video_screen import UpdateVideoScreen
 
 
 class CreatorShortPreview(Button):
-    def __init__(self, thumbnail, content_id, create_upd, title='Title', **kwargs):
+    def __init__(self, thumbnail, content_id, title='Title', **kwargs):
         super(CreatorShortPreview, self).__init__(**kwargs)
         self.content_id = content_id
         self.ids.thumbnail.texture = thumbnail
         self.ids.title.text = title
-        self.create_upd = create_upd
 
     def delete(self):
         requests.delete("https://lifehealther.onrender.com/short/delete/" + str(self.content_id))
