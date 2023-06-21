@@ -18,7 +18,7 @@ class CommentScreen(MyScreen):
         comments = requests.get("https://lifehealther.onrender.com/comment/" + str(self.content_id)).json()
         if comments:
             for i in comments:
-                comment = Comment(author_login=i["username"], text=i["text"], size_hint_y=None)
+                comment = Comment(author_login=i["username"], text=i["text"], size_hint_y=None, liked=False)
                 self.ids.comments_grid.add_widget(comment)
 
     def post(self):
@@ -29,7 +29,6 @@ class CommentScreen(MyScreen):
             "like_count": 0
         }
         r = requests.post("https://lifehealther.onrender.com/comment/create", json=data)
-        comment = Comment(author_login=self.username, text=self.ids.comment.text, size_hint_y=None,
-                          comment_id=None, liked=False)
+        comment = Comment(author_login=self.username, text=self.ids.comment.text, size_hint_y=None, liked=False)
         self.ids.comments_grid.add_widget(comment)
         self.ids.comment.text = ''
