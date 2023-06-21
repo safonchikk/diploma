@@ -1,6 +1,6 @@
 from kivy.uix.button import Button
 
-from article_screen import ArticleScreen
+import article_screen
 
 
 class ArticlePreview(Button):
@@ -18,4 +18,4 @@ class ArticlePreview(Button):
         self.like_count = like_count
 
     def get_screen(self):
-        return ArticleScreen(self.content_id)
+        return article_screen.ArticleScreen(self.content_id)
