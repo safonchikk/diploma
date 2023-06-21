@@ -49,9 +49,10 @@ class SearchScreen(MyScreen):
         self.videos_grid.bind(minimum_height=self.videos_grid.setter('height'))
         self.creators_grid.bind(minimum_height=self.creators_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
-        self.load_results()
-        self.ids.search_input.text = query
         self.query = query
+        self.ids.search_input.text = query
+        self.load_results()
+
 
     def load_results(self):
         customer_id = MDApp.get_running_app().user
