@@ -1,6 +1,5 @@
 import creator_screen
 from comment_screen import CommentScreen
-from creator_screen import CreatorScreen
 from my_screen import MyScreen
 from kivy.core.image import Image as CoreImage
 from kivymd.app import MDApp
