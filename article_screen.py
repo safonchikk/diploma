@@ -1,3 +1,4 @@
+import creator_screen
 from comment_screen import CommentScreen
 from creator_screen import CreatorScreen
 from my_screen import MyScreen
