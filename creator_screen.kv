@@ -51,6 +51,7 @@
                 app.root.add_widget(root.get_subs_screen())
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'author_subs'
+                app.root.transition.direction = 'left'
 
         MDRoundFlatButton:
             text: 'Diplomas'
@@ -60,6 +61,7 @@
                 app.root.add_widget(root.get_diplomas_screen())
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'author_diplomas'
+                app.root.transition.direction = 'left'
 
         MDRoundFlatButton:
             text: 'Shorts'
@@ -69,6 +71,7 @@
                 app.root.add_widget(root.get_shorts_screen())
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'author_shorts'
+                app.root.transition.direction = 'left'
 
         MDRoundFlatButton:
             text: 'Videos'
@@ -78,6 +81,7 @@
                 app.root.add_widget(root.get_videos_screen())
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'author_videos'
+                app.root.transition.direction = 'left'
 
         MDRoundFlatButton:
             text: 'Articles'
@@ -87,4 +91,5 @@
                 app.root.add_widget(root.get_articles_screen())
                 app.root.screen_history.append(app.root.current)
                 app.root.current = 'author_articles'
+                app.root.transition.direction = 'left'
 
