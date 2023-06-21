@@ -1,3 +1,5 @@
+import os
+
 import requests
 
 from my_screen import MyScreen
@@ -20,6 +22,7 @@ class ModerScreen(MyScreen):
         with open(temp_filename, 'wb') as file:
             file.write(decoded_bytes)
         core_image = CoreImage(temp_filename)
+        os.remove(temp_filename)
         self.ids.diploma.texture = core_image.texture
 
     def accept(self):
