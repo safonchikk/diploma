@@ -4,6 +4,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
+from admin_screen import AdminScreen
 from author_pages.creator_edit_profile import CreatorEditProfile
 from author_pages.diploma_page import DiplomaPageScreen
 from author_pages.article_page import ArticlePageScreen
@@ -55,6 +56,10 @@ class LifeHealther(MDApp):
             main_screen.load_shorts()
             main_screen.load_videos()
             main_screen.load_creators()
+
+        elif self.role == "Ad":
+            self.sm.add_widget(AdminScreen(name='admin'))
+            self.sm.current = 'admin'
 
     def build(self):
         Window.softinput_mode = 'below_target'

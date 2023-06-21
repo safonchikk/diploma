@@ -1,0 +1,81 @@
+<AdminScreen>
+    MDFloatLayout:
+        size: root.size
+        pos: root.pos
+        MDBoxLayout:
+            id:layout
+            size_hint: 1, None
+            height: self.minimum_height
+            orientation: 'vertical'
+            padding: dp(10)
+            spacing: dp(10)
+            pos_hint: {'top': 1}
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: self.minimum_height
+
+                MDLabel:
+                    size_hint: .8, None
+                    height: dp(60)
+                    text: 'Create moderator'
+                    halign: 'center'
+                    font_size: dp(30)
+
+                MDIconButton:
+                    size_hint: .15, None
+                    height: dp(60)
+                    on_release:
+                        app.user = ''
+                        app.role = ''
+                        app.root.current = 'login'
+                    icon: 'logout-variant'
+                    icon_size: dp(55)
+
+            MDTextField:
+                hint_text: 'Login'
+                helper_text: '5-32 symbols, a-z, A-Z, 0-9 and _ only'
+                helper_text_mode: "on_error"
+                on_text_validate:
+                    root.validate_login()
+                on_focus:
+                    root.validate_login()
+                id: login_input
+                multiline: False
+                size_hint: 1, None
+                font_size: dp(40)
+
+            MDTextField:
+                id: password_input
+                helper_text: '8-32 symbols'
+                helper_text_mode: "on_error"
+                on_text_validate:
+                    root.validate_password()
+                on_focus:
+                    root.validate_password()
+                password: True
+                hint_text: 'Password'
+                multiline: False
+                size_hint: 1, None
+                font_size: dp(40)
+
+            MDTextField:
+                id: password_confirm_input
+                helper_text: "Passwords don't match!"
+                helper_text_mode: "on_error"
+                on_text_validate:
+                    root.validate_second_password()
+                on_focus:
+                    root.validate_second_password()
+                password: True
+                hint_text: 'Repeat password'
+                multiline: False
+                size_hint: 1, None
+                font_size: dp(40)
+
+            MDRoundFlatButton:
+                text: 'Create'
+                font_size: dp(40)
+                size_hint: 1, None
+                on_release:
+                    root.create_moder()
