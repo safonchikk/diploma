@@ -58,7 +58,7 @@ class SearchScreen(MyScreen):
         self.articles_grid.clear_widgets()
         self.videos_grid.clear_widgets()
         self.creators_grid.clear_widgets()
-        result = requests.get("https://lifehealther.onrender.com/fined/" + str(customer_id) + "/run").json()
+        result = requests.get("https://lifehealther.onrender.com/fined/" + str(customer_id) + "/" + str(self.query)).json()
         self.authors = result["authors"]
         self.videos = result["videos"]
         self.articles = result["articles"]
