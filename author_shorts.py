@@ -12,13 +12,13 @@ from previews.video_preview import VideoPreview
 
 
 class AuthorShortsScreen(MyScreen):
-    def __init__(self, author_id, videos, username, avatar, info, **kwargs):
+    def __init__(self, author_id, shorts, username, avatar, info, **kwargs):
         super(AuthorShortsScreen, self).__init__(name='author_shorts', **kwargs)
         self.ids.shorts_grid.bind(minimum_height=self.ids.shorts_grid.setter('height'))
         self.ids.layout.bind(minimum_height=self.ids.layout.setter('height'))
         self.k = 0
         self.author_id = author_id
-        self.videos = videos
+        self.shorts = shorts
         self.username = username
         self.avatar = avatar
         self.info = info
@@ -26,8 +26,8 @@ class AuthorShortsScreen(MyScreen):
 
     def load_shorts(self):
         self.ids.shorts_grid.clear_widgets()
-        '''if self.videos:
-            for i in self.videos:
+        if self.shorts:
+            for i in self.shorts:
                 decoded_bytes = base64.b64decode(i["preview"])
                 temp_filename = 'temp_image_self_screen_videos_'+str(self.k)+'.png'
                 with open(temp_filename, 'wb') as file:
@@ -44,4 +44,4 @@ class AuthorShortsScreen(MyScreen):
                                              like_count=i["like_count"])
                 self.k += 1
                 self.ids.videos_grid.add_widget(video_preview)
-                os.remove(temp_filename)'''
+                os.remove(temp_filename)
