@@ -14,8 +14,6 @@ from kivymd.app import MDApp
 
 from kivy.core.image import Image as CoreImage
 
-from article_screen import ArticleScreen
-from creator_screen import CreatorScreen
 from previews.creator_preview import CreatorPreview
 from my_screen import MyScreen
 from previews.video_preview import VideoPreview
@@ -73,11 +71,11 @@ class MainScreen(MyScreen):
 
         self.ids.articles_grid.add_widget(scroll_view)
 
-    def open_article(self, content_id):
+    '''def open_article(self, content_id):
         article_screen = ArticleScreen(content_id)
         self.manager.add_widget(article_screen)
         self.manager.screen_history.append(self.manager.current)
-        self.manager.current = 'article'
+        self.manager.current = 'article'''
 
     def load_shorts(self):
         layout = GridLayout(cols=1, size_hint_y=None)
@@ -149,11 +147,11 @@ class MainScreen(MyScreen):
 
         self.ids.videos_grid.add_widget(scroll_view)
 
-    def open_video(self, content_id):
+    '''def open_video(self, content_id):
         video_screen = VideoScreen(content_id)
         self.manager.add_widget(video_screen)
         self.manager.screen_history.append(self.manager.current)
-        self.manager.current = 'video'
+        self.manager.current = 'video'''
 
     def load_creators(self):
         layout = GridLayout(cols=1, spacing=10, size_hint_y=None)

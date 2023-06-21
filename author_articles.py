@@ -9,7 +9,6 @@ import base64
 import os
 
 from previews.article_preview import ArticlePreview
-from previews.video_preview import VideoPreview
 
 
 class AuthorArticlesScreen(MyScreen):

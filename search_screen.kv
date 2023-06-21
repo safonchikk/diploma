@@ -11,13 +11,11 @@
 
             MDRoundFlatButton:
                 size_hint: .15, 1
-                background_color: 1,1,1,0
+                text: 'Back'
+                font_size: dp(20)
                 on_release:
-                    app.user = ''
-                    app.role = ''
-                    app.root.current = 'login'
-                icon: 'logout-variant'
-                icon_size: dp(55)
+                    root.go_back(self)
+                    app.root.remove_widget(app.root.get_screen('search'))
 
             MDTextField:
                 id: login_input
