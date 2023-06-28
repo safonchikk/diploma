@@ -1,0 +1,95 @@
+<CreatorScreen>:
+    MDFloatLayout:
+        MDRoundFlatButton:
+            size_hint: .2, .1
+            pos_hint: {'top': 1}
+            text: 'Back'
+            font_size: dp(20)
+            on_release:
+                root.go_back(self)
+                app.root.remove_widget(app.root.get_screen('creator'))
+
+    MDBoxLayout:
+        size: root.size
+        pos: root.pos
+        spacing: dp(10)
+        padding: dp(10)
+        orientation: 'vertical'
+
+        Image:
+            id: avatar
+            source: 'images/account.png'
+            size_hint: 1, 0.3
+
+        MDLabel:
+            id: login
+            text: '@jack_sport_tips'
+            halign: 'center'
+            font_size: dp(30)
+            size_hint: 1, 0.1
+
+        MDLabel:
+            id: info
+            text: '#a #b #c \n#d #e #f'
+            halign: 'center'
+            font_size: dp(20)
+            size_hint: 1, 0.2
+
+        MDRoundFlatButton:
+            id: subscribe_button
+            text: 'Subscribe'
+            size_hint: 1, 0.15
+            font_size: dp(20)
+            on_release:
+                root.subscribe()
+
+        MDRoundFlatButton:
+            text: 'Paid subscriptions'
+            size_hint: 1, 0.15
+            font_size: dp(20)
+            on_release:
+                app.root.add_widget(root.get_subs_screen())
+                app.root.screen_history.append(app.root.current)
+                app.root.current = 'author_subs'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+            text: 'Diplomas'
+            size_hint: 1, 0.15
+            font_size: dp(20)
+            on_release:
+                app.root.add_widget(root.get_diplomas_screen())
+                app.root.screen_history.append(app.root.current)
+                app.root.current = 'author_diplomas'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+            text: 'Shorts'
+            size_hint: 1, 0.15
+            font_size: dp(20)
+            on_release:
+                app.root.add_widget(root.get_shorts_screen())
+                app.root.screen_history.append(app.root.current)
+                app.root.current = 'author_shorts'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+            text: 'Videos'
+            size_hint: 1, 0.15
+            font_size: dp(20)
+            on_release:
+                app.root.add_widget(root.get_videos_screen())
+                app.root.screen_history.append(app.root.current)
+                app.root.current = 'author_videos'
+                app.root.transition.direction = 'left'
+
+        MDRoundFlatButton:
+            text: 'Articles'
+            size_hint: 1, 0.15
+            font_size: dp(20)
+            on_release:
+                app.root.add_widget(root.get_articles_screen())
+                app.root.screen_history.append(app.root.current)
+                app.root.current = 'author_articles'
+                app.root.transition.direction = 'left'
+

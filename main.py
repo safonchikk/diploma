@@ -1,80 +1,81 @@
-from kivy.app import App
-from kivy.clock import Clock
-from kivy.core.clipboard import Clipboard
-from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
-from kivy.uix.popup import Popup
-from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty, ColorProperty
+import glob
+
+from kivy.core.window import Window
 from kivy.lang import Builder
-from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.core.window import Window, Animation
-from kivy.uix.videoplayer import VideoPlayer
+from kivymd.app import MDApp
+
+from admin_screen import AdminScreen
+from author_pages.creator_edit_profile import CreatorEditProfile
+from author_pages.diploma_page import DiplomaPageScreen
+from author_pages.article_page import ArticlePageScreen
+from author_pages.creator_profile_screen import CreatorProfileScreen
+from login_screen import LoginScreen
+from main_screen import MainScreen
+from moder_screen import ModerScreen
+from my_screen_manager import MyScreenManager
+from registration_screen import RegistrationScreen
+from author_pages.short_page import ShortPageScreen
+from author_pages.sub_page import SubPageScreen
+from author_pages.video_page import VideoPageScreen
+from search_screen import SearchScreen
+
+directories = ['.', 'author_pages', 'previews']
+
+for directory in directories:
+    kv_files = glob.glob(f"{directory}/*.kv")
+
+    for kv_file in kv_files:
+        Builder.load_file(kv_file)
 
 
-Builder.load_file('sliding_panel.kv')
-Builder.load_file('comment_screen.kv')
-Builder.load_file('login_screen.kv')
-Builder.load_file('registration_screen.kv')
+class LifeHealther(MDApp):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.sm = None
+        self.user = None
+        self.role = None
 
+    def go_to_page(self):
+        if self.role == "Cr":
+            self.sm.add_widget(CreatorProfileScreen(name='creator_profile'))
+            self.sm.add_widget(VideoPageScreen(name='video_page'))
+            self.sm.add_widget(ShortPageScreen(name='short_page'))
+            self.sm.add_widget(ArticlePageScreen(name='article_page'))
+            self.sm.add_widget(DiplomaPageScreen(name='diploma_page'))
+            self.sm.add_widget(SubPageScreen(name='sub_page'))
+            self.sm.add_widget(CreatorEditProfile(name='edit_profile'))
 
-class MainScreen(Screen):
+            self.sm.get_screen('creator_profile').load_info()
+            self.sm.current = 'creator_profile'
 
-    Window.size = (400, 750)
+        elif self.role == "Cu":
+            main_screen = MainScreen(name='main')
 
-    def like(self):
-        if self.ids.like_icon.source == "images/like.png":
-            self.ids.like_icon.source = "images/liked.png"
-        else:
-            self.ids.like_icon.source = "images/like.png"
+            self.sm.add_widget(main_screen)
+            self.sm.current = 'main'
+            main_screen.load_articles()
+            main_screen.load_shorts()
+            main_screen.load_videos()
+            main_screen.load_creators()
 
-    def share(self):
-        Clipboard.copy("Linkie")
-        popup = Popup(title='Copied', content=Label(text='Link has been copied.'), size_hint=(None, None),
-                      size=(200, 100), auto_dismiss=True, overlay_color=(0, 0, 0, 0))
-        popup.open()
-        Clock.schedule_once(lambda dt: popup.dismiss(), 1)
+        elif self.role == "Ad":
+            self.sm.add_widget(AdminScreen(name='admin'))
+            self.sm.current = 'admin'
 
+        elif self.role == "Mo":
+            self.sm.add_widget(ModerScreen())
+            self.sm.current = 'moder'
 
-class CommentScreen(Screen):
-    pass
-
-
-class SlidingPanel(ButtonBehavior, BoxLayout):
-    pass
-
-
-class RegistrationScreen(Screen):
-    def register(self):
-        email = self.ids.email_input.text
-        login = self.ids.login_input.text
-        password = self.ids.password_input.text
-        self.reg(email, login, password)
-
-    def reg(self, email, login, password):
-        pass
-
-
-class LoginScreen(Screen):
-    def login(self):
-        login = self.ids.login_input.text
-        password = self.ids.password_input.text
-        self.log(login, password)
-
-    def log(self, login, password):
-        pass
-
-
-class LifeHealther(App):
     def build(self):
-        sm = ScreenManager()
-        sm.add_widget(MainScreen(name='main'))
-        sm.add_widget(CommentScreen(name='comment'))
-        sm.add_widget(RegistrationScreen(name='registration'))
-        sm.add_widget(LoginScreen(name='login'))
-        return sm
+        Window.softinput_mode = 'below_target'
+
+        self.theme_cls.primary_palette = 'Orange'
+        self.sm = MyScreenManager()
+
+        self.sm.add_widget(LoginScreen(name='login'))
+        self.sm.add_widget(RegistrationScreen(name='registration'))
+
+        return self.sm
 
 
 if __name__ == '__main__':

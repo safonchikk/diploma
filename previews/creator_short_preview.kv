@@ -1,0 +1,40 @@
+<CreatorShortPreview>
+    MDBoxLayout:
+        orientation: 'vertical'
+        pos: root.pos
+        size: self.parent.size
+        spacing: dp(10)
+        md_bg_color: .9, .9, .9, 1
+
+        Image:
+            id: thumbnail
+            size: self.size
+            size_hint: 1, .7
+
+        MDLabel:
+            id: title
+            text: 'Short Title'
+            size_hint: 1, .15
+            font_size: dp(30)
+
+        MDBoxLayout:
+            size_hint: 1, .15
+            spacing: dp(30)
+            padding: dp(5)
+
+            MDRoundFlatButton:
+                text: 'Update'
+                size_hint: .3, 1
+                font_size: dp(20)
+                md_bg_color: 1,1,1,1
+                #on_release:
+                #    root.create_update()
+
+            MDRoundFlatButton:
+                text: 'Delete'
+                size_hint: .3, 1
+                font_size: dp(20)
+                md_bg_color: .8,.3,.3,1
+                on_release:
+                    root.delete()
+                    app.root.current_screen.load_shorts()

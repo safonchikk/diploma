@@ -1,4 +1,4 @@
-<CommentScreen>
+<DiplomaPageScreen>
     ScrollView:
         MDBoxLayout:
             id: layout
@@ -10,43 +10,30 @@
             MDBoxLayout:
                 size_hint_y: None
                 height: self.minimum_height
-                spacing: dp(50)
+                spacing: dp(60)
                 MDRoundFlatButton:
                     size_hint: .2, 1
                     text: 'Back'
                     font_size: dp(20)
                     on_release:
                         root.go_back(self)
-                        app.root.remove_widget(app.root.get_screen('comment'))
                 MDLabel:
-                    text: 'Comments'
+                    text: 'Diplomas'
                     halign: 'left'
                     font_size: dp(30)
                     height: dp(35)
 
-            MDBoxLayout:
-                id: comments_grid
-                orientation: 'vertical'
+            MDRoundFlatButton:
                 size_hint: 1, None
+                text: 'New diploma'
+                font_size: dp(30)
+                on_release:
+                    root.choose()
+
+            MDBoxLayout:
+                id: diplomas_grid
+                orientation: 'vertical'
+                size_hint_y: None
                 #padding: dp(10)
                 spacing: dp(10)
 
-    MDBoxLayout:
-        size_hint_y: None
-        height: self.minimum_height
-        spacing: dp(10)
-        padding: dp(10)
-        MDTextField:
-            size_hint: .8, None
-            hint_text: 'Your comment'
-            id: comment
-            multiline: True
-            halign: 'left'
-            font_size: dp(30)
-            height: dp(40)
-        MDIconButton:
-            size_hint: .2, None
-            icon: 'send'
-            #icon_size: dp(20)
-            on_release:
-                root.post()

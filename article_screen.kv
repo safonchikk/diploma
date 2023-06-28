@@ -1,0 +1,95 @@
+<ArticleScreen>:
+    MDBoxLayout:
+        spacing: dp(10)
+        padding: dp(10)
+        orientation: 'vertical'
+        MDBoxLayout:
+            height: self.minimum_height
+            size_hint: .2, .1
+            spacing: dp(30)
+            MDRoundFlatButton:
+                size_hint: .2, 1
+                text: 'Back'
+                font_size: dp(20)
+                on_release:
+                    root.go_back(self)
+                    app.root.remove_widget(app.root.get_screen('article'))
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint: 1, None
+                height: max(self.minimum_height, dp(200))
+
+                MDBoxLayout:
+                    size_hint: 1, .2
+                    spacing: dp(10)
+                    adaptive_height: True
+
+                    Button:
+                        size_hint: None, None
+                        width: dp(50)
+                        background_color: 1,1,1,0
+                        on_release: root.open_creator()
+                        Image:
+                            id: author_avatar
+                            source: 'images/account.png'
+                            size: self.parent.size
+                            pos: self.parent.pos
+
+                    MDLabel:
+                        id: author
+                        text: "Author's name"
+                        font_size: dp(20)
+                        valign: 'center'
+                        halign: 'left'
+
+                MDBoxLayout:
+                    size_hint: 1, None
+                    height: self.minimum_height
+                    MDLabel:
+                        size_hint: 1, None
+                        halign: 'center'
+                        id: headline
+                        text: "Headline"
+                        text_size: self.texture_size
+                        font_size: dp(30)
+
+                MDBoxLayout:
+                    size_hint: 1, None
+                    height: self.minimum_height
+                    MDLabel:
+                        size_hint: 1, None
+                        id: text
+                        text: "Text"
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+                        font_size: dp(20)
+                        multiline: True
+
+                MDBoxLayout:
+                    size_hint: .5, .2
+                    spacing: dp(10)
+                    adaptive_height: True
+
+                    Button:
+                        id: like_button
+                        size_hint: .5, 1
+                        background_color: 1,1,1,0
+                        on_release: root.like()
+                        Image:
+                            id: like_icon
+                            source: "images/like.png"
+                            size: self.parent.size
+                            pos: self.parent.pos
+
+                    Button:
+                        id: comment_button
+                        size_hint: .5, 1
+                        background_color: 1,1,1,0
+                        on_release:
+                            root.comment()
+                        Image:
+                            id: comment_icon
+                            source: "images/comment.png"
+                            size: self.parent.size
+                            pos: self.parent.pos

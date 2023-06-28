@@ -1,4 +1,4 @@
-<RegistrationScreen>
+<AdminScreen>
     MDFloatLayout:
         size: root.size
         pos: root.pos
@@ -9,33 +9,29 @@
             orientation: 'vertical'
             padding: dp(10)
             spacing: dp(10)
-            pos_hint: {'top': .85}
+            pos_hint: {'top': 1}
 
             MDBoxLayout:
+                size_hint: 1, None
+                height: self.minimum_height
+
                 MDLabel:
-                    text: "I'm a"
-                    text_size: self.size
+                    size_hint: .8, None
+                    height: dp(60)
+                    text: 'Create moderator'
+                    halign: 'center'
                     font_size: dp(30)
-                    size_hint: 0.3, None
 
-                MDCheckbox:
-                    group: 'group'
-                    size_hint: 0.1, None
-                    active: True
-                MDLabel:
-                    text: 'Viewer'
-                    font_size: dp(25)
-                    size_hint: 0.25, None
-
-                MDCheckbox:
-                    id: creator_checkbox
-                    group: 'group'
-                    size_hint: 0.1, None
-                    active: True
-                MDLabel:
-                    text: 'Creator'
-                    font_size: dp(25)
-                    size_hint: 0.25, None
+                MDIconButton:
+                    size_hint: .15, None
+                    height: dp(60)
+                    on_release:
+                        app.user = ''
+                        app.role = ''
+                        app.root.current = 'login'
+                        app.root.transition.direction = 'right'
+                    icon: 'logout-variant'
+                    icon_size: dp(55)
 
             MDTextField:
                 hint_text: 'Login'
@@ -73,22 +69,14 @@
                 on_focus:
                     root.validate_second_password()
                 password: True
-                hint_text: 'Repeat your password'
+                hint_text: 'Repeat password'
                 multiline: False
                 size_hint: 1, None
                 font_size: dp(40)
 
             MDRoundFlatButton:
-                text: 'Register'
+                text: 'Create'
                 font_size: dp(40)
                 size_hint: 1, None
                 on_release:
                     root.register()
-
-            MDRoundFlatButton:
-                text: 'I already have an account'
-                font_size: dp(20)
-                size_hint: 1, None
-                line_color: (0, 0, 0, 0)
-                on_release:
-                    app.root.current = 'login'

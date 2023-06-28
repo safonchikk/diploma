@@ -1,0 +1,32 @@
+<AuthorArticlesScreen>
+    ScrollView:
+        MDBoxLayout:
+            id: layout
+            orientation: 'vertical'
+            size_hint_y: None
+            padding: dp(10)
+            spacing: dp(10)
+
+            MDBoxLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(60)
+                MDRoundFlatButton:
+                    size_hint: .2, 1
+                    text: 'Back'
+                    font_size: dp(20)
+                    on_release:
+                        root.go_back(self)
+                        app.root.remove_widget(app.root.get_screen('author_articles'))
+                MDLabel:
+                    text: 'Articles'
+                    halign: 'left'
+                    font_size: dp(30)
+                    height: dp(35)
+
+            MDBoxLayout:
+                id: articles_grid
+                orientation: 'vertical'
+                size_hint_y: None
+                #padding: dp(10)
+                spacing: dp(10)

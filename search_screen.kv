@@ -1,0 +1,76 @@
+<SearchScreen>
+    ScrollView:
+        MDBoxLayout:
+            orientation: 'vertical'
+            id: layout
+            size_hint_y: None
+
+            MDBoxLayout:
+                padding: dp(10), dp(3), 0, dp(3)
+                spacing: dp(15)
+                size_hint: 1, None
+                height: dp(60)
+
+                MDRoundFlatButton:
+                    size_hint: .1, 1
+                    text: 'Back'
+                    font_size: dp(20)
+                    on_release:
+                        root.go_back(self)
+                        app.root.remove_widget(app.root.get_screen('search'))
+
+                MDTextField:
+                    id: search_input
+                    mode: "round"
+                    multiline: False
+                    size_hint: .7, 1
+                    font_size: dp(30)
+
+                MDIconButton:
+                    size_hint: .15, 1
+                    id: search_button
+                    background_color: 1,1,1,0
+                    icon: 'magnify'
+                    icon_size: dp(55)
+                    on_release:
+                        root.upd_query()
+
+            MDBoxLayout:
+                padding: dp(10)
+                spacing: dp(10)
+                size_hint: 1, None
+                height: dp(60)
+
+                MDRoundFlatButton:
+                    id: video_button
+                    size_hint: .32, 1
+                    text: 'Videos'
+                    font_size: dp(24)
+                    on_release:
+                        root.go_videos()
+
+                MDRoundFlatButton:
+                    id: article_button
+                    size_hint: .32, 1
+                    text: 'Articles'
+                    font_size: dp(24)
+                    on_release:
+                        root.go_articles()
+
+                MDRoundFlatButton:
+                    id: author_button
+                    size_hint: .32, 1
+                    text: 'Authors'
+                    font_size: dp(24)
+                    on_release:
+                        root.go_authors()
+
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: self.minimum_height
+                id: grid
+                orientation: 'vertical'
+                padding: dp(10)
+                spacing: dp(10)
+

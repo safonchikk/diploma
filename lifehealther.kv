@@ -1,99 +1,95 @@
 <MainScreen>
-    TabbedPanel:
-        size: root.width, root.height
-        do_default_tab: False
-        tab_pos: "bottom_mid"
-        tab_width: self.size[0]/len(self.tab_list)
 
-        TabbedPanelItem:
-            canvas:
-                Rectangle:
-                    source: "images/qq.jpg"
-                    size: (self.size[0]/2, self.size[0]/2)
-                    pos: (self.size[0]/4, 0)
+    MDBoxLayout:
+        orientation: 'vertical'
 
-            FloatLayout
-                VideoPlayer:
-                    source: "images/cat_video.mp4"
-                    size: self.parent.size
-                    pos: self.parent.pos
-                    state: 'stop'
-                    controls: 'position'
+        MDBoxLayout:
+            padding: dp(10), dp(3), 0, dp(3)
+            spacing: dp(10)
+            size_hint: 1, None
+            height: dp(60)
 
-                Button:
-                    id: profile_button
-                    pos_hint: {'x': 0.8, 'y': 0.85}
-                    size_hint: (0.2, 0.1)
-                    background_color: (1,1,1,0)
-                    on_release: app.root.current = 'login'
-                    Image:
-                        source: "images/account.png"
-                        size: self.parent.size
-                        pos: self.parent.pos
+            MDTextField:
+                id: search_input
+                mode: "round"
+                multiline: False
+                size_hint: .7, 1
+                font_size: dp(30)
 
-                Button:
-                    id: like_button
-                    pos_hint: {'x': 0.8, 'y': 0.4}
-                    size_hint: (0.2, 0.1)
-                    background_color: (1,1,1,0)
-                    on_release: root.like()
-                    Image:
-                        id: like_icon
-                        source: "images/like.png"
-                        size: self.parent.size
-                        pos: self.parent.pos
+            MDIconButton:
+                size_hint: .15, 1
+                id: search_button
+                background_color: 1,1,1,0
+                icon: 'magnify'
+                icon_size: dp(55)
+                on_release: root.search()
 
-                Button:
-                    id: comment_button
-                    pos_hint: {'x': 0.8, 'y': 0.27}
-                    size_hint: (0.2, 0.1)
-                    background_color: (1,1,1,0)
-                    on_release:
-                        #root.comment()
-                        app.root.current = 'comment'
-                        root.manager.transition.direction = 'up'
-                    Image:
-                        id: comment_icon
-                        source: "images/comment.png"
-                        size: self.parent.size
-                        pos: self.parent.pos
-
-                Button:
-                    id: share_button
-                    pos_hint: {'x': 0.8, 'y': 0.14}
-                    size_hint: (0.2, 0.1)
-                    background_color: (1,1,1,0)
-                    on_release:
-                        root.share()
-                    Image:
-                        id: share_icon
-                        source: "images/share.png"
-                        size: self.parent.size
-                        pos: self.parent.pos
-
-
-        TabbedPanelItem:
-            Button:
-                pos_hint: {'x': 0.8, 'y': 0.27}
-                size_hint: (0.2, 0.1)
-                background_color: (1,1,1,0)
+            MDIconButton:
+                size_hint: .15, 1
+                background_color: 1,1,1,0
                 on_release:
-                    #root.comment()
-                    root.manager.current = 'comment'
-                    root.manager.transition.direction = 'up'
-                Image:
-                    source: "images/comment.png"
-                    size: self.parent.size
-                    pos: self.parent.pos
+                    app.user = ''
+                    app.role = ''
+                    app.root.current = 'login'
 
-        TabbedPanelItem:
-            text: "hi"
-            Label:
-                text: "hi"
+                icon: 'logout-variant'
+                icon_size: dp(55)
 
-        TabbedPanelItem:
-            text: "bye"
-            Label:
-                text: "bye"
 
+        MDBottomNavigation:
+            panel_color: .4, .4, .4, 1
+
+            MDBottomNavigationItem:
+                name: 'shorts_screen'
+                text: 'Shorts'
+                icon: 'filmstrip-box'
+
+                BoxLayout:
+                    md_bg_color: 1,0,0,1
+                    size_hint: (1, None)
+                    size: (root.width, root.height-dp(120))
+                    orientation: 'vertical'
+                    id: shorts_player
+
+
+            MDBottomNavigationItem:
+                name: 'articles_screen'
+                text: 'Articles'
+                icon: 'script-text-outline'
+                #on_tab_release: root.load_articles()
+
+                MDBoxLayout:
+                    padding: dp(10)
+                    md_bg_color: 1,1,1,1
+                    size_hint: (1, None)
+                    size: (root.width, root.height-dp(120))
+                    id: articles_grid
+
+
+            MDBottomNavigationItem:
+                name: 'videos_screen'
+                text: 'Videos'
+                icon: 'youtube'
+                #on_tab_release: root.load_videos()
+
+                MDBoxLayout:
+                    padding: dp(10)
+                    md_bg_color: 1,1,1,1
+                    size_hint: (1, None)
+                    size: (root.width, root.height-dp(120))
+                    id: videos_grid
+
+
+            MDBottomNavigationItem:
+                name: 'subscriptions_screen'
+                text: 'Subs'
+                icon: 'account-group'
+                #on_tab_release: root.load_creators()
+
+                MDBoxLayout:
+                    padding: dp(10)
+                    md_bg_color: 1,1,1,1
+                    size_hint: (1, None)
+                    size: (root.width, root.height-dp(120))
+                    id: creators_grid
 

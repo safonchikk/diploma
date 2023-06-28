@@ -1,0 +1,89 @@
+<NewShortScreen>:
+    MDBoxLayout:
+        spacing: dp(10)
+        padding: dp(10)
+        orientation: 'vertical'
+        MDBoxLayout:
+            size_hint: 1, .1
+            spacing: dp(30)
+            MDRoundFlatButton:
+                size_hint: .2, 1
+                text: 'Back'
+                font_size: dp(20)
+                on_release:
+                    root.go_back(self)
+                    app.root.remove_widget(app.root.get_screen('new_video'))
+            MDLabel:
+                text: 'New short'
+                font_size: dp(40)
+                size_hint: .8, 1
+
+        MDLabel:
+            text: "Title"
+            text_size: self.size
+            font_size: dp(20)
+            size_hint: 1, .1
+        MDTextField:
+            id: title
+            mode: 'round'
+            font_size: dp(25)
+            size_hint: 1, .15
+
+        MDLabel:
+            text: "Video"
+            text_size: self.size
+            font_size: dp(20)
+            size_hint: 1, .1
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            MDRoundFlatButton:
+                text: 'Choose'
+                font_size: dp(30)
+                size_hint: 0.4, 1
+                on_release:
+                    root.choose_video()
+            MDLabel:
+                id: video_path
+                text_size: self.size
+                font_size: dp(14)
+                size_hint: 0.6, 1
+
+        MDLabel:
+            text: "Thumbnail"
+            text_size: self.size
+            font_size: dp(20)
+            size_hint: 1, .1
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            MDRoundFlatButton:
+                text: 'Choose'
+                font_size: dp(30)
+                size_hint: 0.4, 1
+                on_release:
+                    root.choose_thumbnail()
+            MDLabel:
+                id: thumbnail_path
+                text_size: self.size
+                font_size: dp(14)
+                size_hint: 0.6, 1
+
+        MDLabel:
+            text: "Tags"
+            text_size: self.size
+            font_size: dp(20)
+            size_hint: 1, .1
+        MDTextField:
+            id: tags
+            mode: 'round'
+            multiline: True
+            size_hint: 1, .2
+
+        MDRoundFlatButton:
+            text: 'Post'
+            font_size: dp(40)
+            size_hint: 1, 0.2
+            on_release:
+                root.publish()
+                root.go_back(self)
+                app.root.current_screen.load_videos()
+                app.root.remove_widget(app.root.get_screen('new_short'))
